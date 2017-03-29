@@ -1,0 +1,30 @@
+﻿<AML>
+ <Item type="Permission" id="B3AC361CB2E64278A6A9489E7D97E5F1" action="add">
+  <is_private>0</is_private>
+  <name>ITIL Notification</name>
+  <Relationships>
+   <Item type="Access" id="E2CFE55C1492413DBC20C1ECC589D264" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Notification" type="Permission">B3AC361CB2E64278A6A9489E7D97E5F1</source_id>
+   </Item>
+  
+   <Item type="Access" id="6D826D9B089D44D9BB0EB8C4A2FAFFAB" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_get>1</can_get>
+    <can_update>0</can_update>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Notification" type="Permission">B3AC361CB2E64278A6A9489E7D97E5F1</source_id>
+   </Item></Relationships>
+ </Item>
+</AML>

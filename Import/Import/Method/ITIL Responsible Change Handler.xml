@@ -1,0 +1,8 @@
+﻿<AML>
+ <Item type="Method" id="6B1143B08FDA4D8CA4B9E7EF3801FE61" action="add">
+  <comments>Responsible Field onChange Handler</comments>
+  <method_code><![CDATA[handleItemChange("responsible_changed_manually", "true");]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Responsible Change Handler</name>
+ </Item>
+</AML>

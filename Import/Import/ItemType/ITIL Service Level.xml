@@ -1,0 +1,213 @@
+﻿<AML>
+ <Item type="ItemType" id="ED44B29746784A11A23102ED9B294757" action="add">
+  <allow_private_permission>0</allow_private_permission>
+  <auto_search>1</auto_search>
+  <default_lifecycle keyed_name="Default" type="Life Cycle Map">2F3B75E17C4E4F2D9599579A965BFA64</default_lifecycle>
+  <default_page_size>50</default_page_size>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>ITIL_SERVICE_LEVEL</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label>Service Level</label>
+  <label_plural>Service Levels</label_plural>
+  <large_icon>../images/Icons/32x32/32x32_relationshipTypes.gif</large_icon>
+  <manual_versioning>0</manual_versioning>
+  <name>ITIL Service Level</name>
+  <open_icon>../images/Icons/16x16/16x16_relationshipTypes.gif</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <save_history>0</save_history>
+  <show_parameters_tab>1</show_parameters_tab>
+  <structure_view>tab view</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <Relationships>
+   <Item type="Allowed Permission" id="677B431359F0483B91EF10AB3B4B6B52" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="ITIL Service Level" type="Permission">E9C99A2374DD453C9A5BCA6A7791962C</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+   </Item>
+   <Item type="Can Add" id="877EBA382D604A719670261E8C248285" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+   </Item>
+   <Item type="Property" id="5B9F1BF65ACF44A3BA6597DD12CA1E1D" action="add">
+    <class_path></class_path>
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>string</data_type>
+    <default_value>1700</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>End Time</label>
+    <name>coverage_end</name>
+    <pattern></pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+    <stored_length>4</stored_length>
+   </Item>
+   <Item type="Property" id="C2FC0DF700924A2F86F0D4118C26BCB6" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>string</data_type>
+    <default_value>0800</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>Start Time</label>
+    <name>coverage_start</name>
+    <pattern></pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+    <stored_length>4</stored_length>
+   </Item>
+   <Item type="Property" id="E060A652FDCD40728A39FD5DFD79E9C9" action="add">
+    <column_alignment>center</column_alignment>
+    <column_width>120</column_width>
+    <data_type>integer</data_type>
+    <default_value></default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Response Time (Hrs)</label>
+    <min_range>1</min_range>
+    <name>default_response</name>
+    <range_inclusive>1</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+   </Item>
+   <Item type="Property" id="7867E6E6CBAC4AAD937A4FF81CC4D223" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>integer</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Default Warning Time (Hrs)</label>
+    <min_range>0</min_range>
+    <name>default_warning</name>
+    <range_inclusive>1</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+   </Item>
+   <Item type="Property" id="7A818AF6FDF0456EBC33B01369ED2596" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>300</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Description</label>
+    <name>description</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+    <stored_length>128</stored_length>
+   </Item>
+   <Item type="Property" id="F2E740D53AB449BBB541D98A5AEA3589" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>integer</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Escalation Time</label>
+    <name>escalation_time</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>7040</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+   </Item>
+   <Item type="Server Event" id="46FB15BD3E474033B365E3CCBCBF9D28" action="add">
+    <related_id keyed_name="ITIL Service Level Validate" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Service Level Validate</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeAdd</server_event>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+   </Item>
+   <Item type="Server Event" id="C77D1BB9C2C44318893AB1DA36AD138E" action="add">
+    <related_id keyed_name="ITIL Service Level Validate" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Service Level Validate</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUpdate</server_event>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+   </Item>
+   <Item type="TOC Access" id="962E27B064EC4BEC88661F221880D15B" action="add">
+    <category>ITIL</category>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+   </Item>
+   <Item type="View" id="3839F73BAAA84CCF8B34CC5C7613E57B" action="add">
+    <client>js</client>
+    <related_id keyed_name="ITIL Service Level" type="Form">E7145591018C4CF7A2A9D4615B38303E</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+    <type>default</type>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="ED44B29746784A11A23102ED9B294757" action="edit">
+  <Relationships>
+   <Item type="Property" id="E812989AF24E426395B15545DFA073C1" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>120</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>1</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <keyed_name_order>0</keyed_name_order>
+    <label>Name</label>
+    <name>name</name>
+    <order_by>0</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</source_id>
+    <stored_length>32</stored_length>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

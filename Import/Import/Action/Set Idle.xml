@@ -1,0 +1,14 @@
+<AML>
+ <Item type="Action" id="1EC17D6A77C54D939BEFD5D37757A451" action="add">
+  <item_query></item_query>
+  <location>client</location>
+  <method keyed_name="ITIL Set Idle" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>ITIL Set Idle</name>
+   </Item>
+  </method>
+  <name>Set Idle</name>
+  <target>none</target>
+  <type>item</type>
+ </Item>
+</AML>

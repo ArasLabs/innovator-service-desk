@@ -1,0 +1,46 @@
+﻿<AML>
+ <Item type="SQL" id="37E7C13617574586B648A21C94F595D2" action="add">
+  <execution_flag>immediate</execution_flag>
+  <name>service_tree</name>
+  <sqlserver_body><![CDATA[
+  /*
+  Returns the table containing data (id, keyed_name, level, etc.) for Service with id = @SERVICE_ID and its subordinate services.
+  Use NULL as @SERVICE_ID value to get full tree.
+  */
+ CREATE FUNCTION innovator.service_tree(@SERVICE_ID CHAR(32))
+ RETURNS @service_tree TABLE(ID CHAR(32) COLLATE database_default PRIMARY KEY,
+                             PARENT_ID CHAR(32) COLLATE database_default,
+                             KEYED_NAME NVARCHAR(128),
+                             LEVEL INTEGER,
+                             SORT_ORDER INTEGER)
+AS
+BEGIN
+  DECLARE @LEVEL INTEGER
+  SET @LEVEL = 0
+  
+  IF @SERVICE_ID IS NULL
+    INSERT INTO @service_tree SELECT s.id, NULL, s.keyed_name, @LEVEL, NULL FROM [ITIL_Service] s WHERE s.id NOT IN (SELECT related_id FROM [ITIL_Service_Structure])
+  ELSE
+    INSERT INTO @service_tree SELECT s.id, NULL, s.keyed_name, @LEVEL, NULL FROM [ITIL_Service] s WHERE s.id = @SERVICE_ID
+  WHILE @@ROWCOUNT > 0 BEGIN
+    SET @LEVEL = @LEVEL + 1
+    INSERT INTO @service_tree
+      SELECT s.id, NULL, s.keyed_name, @LEVEL, NULL
+      FROM [ITIL_Service] s
+           INNER JOIN
+           [ITIL_Service_Structure] r
+           ON s.id = r.related_id
+      WHERE r.SOURCE_ID IN (SELECT ID FROM @service_tree WHERE LEVEL=(@LEVEL-1))
+  END
+  
+  UPDATE @service_tree
+  SET PARENT_ID = tmp.source_id
+  FROM (SELECT s.id tmp_id, ss.source_id source_id FROM @service_tree s INNER JOIN [ITIL_Service_Structure] ss ON s.id = ss.related_id) tmp
+  WHERE id = tmp_id
+  
+  RETURN
+END]]></sqlserver_body>
+  <transform_first>0</transform_first>
+  <type>function</type>
+ </Item>
+</AML>

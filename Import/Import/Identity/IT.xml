@@ -1,0 +1,31 @@
+﻿<AML>
+ <Item type="Identity" id="80A7F2B9DDB44F3BBA455DDBEABA6165" action="add">
+  <is_alias>0</is_alias>
+  <name>IT</name>
+  </Item>
+ <Item type="Member" id="A4FB6036C79347249D7C41CEB321DFDD" action="add">
+  <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+  <sort_order>384</sort_order>
+  <source_id keyed_name="IT" type="Identity">80A7F2B9DDB44F3BBA455DDBEABA6165</source_id>
+ </Item>
+ <Item type="Member" id="D23386DBA5BC4BE9B50E7C71832291E7" action="add">
+  <related_id keyed_name="ITIL Change Manager" type="Identity">85AADEA19C0D4210ADEFFAAA7D04FEB6</related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="IT" type="Identity">80A7F2B9DDB44F3BBA455DDBEABA6165</source_id>
+ </Item>
+ <Item type="Member" id="58F3023449EB460AB44CADB5777324E0" action="add">
+  <related_id keyed_name="ITIL Daemon" type="Identity">7891B07EDF1B47F5B78F08C37C573B43</related_id>
+  <sort_order>256</sort_order>
+  <source_id keyed_name="IT" type="Identity">80A7F2B9DDB44F3BBA455DDBEABA6165</source_id>
+ </Item>
+ <Item type="Member" id="F1B052AB3DCE43539B70FC1882571FC7" action="add">
+  <related_id keyed_name="ITIL Help Desk" type="Identity">5E9F5B9897FB4E07A62D3EC8C39FADA6</related_id>
+  <sort_order>640</sort_order>
+  <source_id keyed_name="IT" type="Identity">80A7F2B9DDB44F3BBA455DDBEABA6165</source_id>
+ </Item>
+ <Item type="Member" id="FCB95BF54220456FAD311563ECE5541E" action="add">
+  <related_id keyed_name="ITIL Problem Manager" type="Identity">34498E9E0C4F4BF2890BE425B81DBD51</related_id>
+  <sort_order>512</sort_order>
+  <source_id keyed_name="IT" type="Identity">80A7F2B9DDB44F3BBA455DDBEABA6165</source_id>
+ </Item>
+</AML>

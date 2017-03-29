@@ -1,0 +1,152 @@
+﻿<AML>
+ <Item type="ItemType" id="915A7E54ED03410AA625CA2393ACAEC6" action="add">
+  <allow_private_permission>0</allow_private_permission>
+  <auto_search>1</auto_search>
+  <default_lifecycle keyed_name="ITIL Notification" type="Life Cycle Map">A979253DAEAE4C85ABF2F8FEEEC1BBD3</default_lifecycle>
+  <default_page_size>50</default_page_size>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>ITIL_NOTIFICATION</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label>Notification</label>
+  <label_plural>Notifications</label_plural>
+  <large_icon>../images/Icons/32x32/32x32_filesTypes.gif</large_icon>
+  <manual_versioning>0</manual_versioning>
+  <name>ITIL Notification</name>
+  <open_icon>../images/Icons/16x16/16x16_fileTypes.gif</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <save_history>0</save_history>
+  <show_parameters_tab>0</show_parameters_tab>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <Relationships>
+   <Item type="Allowed Permission" id="E4EC2501322D46369B34CE24293E620D" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="ITIL Notification" type="Permission">B3AC361CB2E64278A6A9489E7D97E5F1</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Notification" type="ItemType" name="ITIL Notification">915A7E54ED03410AA625CA2393ACAEC6</source_id>
+   </Item>
+   <Item type="Can Add" id="BA47704650914578974908B44EB382D6" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Notification" type="ItemType" name="ITIL Notification">915A7E54ED03410AA625CA2393ACAEC6</source_id>
+   </Item>
+   <Item type="Property" id="C19E0826C7374226B75EE8534A638E25" action="add">
+    <column_alignment>left</column_alignment>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <default_value>A73B655731924CD0B027E4F4D5FCC0A9</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Display For</label>
+    <name>display_for</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Notification" type="ItemType" name="ITIL Notification">915A7E54ED03410AA625CA2393ACAEC6</source_id>
+   </Item>
+   <Item type="Property" id="985ECD96598D4D1490726B7232B97D82" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_source keyed_name="ITIL Sequence">0EF111DFCB154C94A3EEEC844CA9DC84</data_source>
+    <data_type>sequence</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>0</keyed_name_order>
+    <label>Notification Number</label>
+    <name>item_number</name>
+    <order_by>0</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Notification" type="ItemType" name="ITIL Notification">915A7E54ED03410AA625CA2393ACAEC6</source_id>
+   </Item>
+   <Item type="Property" id="5445F48263D747929BBE3E4EF1A51835" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>400</column_width>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Message</label>
+    <name>message</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Notification" type="ItemType" name="ITIL Notification">915A7E54ED03410AA625CA2393ACAEC6</source_id>
+   </Item>
+   <Item type="Property" id="C0902FDF0EEF40ABA259E01EDAD252E1" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Submit Date</label>
+    <name>submit_date</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3584</sort_order>
+    <source_id keyed_name="ITIL Notification" type="ItemType" name="ITIL Notification">915A7E54ED03410AA625CA2393ACAEC6</source_id>
+   </Item>
+   <Item type="TOC Access" id="28B181A93B4142E0B36F92E7CFD963A1" action="add">
+    <category>ITIL</category>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Notification" type="ItemType" name="ITIL Notification">915A7E54ED03410AA625CA2393ACAEC6</source_id>
+   </Item>
+   <Item type="View" id="9A30C4EAC443403AA9FC2215ABE820C8" action="add">
+    <client>js</client>
+    <related_id keyed_name="ITIL Notification" type="Form">C16EE844B9B54CC884783DC9D2EA3849</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Notification" type="ItemType" name="ITIL Notification">915A7E54ED03410AA625CA2393ACAEC6</source_id>
+    <type>default</type>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="915A7E54ED03410AA625CA2393ACAEC6" action="edit">
+  <Relationships>
+   <Item type="Property" action="edit" where="source_id='915A7E54ED03410AA625CA2393ACAEC6' and name='state'">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Status</label>
+    <name>state</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Notification" type="ItemType" name="ITIL Notification">915A7E54ED03410AA625CA2393ACAEC6</source_id>
+    <stored_length>32</stored_length>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

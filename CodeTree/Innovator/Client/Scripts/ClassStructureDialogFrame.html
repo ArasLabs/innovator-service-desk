@@ -1,0 +1,57 @@
+﻿<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<html>
+<head>
+
+<script type="text/javascript" src="../../../javascript/AddConfigurationLink.js">Structure</script>
+<link rel="stylesheet" type="text/css" href="../../../styles/default.css">
+<script language="jscript" src="../../../javascript/PopupMenu.js"></script>
+
+<script language="jscript">
+var selectedID = null;
+function on_menushow(structNd, point) {
+	if (!parent.isEditMode) return false;
+	if (!structNd) return false;
+	selectedID = structNd.getId();
+	parent.selectedNd = parent.rootClassNd.selectSingleNode('//class[@tmpID="'+selectedID+'"]');  
+	var nodeName = parent.top.aras.EscapeSpecialChars(structNd.getLabel());  
+	var ppm = new PopupMenu("cs_menu", "Class Structure", true);
+	ppm.setOnClick(parent.onPopupMenuClick);
+	ppm.add("add", "Add SubClass to "+nodeName);
+	ppm.add("remove", "Remove SubClass " + nodeName);
+	window.focus();
+	var ev = document.createEventObject("onclick");
+	ppm.show(ev.clientX, ev.clientY);
+	return false;
+}
+</script>
+
+<script language="jscript" for="struct" event="StructureOnLoad()">
+	window.parent.initStructureApplet();
+</script>
+
+<script language="jscript" for="struct" event="StructureOnDbClick(nd)">
+	window.parent.onDblClick(nd);
+</script>
+
+<script language="jscript" for="struct" event="StructureOnMenuShow(point, structNd)">
+  return on_menushow(structNd,point);
+</script>
+
+<script language="jscript" for="struct" event="StructureOnNameEdit(mode, structNd, confirmed)">
+	return window.parent.onNameEdit(mode, structNd, confirmed);
+</script>
+
+</head>
+
+<body topmargin="0" leftmargin="0" scroll=no>
+  <comment id="struct_commented">
+<object id="struct" height=100%  width=100%
+    classid="../../../cbin/Structure.dll#Aras.Client.Controls.StructureContainer">
+  </object>
+</comment>
+<script>
+WriteUncommentedObject("struct_commented");
+</script>
+
+</body>
+</html>

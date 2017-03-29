@@ -1,0 +1,100 @@
+﻿<AML>
+ <Item type="Form" id="684FAFFAF9BF4E789A5E53EC7B1B01E6" action="add">
+  <description>ITIL Solution</description>
+  <name>ITIL Solution</name>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <Relationships>
+   <Item type="Body" id="34A516F33B704467B946E19D469889D7" action="add">
+    <bg_attach>scroll</bg_attach>
+    <bg_color>#FFFFFF</bg_color>
+    <bg_image>../images/Backgrounds/wvleft.gif</bg_image>
+    <bg_repeat>no-repeat</bg_repeat>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Solution" type="Form">684FAFFAF9BF4E789A5E53EC7B1B01E6</source_id>
+    <Relationships>
+     <Item type="Field" id="9B7C4F5EBFD4441EA3320F2D8BBB68CD" action="add">
+      <bg_color>#FFFFFF</bg_color>
+      <border_width>0</border_width>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Instructions</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>instructions</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="instructions" type="Property">168F97421D2241BFBAFDFEB6B00DDBEC</propertytype_id>
+      <sort_order>256</sort_order>
+      <source_id keyed_name="34A516F33B704467B946E19D469889D7" type="Body">34A516F33B704467B946E19D469889D7</source_id>
+      <tab_index>256</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>64</textarea_cols>
+      <textarea_rows>10</textarea_rows>
+      <x>190</x>
+      <y>50</y>
+     </Item>
+     <Item type="Field" id="B0C784C1D0E84AB0A0AF49A068F92FD2" action="add">
+      <bg_color>#FFFFFF</bg_color>
+      <field_type>html</field_type>
+      <html_code><![CDATA[<table border='0' cellspacing='0' cellpadding='0'>
+<tr><td colspan='2'>
+<script>
+  document.write('<img hspace="20" vspace="20" src="' + top.aras.getItemProperty(document.itemType,'large_icon') + '">');
+</Script>
+</td></tr>
+<tr><td colspan='2'><img src='../images/lines/wvline.gif'></td></tr>
+<tr><td colspan='2'><img src='../images/icons/other/1x1.gif' width='1' height='10'></td></tr>
+<tr><td><img src='../images/icons/other/1x1.gif' width='20' height='1'>
+<td width='150'><p class='vbig'><b>
+<script>
+  var labelIT = top.aras.getItemProperty(document.itemType, 'label'); 
+  if (labelIT == '') labelIT = document.itemTypeName; 
+  document.write(labelIT);
+</Script>
+</b></p>
+</td></tr></table>
+]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <list_no_blank>0</list_no_blank>
+      <name>item_info</name>
+      <positioning>absolute</positioning>
+      <sort_order>384</sort_order>
+      <source_id keyed_name="34A516F33B704467B946E19D469889D7" type="Body">34A516F33B704467B946E19D469889D7</source_id>
+      <tab_stop>0</tab_stop>
+      <x>0</x>
+      <y>0</y>
+     </Item>
+     <Item type="Field" id="9654E1C52D7543AEAA810FC21C88A9F3" action="add">
+      <bg_color>#ffcccc</bg_color>
+      <border_width>0</border_width>
+      <display_length>64</display_length>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Name</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>name</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="name" type="Property">4ED40A976DC44EDCBBCE4F6A133CFD17</propertytype_id>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="34A516F33B704467B946E19D469889D7" type="Body">34A516F33B704467B946E19D469889D7</source_id>
+      <tab_index>128</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>190</x>
+      <y>10</y>
+     </Item>
+    </Relationships>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

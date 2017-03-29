@@ -1,0 +1,183 @@
+﻿<AML>
+ <Item type="Method" id="333FB818B7974A07AA0E2F276764260E" action="add">
+  <comments>Synchronize services and service list values</comments>
+  <method_code><![CDATA[// Synchronize services and service list values after service items changes or 
+// Service Tree relationships changes.
+
+Innovator inn = this.newInnovator();
+
+string new_keyed_name = "";
+// Get ITIL Service Tree list id.
+string aml = "<AML><Item type='List' action='get' select='id'>" + 
+             "<name>ITIL Service Tree</name>" + 
+             "</Item></AML>";
+Item res = inn.applyAML(aml);
+if (res.isEmpty() || res.isError())
+{
+  return inn.newError("Error getting List with name 'ITIL Service Tree'. " + res.getErrorDetail());
+}
+
+string listID = res.getProperty("id");
+string id = this.getID();
+string uniqueKeyInSession = "keyed_name_of_source_item_" + id;
+
+// Update service keyed name.
+if (this.getAttribute("action") != "delete")
+{
+  string faked_source_keyed = (string)CCO.Session[uniqueKeyInSession];
+  if ( faked_source_keyed != null && 
+      faked_source_keyed != "")
+  {
+  	new_keyed_name = faked_source_keyed + "-" + this.getProperty("abbreviation");
+  	CCO.Session.Remove(uniqueKeyInSession);
+  }
+  else
+  {
+    new_keyed_name = this.getProperty("abbreviation");
+    if (new_keyed_name == null)
+    {
+      aml = "<AML><Item type='ITIL Service' action='get' select='abbreviation' doGetItem='0' serverEvents='0' >" + 
+            "<id>" + id + "</id>" + 
+            "</Item></AML>";
+
+      Item service = inn.applyAML(aml);
+      if (!service.isError() && !service.isEmpty())
+      {
+        new_keyed_name = service.getProperty("abbreviation");
+      }
+    }
+    Item parent=null;
+
+    aml = "<AML><Item type='ITIL Service' action='get' select='keyed_name'>" + 
+          "<Relationships><Item type='ITIL Service Structure' action='get'>" + 
+          "<related_id><Item type='ITIL Service' action='get'>" + 
+          "<id>" + id + "</id>" + 
+          "</Item></related_id>" + 
+          "</Item></Relationships>" + 
+          "</Item></AML>";
+
+    parent = inn.applyAML(aml);
+    if (!parent.isError() && !parent.isEmpty())
+    {
+      string parent_keyed_name = parent.getProperty("keyed_name");
+      new_keyed_name = parent_keyed_name + "-" + new_keyed_name;  
+    }
+  }
+  this.setProperty("keyed_name",new_keyed_name);
+}
+
+// Get all related items.
+aml = "<AML><Item type='ITIL Service Structure' action='get' select='related_id'>" + 
+    "<source_id>" + id + "</source_id>" + 
+    "</Item></AML>";
+Item relationships = inn.applyAML(aml);
+
+// Update all related items.
+for(int i=0; i<relationships.getItemCount(); i++)
+{
+  Item relatedItem = relationships.getItemByIndex(i);
+  uniqueKeyInSession = "keyed_name_of_source_item_" + relatedItem.getProperty("related_id");
+  CCO.Session[uniqueKeyInSession] = new_keyed_name;
+	
+  aml = "<AML><Item type='ITIL Service' action='edit' " + 
+        "where=\"id='" + relatedItem.getProperty("related_id") + "'\">" +
+        "</Item></AML>";
+  res = inn.applyAML(aml);
+}
+
+if (this.getAttribute("action") == "delete")
+{
+  // Delete value for service.
+  aml = "<AML><Item type=\"Value\" action=\"delete\" where=\"source_id='" + listID +"' and value='" + this.getID() + "'\">" +
+        "</Item></AML>";
+  
+  Item delRes = inn.applyAML(aml); 
+  if (delRes.isError())
+  {
+    return inn.newError("Deletion Value failed. " + delRes.getErrorDetail());
+  }
+  return this;
+}
+
+// Get all Service Tree list items
+string getListItemsAML = "<AML><Item type='Value' action='get' select='id,sort_order,value,label' orderBy='sort_order'><source_id>" + listID + "</source_id></Item></AML>";
+res = inn.applyAML(getListItemsAML);
+ArrayList ids = new ArrayList();
+Hashtable idToLabels = new Hashtable();
+Hashtable idToValues = new Hashtable();
+if (!res.isEmpty())
+{
+  for (int i=0; i<res.getItemCount(); i++)
+  {
+  	Item valItem = res.getItemByIndex(i);
+  	string valID = valItem.getID();
+  	string value = valItem.getProperty("value"); 
+  	string label = valItem.getProperty("label");
+  	ids.Add(valID);
+  	idToValues.Add(valID, value);
+  	idToLabels.Add(valID, label);
+  	if (value == id)
+  	  idToLabels[valID] = this.getProperty("keyed_name");
+  }
+}
+
+if (id != "" && !idToValues.ContainsValue(id))
+{
+  // Create a new value and add it to list
+  aml = "<AML><Item type=\"Value\" action=\"add\">" +
+        "<source_id>" + listID + "</source_id>" + 
+        "<value>" + id + "</value>" + 
+        "<label>" + this.getProperty("keyed_name") + "</label>" +
+        "</Item></AML>";
+  res = inn.applyAML(aml);
+  if (res.isError())
+    return inn.newError("Add Value failed. " + res.getErrorDetail());
+
+  string valID = res.getID();
+  string value = res.getProperty("value"); 
+  string label = res.getProperty("label");
+  ids.Add(valID);
+  idToValues.Add(valID, value);
+  idToLabels.Add(valID, label);
+}
+
+// Resort list values
+for (int i=0; i<ids.Count; i++)
+  for (int j=i+1; j<ids.Count; j++)
+  {
+    if (String.Compare((string)idToLabels[ids[j]], (string)idToLabels[ids[i]]) < 0)
+    {
+      object tempID = ids[i];
+      ids[i] = ids[j];
+      ids[j] = tempID;
+    }
+  }
+
+// Update list values with new sort_order.  
+for (int i=0; i<ids.Count; i++)
+{
+  aml = "<AML><Item type='Value' id='{0}' action='get' ></Item></AML>";
+  res = inn.applyAML(String.Format(aml, ids[i]));
+  if (res.isEmpty() || res.isError())
+    return inn.newError("Value with id = " + ids[i] + " not found.");
+    
+  int locked_by_id = res.fetchLockStatus();
+  string action = (locked_by_id==0) ? "edit" : "update";
+  
+  aml = "<AML><Item type='Value' id='{0}' action='{1}' >" + 
+        "<value>{2}</value>" + 
+        "<label>{3}</label>" + 
+        "<sort_order>{4}</sort_order>" + 
+        "</Item></AML>";
+        
+  res = inn.applyAML(String.Format(aml, ids[i], action, idToValues[ids[i]], idToLabels[ids[i]], i));
+
+  if (res.isError())
+    return inn.newError("Update list value failed: " + res.getErrorDetail());
+}
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Sync Service Tree</name>
+ </Item>
+</AML>

@@ -1,0 +1,123 @@
+﻿<AML>
+ <Item type="Method" id="EAB5A35CE48E4DD59F9F9B26C327498F" action="add">
+  <method_code><![CDATA[// Sync ITIL Activity Workflow
+//
+// Synchronizes ITIL Activitys with the associated workflow.  Called OnBeforeAdd & OnBeforeUpdate 
+//  for items with a relationship to ITIL Activity
+
+Innovator inn = this.newInnovator();
+string thisId = this.getID();
+Item actionItems = this.getItemsByXPath("Relationships/Item/related_id/Item[@type='ITIL Activity']");
+
+if (actionItems.getItemCount() > 0) {
+ Item itemType = inn.getItemByKeyedName("ItemType", this.getType());
+ // Get the Workflow Map to use as a template
+ Item wfl = this.newItem("Workflow Map","get");
+ wfl.setAttribute("levels","3");
+ wfl.setProperty("name","ITIL Activity");
+ wfl = wfl.apply();
+ if (wfl.isError()) return wfl;
+ 
+ // Change the workflow map into a workflow process
+ Item wflItems = wfl.getItemsByXPath("//Item[contains(@type,'Workflow') or contains(@type,'Activity')]");
+ for (int i=0; i<wflItems.getItemCount(); i++) {
+  Item thisWflItem = wflItems.getItemByIndex(i);
+  thisWflItem.setAction("add");
+  thisWflItem.setProperty("locked_by_id","");
+  thisWflItem.setType(thisWflItem.getType().Replace("Map","Process").Replace(" Template",""));
+  // Replace ids
+  string oldId = thisWflItem.getID();
+  string newId = inn.getNewID();
+  XmlNodeList idNodes = wfl.node.SelectNodes("//*[.='"+oldId+"']|//@*[.='"+oldId+"']");
+  foreach (XmlNode idNode in idNodes) { idNode.InnerText = newId; }
+ }
+ wfl.setProperty("description","ITIL Activity");
+
+ // Find the ITIL Activity activity and remove
+ Item actRel = wfl.getItemsByXPath("Relationships/Item[related_id/Item[@type='Activity'][is_start='1']]");
+ for (int i=0; i<actRel.getItemCount(); i++) {
+  wfl.removeRelationship(actRel.getItemByIndex(i));
+ } 
+ actRel = actRel.getItemByIndex(0); 
+ 
+ // Check if the workflow already exists
+ Item wflRel = this.newItem("Workflow","get");
+ wflRel.setProperty("source_id",thisId);
+ Item wflProc = this.newItem("Workflow Process","get");
+ wflProc.setProperty("description","ITIL Activity");
+ Item act = this.newItem("Workflow Process Activity","get");
+ wflProc.addRelationship(act);
+ wflRel.setRelatedItem(wflProc);
+ string holdActId = "";
+ if (this.getAction()!="add") wflRel = wflRel.apply();
+ if (wflRel.getItemCount() < 0) return wflRel;
+ if (this.getAction()!="add" && wflRel.getItemCount() > 0) {
+  // Workflow exists, edit it
+  holdActId = wflRel.getItemsByXPath("related_id/Item/Relationships/Item/related_id/Item[@type='Activity'][name='Hold']").getItemByIndex(0).getID();
+  string wflRelId = wflRel.getID();
+  string wflProcId = wflRel.getProperty("related_id");
+  wflRel = this.newItem("Workflow","edit");
+  wflRel.setID(wflRelId);
+  wflProc = this.newItem("Workflow Process","edit");
+  wflProc.setID(wflProcId);
+  wflRel.setRelatedItem(wflProc); 	
+ } else {
+  // Workflow does not exist, add it
+  wflRel = this.newItem("Workflow","add");
+  wflRel.setProperty("source_id",this.getID());
+  wflRel.setProperty("source_type",itemType.getID());
+  wflRel.setRelatedItem(wfl);
+ }
+ // Add the Workflow relationship to the parent item
+ this.addRelationship(wflRel);
+ // Sync the Activities with the ITIL Activitys
+ for (int i=0; i<actionItems.getItemCount(); i++) {
+  Item thisActionItem = actionItems.getItemByIndex(i);
+  thisActionItem.setProperty("managed_by_id",this.getProperty("owned_by_id"));
+  Item newActRel = this.newItem();
+  switch (thisActionItem.getAction()) {
+   case "add" :
+    // Adding an Activity, copy the Activity Template and replace the ids
+    newActRel.loadAML(actRel.node.OuterXml);
+    Item allItems = newActRel.getItemsByXPath("//Item[contains(@type,'Workflow') or contains(@type,'Activity')]");
+    for (int j=0; j<allItems.getItemCount(); j++) {
+     Item thisWflItem = allItems.getItemByIndex(j);
+     string oldId = thisWflItem.getID();
+     string newId = inn.getNewID();
+     XmlNodeList idNodes = newActRel.node.SelectNodes("//*[.='"+oldId+"']|//@*[.='"+oldId+"']");
+     foreach (XmlNode idNode in idNodes) { idNode.InnerText = newId; }
+    }
+    newActRel.getRelatedItem().setProperty("name",thisActionItem.getProperty("description"));
+    newActRel.getRelatedItem().setProperty("message",thisActionItem.getProperty("notes"));
+    thisActionItem.setProperty("activity",newActRel.getRelatedItem().getID());
+    if (holdActId.Length == 32) newActRel.getItemsByXPath("related_id/Item/Relationships/Item[@type='Workflow Process Path']").getItemByIndex(0).setProperty("related_id",holdActId);
+    Item assignItem = this.newItem("Activity Assignment","add");
+    assignItem.setProperty("related_id",thisActionItem.getProperty("assignee",thisActionItem.getProperty("owned_by_id")));
+    assignItem.setProperty("voting_weight","101");
+    newActRel.getRelatedItem().addRelationship(assignItem);
+    break;
+   case "update" :
+    // Updating an existing Activity
+    string actId = thisActionItem.getProperty("activity");
+    newActRel = this.newItem("Workflow Process Activity","edit");
+    newActRel.setAttribute("where","[WORKFLOW_PROCESS_ACTIVITY].related_id='"+actId+"'");
+    Item newAct = this.newItem("Activity","edit");
+    newAct.setID(actId);
+    newAct.setProperty("name",thisActionItem.getProperty("description"));
+    newAct.setProperty("message",thisActionItem.getProperty("notes"));
+    newActRel.setRelatedItem(newAct);
+    assignItem = this.newItem("Activity Assignment","edit");
+    assignItem.setAttribute("where","[ACTIVITY_ASSIGNMENT].voting_weight='101'");
+    assignItem.setProperty("related_id",thisActionItem.getProperty("assignee",thisActionItem.getProperty("owned_by_id")));
+    newActRel.getRelatedItem().addRelationship(assignItem);
+    break;
+  }
+  wflProc = this.getItemsByXPath("Relationships/Item/related_id/Item[@type='Workflow Process']").getItemByIndex(0);
+  wflProc.addRelationship(newActRel);
+ }
+}
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Sync Activity Workflow</name>
+ </Item>
+</AML>

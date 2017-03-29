@@ -1,0 +1,167 @@
+<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../styles/default.css">
+  <link rel="stylesheet" type="text/css" href="ITIL.css">
+
+  <title>Add Items Panel</title>
+
+  <script type="text/javascript">
+
+onload = function ()
+{
+  var i, listOption;
+
+  // Load "Type" dropdown content
+  var list = document.getElementById('itName');
+  loadListValues("ITIL Poly", list);
+
+  // Load "Impact" dropdown content
+  var list = document.getElementById('impact');
+  loadListValues("ITIL Impact", list);
+
+  // Load "Urgency" dropdown content
+  var list = document.getElementById('urgency');
+  loadListValues("ITIL Urgency", list);
+}
+
+function loadListValues(listName, listObject)
+{
+  var aml = "<Item type='Value' action='get' select='sort_order,value,label' orderBy='sort_order'>" +
+            "<source_id condition='in'>SELECT id FROM [LIST] WHERE name='" + listName + "'</source_id>" +
+            "</Item>";
+  var res = top.aras.applyItem(aml);
+  if (!aml)
+  {
+    return;
+  }
+
+  // Add values to list options content.
+  var d = top.aras.createXMLDocument();
+  d.loadXML(res);
+  var options = d.selectNodes("//Item[@type='Value']");
+  for (i=0; i<options.length; i++) 
+  {
+    val = top.aras.getItemProperty(options[i], 'value');
+    label = top.aras.getItemProperty(options[i], 'label');
+    listOption = document.createElement("OPTION");
+    listOption.text = label;
+    listOption.id = val;
+    listOption.value = val;
+    listObject.options.add(listOption);
+  }
+}
+
+function onSubmit()
+{
+  var curUserIdentity = top.aras.getLoggedUserItem().selectSingleNode("Relationships/Item[@type='Alias']/related_id/Item");
+  var getITNameAML = "<AML><Item type='ItemType' id='" + document.getElementById("itName").value + "' action='get' select='name' /></AML>";
+  var res = top.aras.applyAML(getITNameAML);
+  var d = top.aras.createXMLDocument();
+  d.loadXML(res);
+  var typeName = d.selectSingleNode("//Item[@type='ItemType']/name").text;
+  var description = document.getElementById("description").value;
+  if (description != '') 
+    description = "<description>" + description + "</description>";
+  
+  var aml = "<Item type='" + typeName + "' action='add' >" +
+            "<service>" + document.getElementById("serviceList").value + "</service>" +
+            "<impact>" + document.getElementById("impact").value + "</impact>" +
+            "<urgency>" + document.getElementById("urgency").value + "</urgency>" +
+            description +
+            "<owned_by_id>" + curUserIdentity.getAttribute("id") + "</owned_by_id>" +
+            "</Item>";
+  
+  var res = top.aras.applyItem(aml);
+  if (res && res != "")
+  {
+    top.aras.AlertSuccess("Item saved successfully.");
+    d.loadXML(res);
+    var itemNode = d.selectSingleNode("//Item");
+    var id = itemNode.getAttribute("id");
+    var itm = top.aras.getItem(typeName, "id='" + id + "'");
+    top.aras.uiShowItemInFrameEx(window, itm);
+  }
+}
+
+  </script>
+
+</head>
+<body>
+  <table>
+    <tr>
+      <td width="100px">
+        <table cellpadding="0" cellspacing="0">
+          <tr><td valign="top" align="center" nowrap="yes"><p style="text-transform: capitalize; font-family: arial, helvetica, sans-serif; font-size: 8pt; font-weight: bold; color: #000000; text-align: left;">Type&nbsp;</p></td></tr>
+          <tr><td valign="top" align="" nowrap="yes">
+            <select id="itName" />
+          </td></tr>
+        </table>
+      </td>
+    </tr>
+    
+    <tr>
+      <td width="100px">
+        <table cellpadding="0" cellspacing="0">
+          <tr><td valign="top" align="center" nowrap="yes"><p style="text-transform: capitalize; font-family: arial, helvetica, sans-serif; font-size: 8pt; font-weight: bold; color: #000000; text-align: left;">Service&nbsp;</p></td></tr>
+          <tr><td valign="top" align="" nowrap="yes">
+            <select id="serviceList" />
+            <script>
+              var aml = "<AML><Item type='Method' action='get' select='method_code'>" +
+                        "<name>ITIL Reload Services List</name>" +
+                        "</Item></AML>";
+                        
+              var res = top.aras.applyAML(aml);
+              var d = top.aras.createXMLDocument();
+              d.loadXML(res);
+              var methodCode = d.selectSingleNode("//Item[@type='Method']/method_code").text;
+              var reloadListFunction = new Function('listObject', methodCode);
+
+              aml = "<AML><Item type='Method' action='get' select='method_code'>" +
+                        "<name>ITIL Init Service List Object</name>" +
+                        "</Item></AML>";
+              res = top.aras.applyAML(aml);
+              d.loadXML(res);
+              methodCode = d.selectSingleNode("//Item[@type='Method']/method_code").text;
+              var initListFunction = new Function('listObject', 'reloadListFunction', methodCode);
+
+              initListFunction(serviceList, reloadListFunction);
+            </script>
+          </td></tr>
+        </table>
+      </td>
+
+      <td width="100px">
+        <table cellpadding="0" cellspacing="0">
+          <tr><td valign="top" align="center" nowrap="yes"><p style="text-transform: capitalize; font-family: arial, helvetica, sans-serif; font-size: 8pt; font-weight: bold; color: #000000; text-align: left;">Impact&nbsp;</p></td></tr>
+          <tr><td valign="top" align="" nowrap="yes">
+            <select id="impact" />
+          </td></tr>
+        </table>
+      </td>      
+
+      <td width="100px">
+        <table cellpadding="0" cellspacing="0">
+          <tr><td valign="top" align="center" nowrap="yes"><p style="text-transform: capitalize; font-family: arial, helvetica, sans-serif; font-size: 8pt; font-weight: bold; color: #000000; text-align: left;">Urgency&nbsp;</p></td></tr>
+          <tr><td valign="top" align="" nowrap="yes">
+            <select id="urgency" />
+          </td></tr>
+        </table>
+      </td>      
+    </tr>
+    
+    <tr>
+          <table cellpadding="0" cellspacing="0">
+            <tr><td valign="top" align="center" nowrap="yes"><p style="text-transform: capitalize; font-family: arial, helvetica, sans-serif; font-size: 8pt; font-weight: bold; color: #000000; text-align: left;">Description&nbsp;</p></td></tr>
+            <tr><td valign="top" align="" nowrap="yes">
+              <textarea id="description" name="description" class="description" rows="6" cols="60" ></textarea>
+            </td></tr>
+          </table>
+    </tr>
+    <tr>
+      <input type="button" id="btnSubmit" value="Submit" title="Submit item." onclick="onSubmit()" />
+    </tr>
+  </table>
+
+</body>
+</html>

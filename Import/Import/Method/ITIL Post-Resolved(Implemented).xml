@@ -1,0 +1,26 @@
+﻿<AML>
+ <Item type="Method" id="5612F91E3C574DC1A33CE68D0D72CF80" action="add">
+  <comments>Pre-Transition to Resolved (ITIL Incident and ITIL Problem) and Implemented (ITIL Change) method</comments>
+  <method_code><![CDATA[// Called Post-Transition to Resolved (ITIL Incident and ITIL Problem) 
+// and Implemented (ITIL Change). Sets closed date and sends survey e-mail.
+Innovator inn = this.getInnovator();
+Item q = inn.newItem("tmp", "tmp");
+q.loadAML(this.node.OuterXml);
+
+Item res = null;
+string typeName = this.getType();
+
+q.setAttribute("action", "ITIL Set Closed Date");
+res = q.apply();
+if (res != null && res.isError()) return res;
+
+q.setAttribute("action", "ITIL Send Survey EMail");
+res = q.apply();
+if (res != null && res.isError()) return res;
+
+return res;
+]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Post-Resolved(Implemented)</name>
+ </Item>
+</AML>

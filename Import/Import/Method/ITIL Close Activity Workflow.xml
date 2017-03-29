@@ -1,0 +1,28 @@
+﻿<AML>
+ <Item type="Method" id="21FB24D9C1214936804A8ECED4CCB845" action="add">
+  <method_code><![CDATA[// Close ITIL Activity Workflow
+//
+// Closes the ITIL Activity workflow.  Called from the controlled item's lifecycle
+
+// Get the workflow
+Innovator inn = this.newInnovator();
+Item wfl = this.newItem("Workflow","get");
+wfl.setProperty("source_id",this.getID());
+Item wflProc = this.newItem("Workflow Process","get");
+wflProc.setProperty("description","ITIL Activity");
+Item wflProcAct = this.newItem("Workflow Process Activity","get");
+wfl.setRelatedItem(wflProc);
+wfl = wfl.apply();
+
+// Check for errors and close the workflow
+if (wfl.getItemCount() < 0) { 
+ return inn.newError("Error retrieving ITIL Activity workflow: "+wfl.getErrorDetail());
+} else if (wfl.getItemCount()==1) {
+ wflProc = wfl.getRelatedItem();
+ wflProc.closeWorkflow();
+}
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Close Activity Workflow</name>
+ </Item>
+</AML>

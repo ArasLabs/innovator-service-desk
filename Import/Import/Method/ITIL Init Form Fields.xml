@@ -1,0 +1,90 @@
+﻿<AML>
+ <Item type="Method" id="B606C0C8708E4231B159CC2E7469F593" action="add">
+  <comments>Initialize some fields on the form</comments>
+  <method_code><![CDATA[// Shows pop-up window for description field.
+function showDescriptionWindow()
+{
+  var description = this.value;
+  description = description != undefined ? description : "";
+  var win = window.open("about:blank","_blank",
+    "height=300,width=600,status=no,toolbar=no,menubar=no," +
+    "titlebar=no,resizable=yes,scrollbars=yes,location=no");
+  var doc = win.document;
+  doc.write(description);
+  doc.close();
+  win.focus();
+}
+
+var i,j;
+
+var objects = document.getElementsByTagName("SPAN");
+var images;
+for (i=0; i<objects.length; i++)
+{
+  // Init "Service" property field
+  if (objects[i].name === "service")
+  {
+    // Hide "Item" property image button
+    images = objects[i].getElementsByTagName("img");
+    for (j=0; j<images.length; j++)
+    {
+      images[j].style.display = "none";
+    }
+  }
+  else
+  {
+    // Remove background color from "Item" property image buttons
+    images = objects[i].getElementsByTagName("img");
+    var inputs = objects[i].getElementsByTagName("input");
+    if (images.length > 0 && inputs.length > 0)
+    {
+      var color = objects[i].style.backgroundColor;
+      objects[i].style.backgroundColor = "#FFFFFF";
+      for (j=0; j<inputs.length; j++)
+      {
+        if (!inputs[j].readOnly)
+        {
+          // inputs[j].style.backgroundColor = "#FFCCCC";
+          inputs[j].style.backgroundColor = color;
+        }
+      }
+    }
+    
+    // Init "Description" property field
+    if (objects[i].name === "description" && objects[i].id.indexOf("span") < 0)
+    {
+      objects[i].readOnly = true;
+      objects[i].onclick = showDescriptionWindow;
+    }
+  }
+}
+
+objects = document.getElementsByName("service");
+for (i=0; i<objects.length; i++)
+{
+  objects[i].readOnly = true;
+  objects[i].style.cursor = "hand";
+  objects[i].style.width = "100px";
+}
+
+// Find SELECT control for 'service' property and initialize them.
+
+// Find SELECT control
+var serviceObjects = document.getElementsByName("service");
+var serviceList;
+
+for (i=0; i<serviceObjects.length; i++)
+{
+  if (serviceObjects[i].tagName.toLowerCase() == 'select')
+  {
+    serviceList = serviceObjects[i];
+    serviceList.style.width = "150px";
+    serviceList.disabled = true;
+  }
+}
+
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Init Form Fields</name>
+ </Item>
+</AML>

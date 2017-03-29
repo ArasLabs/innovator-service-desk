@@ -1,0 +1,117 @@
+﻿<AML>
+ <Item type="ItemType" id="E889FB0BA27B49B9B03D390A42F3BE94" action="add">
+  <allow_private_permission>1</allow_private_permission>
+  <auto_search>0</auto_search>
+  <default_lifecycle keyed_name="ITIL Activity" type="Life Cycle Map">D1623B9F250A427785DCABF97BD2DA2F</default_lifecycle>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>ITIL_ACTIVITY</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label>ITIL Activity</label>
+  <label_plural>ITIL Activities</label_plural>
+  <manual_versioning>0</manual_versioning>
+  <name>ITIL Activity</name>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <save_history>0</save_history>
+  <show_parameters_tab>1</show_parameters_tab>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <Relationships>
+   <Item type="Allowed Permission" id="853DBE3863A3431F861EDBF29F83F315" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="ITIL Activity" type="Permission">7A4B2CE317A24F0887E3568C5B503A3F</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Activity" type="ItemType" name="ITIL Activity">E889FB0BA27B49B9B03D390A42F3BE94</source_id>
+   </Item>
+   <Item type="Can Add" id="146FB6831E974129A648393DC3A81292" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Activity" type="ItemType" name="ITIL Activity">E889FB0BA27B49B9B03D390A42F3BE94</source_id>
+   </Item>
+   <Item type="Property" id="0D6AB5AD72C2407D8F04D75D1787E1EC" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Description</label>
+    <name>description</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3328</sort_order>
+    <source_id keyed_name="ITIL Activity" type="ItemType" name="ITIL Activity">E889FB0BA27B49B9B03D390A42F3BE94</source_id>
+    <stored_length>256</stored_length>
+   </Item>
+   <Item type="Property" id="073CD877EB4548E29E738D88135B759F" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Due Date</label>
+    <name>due_date</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3200</sort_order>
+    <source_id keyed_name="ITIL Activity" type="ItemType" name="ITIL Activity">E889FB0BA27B49B9B03D390A42F3BE94</source_id>
+   </Item>
+   <Item type="Property" id="5465B795EED5417F9A07CADED9B562C4" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>0</keyed_name_order>
+    <label>Name</label>
+    <name>name</name>
+    <order_by>0</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Activity" type="ItemType" name="ITIL Activity">E889FB0BA27B49B9B03D390A42F3BE94</source_id>
+    <stored_length>64</stored_length>
+   </Item>
+   <Item type="Property" id="2F805692FB7D47059EDFA57B4A2765E0" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Notes</label>
+    <name>notes</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3456</sort_order>
+    <source_id keyed_name="ITIL Activity" type="ItemType" name="ITIL Activity">E889FB0BA27B49B9B03D390A42F3BE94</source_id>
+    <stored_length>512</stored_length>
+   </Item>
+   <Item type="View" id="E1EA918BE9FA4A8E9F77BDDBC039766B" action="add">
+    <client>js</client>
+    <related_id keyed_name="ITIL Activity" type="Form">55BAB151FFD640E2B25CE91C527570F5</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Activity" type="ItemType" name="ITIL Activity">E889FB0BA27B49B9B03D390A42F3BE94</source_id>
+    <type>default</type>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

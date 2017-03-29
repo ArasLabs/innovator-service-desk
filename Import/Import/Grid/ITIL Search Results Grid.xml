@@ -1,0 +1,73 @@
+﻿<AML>
+ <Item type="Grid" id="1D7719CDFB3F403F9011F5D39BCEC499" action="add">
+  <method keyed_name="ITIL Search Results Query" type="Method">1CBDCE806B40493893139C4849BC7126</method>
+  <name>ITIL Search Results Grid</name>
+  <query></query>
+  <Relationships>
+   <Item type="Grid Column" id="1448ACA971464C8B921FF8D98DE666C7" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Service</label>
+    <property>service</property>
+    <sort>1</sort>
+    <sort_order>250</sort_order>
+    <source_id keyed_name="ITIL Search Results Grid" type="Grid">1D7719CDFB3F403F9011F5D39BCEC499</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type='ITIL Incident']</xpath>
+   </Item>
+   <Item type="Grid Column" id="17836BA04A0A4C0693F1E53EF71EB2F7" action="add">
+    <align>left</align>
+    <datatype>text</datatype>
+    <label>Item Number</label>
+    <property>item_number</property>
+    <sort>2</sort>
+    <sort_order>200</sort_order>
+    <source_id keyed_name="ITIL Search Results Grid" type="Grid">1D7719CDFB3F403F9011F5D39BCEC499</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type='ITIL Incident']</xpath>
+   </Item>
+   <Item type="Grid Column" id="42101BF52FE0459F9E7CB69BB661E7EA" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Description</label>
+    <property>description</property>
+    <sort_order>400</sort_order>
+    <source_id keyed_name="ITIL Search Results Grid" type="Grid">1D7719CDFB3F403F9011F5D39BCEC499</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>300</width>
+    <xpath>self::Item[@type='ITIL Incident']</xpath>
+   </Item>
+  
+   <Item type="Grid Column" id="5DF69E54F9DE46BEBA2B2BBE58F5BD01" action="add">
+    <align>left</align>
+    <datatype>text</datatype>
+    <label>Status</label>
+    <property>state_faked_prop</property>
+    <sort>3</sort>
+    <sort_order>300</sort_order>
+    <source_id keyed_name="ITIL Search Results Grid" type="Grid">1D7719CDFB3F403F9011F5D39BCEC499</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>80</width>
+    <xpath>self::Item[@type='ITIL Incident']</xpath>
+   </Item>
+   <Item type="Grid Column" id="90F1A1BD0D3D4C9BA39D916A1EEAA22D" action="add">
+    <align>left</align>
+    <datatype>text</datatype>
+    <label>Type</label>
+    <property>typename_faked_prop</property>
+    <sort>0</sort>
+    <sort_order>100</sort_order>
+    <source_id keyed_name="ITIL Search Results Grid" type="Grid">1D7719CDFB3F403F9011F5D39BCEC499</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type='ITIL Incident']</xpath>
+   </Item></Relationships>
+ </Item>
+</AML>

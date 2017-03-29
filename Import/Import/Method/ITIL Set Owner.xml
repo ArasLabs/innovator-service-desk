@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="Method" id="6AD3B228B738436991FEE73AE2B9E720" action="add">
+  <comments>If Initiated By Identity is not specified set its to logged user Identity</comments>
+  <method_code><![CDATA[// If Initiated By Identity is not specified set it to the logged user Identity
+var curItem = document.thisItem;
+var ownerId = '';
+if (curItem && !curItem.isEmpty() && !curItem.isNew())
+{
+  ownerId = top.aras.getItemProperty(curItem.node, "owned_by_id");
+}
+if (ownerId === '')
+{
+  var curUserIdentity = top.aras.getLoggedUserItem().selectSingleNode("Relationships/Item[@type='Alias']/related_id/Item");
+  var identityId = curUserIdentity.getAttribute("id");
+  top.aras.setItemProperty(curItem.node, "owned_by_id", identityId);
+  handleItemChange("owned_by_id", identityId);
+}
+return this;]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Set Owner</name>
+ </Item>
+</AML>

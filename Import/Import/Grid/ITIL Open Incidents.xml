@@ -1,0 +1,74 @@
+﻿<AML>
+ <Item type="Grid" id="A699F3F273F14D90A3182BA1DC6BAAFD" action="add">
+  <method keyed_name="ITIL Items Grid Query" type="Method">45E4E08304A248A488A7C8B8AA29F90C</method>
+  <name>ITIL Open Incidents</name>
+  <query><![CDATA[<Item type="ITIL Incident" action="get" select="id" >
+<id>non_existing_id</id>
+</Item>]]></query>
+  <Relationships>
+   <Item type="Grid Column" id="35A589DA61754C5A8CD25B393DD4F519" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Priority</label>
+    <property>priority</property>
+    <sort>3</sort>
+    <sort_order>300</sort_order>
+    <source_id keyed_name="ITIL Open Incidents" type="Grid">A699F3F273F14D90A3182BA1DC6BAAFD</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>60</width>
+    <xpath>self::Item[@type="ITIL Incident"]</xpath>
+   </Item>
+   <Item type="Grid Column" id="47F54CFC7D15481A8B862F577C575BC6" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Due Date</label>
+    <property>due_date</property>
+    <sort>1</sort>
+    <sort_order>500</sort_order>
+    <source_id keyed_name="ITIL Open Incidents" type="Grid">A699F3F273F14D90A3182BA1DC6BAAFD</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Incident"]</xpath>
+   </Item>
+  
+   <Item type="Grid Column" id="72C4692A0C874EDE8F727F3AB8657C62" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Incident Number</label>
+    <property>item_number</property>
+    <sort>2</sort>
+    <sort_order>100</sort_order>
+    <source_id keyed_name="ITIL Open Incidents" type="Grid">A699F3F273F14D90A3182BA1DC6BAAFD</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Incident"]</xpath>
+   </Item>
+   <Item type="Grid Column" id="B773256622084A91948FE84CE0543F90" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Description</label>
+    <property>description</property>
+    <sort_order>400</sort_order>
+    <source_id keyed_name="ITIL Open Incidents" type="Grid">A699F3F273F14D90A3182BA1DC6BAAFD</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Incident"]</xpath>
+   </Item>
+   <Item type="Grid Column" id="C64896CCED60416CA3C8FE0D6239DF21" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Status</label>
+    <property>state</property>
+    <sort_order>200</sort_order>
+    <source_id keyed_name="ITIL Open Incidents" type="Grid">A699F3F273F14D90A3182BA1DC6BAAFD</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>60</width>
+    <xpath>self::Item[@type="ITIL Incident"]</xpath>
+   </Item></Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,549 @@
+﻿<AML>
+ <Item type="ItemType" id="0A95AD58CC394D3B8BCAE0099DC0701B" action="add">
+  <allow_private_permission>0</allow_private_permission>
+  <auto_search>1</auto_search>
+  <class_structure></class_structure>
+  <default_lifecycle keyed_name="ITIL Change" type="Life Cycle Map">42C8E713F6E542278F1308EF2893F596</default_lifecycle>
+  <default_page_size>50</default_page_size>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>ITIL_CHANGE</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label>Change Request</label>
+  <label_plural>Change Requests</label_plural>
+  <large_icon>../images/Icons/32x32/32x32_databaseUpdates.gif</large_icon>
+  <manual_versioning>0</manual_versioning>
+  <name>ITIL Change</name>
+  <open_icon>../images/Icons/16x16/16x16_databaseUpdates.gif</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <save_history>0</save_history>
+  <show_parameters_tab>0</show_parameters_tab>
+  <structure_view>tab view</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <Relationships>
+   <Item type="Allowed Permission" id="47D57568FFEE45508100A07135765526" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="ITIL Open Change" type="Permission">C90EAA33085B42E59A60EADF5E0987D5</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Can Add" id="C036AA830D53479AA17F09C4A0F62C01" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="EE6C3D580A314CB2B02BA00C6004E8E8" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Closed On</label>
+    <name>closed_on</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>2048</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="487E0C60FAEB46419109182FEED31555" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>decimal</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Cost Estimate</label>
+    <name>cost_estimate</name>
+    <prec>10</prec>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <scale>2</scale>
+    <sort_order>1664</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="1E41E67B499E4A51930DC2B4C0DB90A3" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>400</column_width>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>Description</label>
+    <name>description</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="BA178FE4D1B24F48A9631A0C190BA9BA" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>400</column_width>
+    <data_type>text</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Description</label>
+    <name>description_html</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="819FFD020CA04E719A353DF2D969D1FB" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Due Date</label>
+    <name>due_date</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="093D060B5EF740B7B6951AB50ED0D7AB" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <name>escalate_date</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>5504</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="A71BDBEFFFE8484895232DB13322C6D3" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>400</column_width>
+    <data_type>text</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Estimated Impact</label>
+    <name>estimated_impact</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1792</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="F2CBC1847B4E4E648555587570C3A416" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_source keyed_name="ITIL Sequence">0EF111DFCB154C94A3EEEC844CA9DC84</data_source>
+    <data_type>sequence</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>0</keyed_name_order>
+    <label>Change Number</label>
+    <name>item_number</name>
+    <order_by>0</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="0A8E6C145B7844B187170553100D6415" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>integer</data_type>
+    <default_value>0</default_value>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <name>notified</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>5376</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="1D393797B1D246468EC2E6750F378F2F" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>integer</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Offline Time Spent</label>
+    <min_range>0</min_range>
+    <name>offline_time_spent</name>
+    <range_inclusive>1</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1536</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="88042AB92B3949D6925C00724791C63C" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>boolean</data_type>
+    <default_value>0</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <name>responsible_changed_manually</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>11776</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="FAEC9262AA934A0DBD69DCA6504726B0" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_source keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Service</label>
+    <name>service</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="7960CB95200B482588EC5AB471C58B71" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_source keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</data_source>
+    <data_type>item</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Service Level</label>
+    <name>servicelevel</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1024</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="FDE6C2834AB94A7893A5246FF0A818C9" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>integer</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Time Spent</label>
+    <name>time_spent</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" id="5316901C78284286978F364E36C0CCDE" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Warn Date</label>
+    <name>warn_date</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1920</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="55AAAFB0E91D4E6DA31614141AE19EE3" action="add">
+    <related_id keyed_name="ITIL Modify Activity Workflow" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Modify Activity Workflow</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="92C0D3EEE49841DF8E6D1B3EEFFB5AB7" action="add">
+    <related_id keyed_name="ITIL Responsible Changed Handler" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Responsible Changed Handler</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="68211B315E0949089EAD3C6D5B6C908C" action="add">
+    <related_id keyed_name="ITIL Set Service Level" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Service Level</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="5F3DE47E89D84924A443ADA8A5FBBABB" action="add">
+    <related_id keyed_name="ITIL Update Item Properties" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Update Item Properties</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="F11EE9D2B18C4532AC092791FF788446" action="add">
+    <related_id keyed_name="ITIL Set Status Color" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Status Color</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterGet</server_event>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="A12007D59F1C45529CBD4C99B796A0C8" action="add">
+    <related_id keyed_name="ITIL Modify Activity Workflow" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Modify Activity Workflow</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterUpdate</server_event>
+    <sort_order>1152</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="2621BD277A114F3EAF2C6D2FCF00237C" action="add">
+    <related_id keyed_name="ITIL Responsible Changed Handler" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Responsible Changed Handler</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterUpdate</server_event>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="ED62BCD9AA6544ED94CB957A1D38ED53" action="add">
+    <related_id keyed_name="ITIL Responsible Changed Handler" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Responsible Changed Handler</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeAdd</server_event>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="51072698E46A4AAA86C2F38E84C8BD69" action="add">
+    <related_id keyed_name="ITIL Set Default Properties" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Default Properties</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeAdd</server_event>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="1FAF5D6098384AC48C2A17AEC0AF0870" action="add">
+    <related_id keyed_name="ITIL Sync Activity Workflow" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Sync Activity Workflow</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeAdd</server_event>
+    <sort_order>1024</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="182690C0707A4BEA9ED916BE4BF47360" action="add">
+    <related_id keyed_name="ITIL Responsible Changed Handler" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Responsible Changed Handler</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUpdate</server_event>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="818E31E7054B4BB29FE9F8AFC850A771" action="add">
+    <related_id keyed_name="ITIL Set Default Properties" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Default Properties</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUpdate</server_event>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="DA5E92B97A00447A8EA5403FDB80BF16" action="add">
+    <related_id keyed_name="ITIL Set Service Level" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Service Level</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUpdate</server_event>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Server Event" id="8A6A310A2A414F88A162C29EC87635DD" action="add">
+    <related_id keyed_name="ITIL Sync Activity Workflow" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Sync Activity Workflow</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUpdate</server_event>
+    <sort_order>1280</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="TOC Access" id="D79DBE5E79A04917B2DE025DAA68A339" action="add">
+    <category>ITIL</category>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="View" id="59BD44BB41B5481CB88D2B4C673775A3" action="add">
+    <client>js</client>
+    <related_id keyed_name="ITIL Change" type="Form">52F0F13B81F3497F8068AEB68CE845B8</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+    <type>default</type>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="0A95AD58CC394D3B8BCAE0099DC0701B" action="edit">
+  <Relationships>
+   <Item type="Property" action="edit" where="source_id='0A95AD58CC394D3B8BCAE0099DC0701B' and name='created_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>Initiated On</label>
+    <name>created_on</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>1280</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='0A95AD58CC394D3B8BCAE0099DC0701B' and name='managed_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Responsible</label>
+    <name>managed_by_id</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='0A95AD58CC394D3B8BCAE0099DC0701B' and name='owned_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Initiated By</label>
+    <name>owned_by_id</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='0A95AD58CC394D3B8BCAE0099DC0701B' and name='state'">
+    <column_alignment>left</column_alignment>
+    <column_width>60</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Status</label>
+    <name>state</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Change" type="ItemType" name="ITIL Change">0A95AD58CC394D3B8BCAE0099DC0701B</source_id>
+    <stored_length>32</stored_length>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

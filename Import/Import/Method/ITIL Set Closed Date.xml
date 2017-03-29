@@ -1,0 +1,15 @@
+﻿<AML>
+ <Item type="Method" id="14C73B9333D04B42BF05394F173C87CC" action="add">
+  <comments>Set closed_on property for Incident/Problem/Change items.</comments>
+  <method_code><![CDATA[// Set the closed_on property to the current date.
+Item q = this.getInnovator().newItem("tmp", "tmp");
+q.loadAML(this.node.OuterXml);
+q.setProperty("closed_on", DateTime.Now.ToString());
+q.setAttribute("action", "edit");
+q.setAttribute("doGetItem", "0");
+q.setAttribute("serverEvents", "0");
+return q.apply();]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Set Closed Date</name>
+ </Item>
+</AML>

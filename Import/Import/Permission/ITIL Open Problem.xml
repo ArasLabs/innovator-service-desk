@@ -1,0 +1,56 @@
+﻿<AML>
+ <Item type="Permission" id="8E56EED8E2CE42248AACFFA635507599" action="add">
+  <is_private>0</is_private>
+  <name>ITIL Open Problem</name>
+  <Relationships>
+   <Item type="Access" id="C958D3D827BA4844B93EEE11855369C2" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Open Problem" type="Permission">8E56EED8E2CE42248AACFFA635507599</source_id>
+   </Item>
+  
+   <Item type="Access" id="9C1D468A8E924E6486DA948742896F7B" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Manager" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>Manager</name>
+     </Item>
+    </related_id>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Open Problem" type="Permission">8E56EED8E2CE42248AACFFA635507599</source_id>
+   </Item>
+   <Item type="Access" id="0A10A7E77913400DA7FEADB9B8659932" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Owner" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>Owner</name>
+     </Item>
+    </related_id>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Open Problem" type="Permission">8E56EED8E2CE42248AACFFA635507599</source_id>
+   </Item>
+   <Item type="Access" id="7030AF14B48541FF8889D2458F148E87" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_get>1</can_get>
+    <can_update>0</can_update>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Open Problem" type="Permission">8E56EED8E2CE42248AACFFA635507599</source_id>
+   </Item></Relationships>
+ </Item>
+</AML>

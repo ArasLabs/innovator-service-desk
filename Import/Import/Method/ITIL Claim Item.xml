@@ -1,0 +1,49 @@
+﻿<AML>
+ <Item type="Method" id="D65AC9CD62FC489BA1DE8FB9631A9769" action="add">
+  <comments>Sets managed_by_id to the current user's alias</comments>
+  <method_code><![CDATA[// Sets managed_by_id to the current user's alias
+
+var innovator = this.getInnovator();
+
+var loggedUserId = innovator.getUserID();
+var AML = "<AML><Item type='Alias' select='related_id' action='get'>" + 
+          "<source_id>" + loggedUserId + "</source_id>" + 
+         "</Item></AML>";
+var item = innovator.applyAML(AML);
+if (item.isError())
+{
+  top.aras.AlertError("Method 'ITIL Claim Item' failed. " + item.getErrorDetail(), item.getErrorString(), item.getErrorSource());
+}
+else
+{
+  var id = item.node.selectSingleNode("related_id/Item/id");
+
+  this.setProperty("managed_by_id",id.text);
+
+  if (this.getAttribute('isTemp') === undefined)
+  {
+    var newItem = innovator.newItem();
+    newItem.loadAML(this.node.xml);
+    if (this.getProperty('locked_by_id') !== undefined)
+    {
+      res = newItem.apply("update");
+    }
+    else
+    {
+      res = newItem.apply("edit");
+    }
+
+    if (res.isError())
+    {
+      top.aras.AlertError("Method 'ITIL Claim Item' failed. " + res.getErrorDetail(), res.getErrorString(), res.getErrorSource());
+    }
+  }
+  if (window && window.onRefresh) 
+  {
+    window.onRefresh();
+  }
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Claim Item</name>
+ </Item>
+</AML>

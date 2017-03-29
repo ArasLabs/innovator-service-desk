@@ -1,0 +1,14 @@
+<AML>
+ <Item type="Action" id="38694A81D02548C28872565AD102DEFA" action="add">
+  <item_query></item_query>
+  <location>client</location>
+  <method keyed_name="ITIL Claim Item" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>ITIL Claim Item</name>
+   </Item>
+  </method>
+  <name>Claim</name>
+  <target>none</target>
+  <type>item</type>
+ </Item>
+</AML>

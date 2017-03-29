@@ -1,0 +1,24 @@
+﻿<AML>
+ <Item type="Method" id="922E8AFE49B94056A0B8278CF17B7B95" action="add">
+  <method_code><![CDATA[// Display "Service" property field as "classification" in edit mode and
+// as a link to the service in view mode
+var serviceDisplayStyle = top.isEditMode ? "inline" : "none";
+var linkDisplayStyle = !top.isEditMode ? "inline" : "none";
+
+var objects = document.getElementsByTagName("span");
+for (var i=0; i<objects.length; i++)
+{
+  if (objects[i].name === "service")
+  { 
+    objects[i].style.display = serviceDisplayStyle;
+  }
+  if (objects[i].name === "serviceLink")
+  {
+    objects[i].style.display = linkDisplayStyle;
+  }
+}
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Change Service Field Type</name>
+ </Item>
+</AML>

@@ -1,0 +1,24 @@
+﻿<AML>
+ <Item type="Method" id="5755180F47D4446B88A0050B9E527A24" action="add">
+  <comments>Validate Incident before transition to Resolved</comments>
+  <method_code><![CDATA[// Validate that solution and/or solution_text is populated
+Innovator inn = this.getInnovator();
+string stdSolution = this.getProperty("solution");
+string solutionText = this.getProperty("solution_text");
+if ( (stdSolution == null || stdSolution == "") && (solutionText == null || solutionText == "") )
+{
+  return inn.newError(string.Format("You must record the solution before transition #{0} {1} to Resolved state.", this.getProperty("item_number"), this.getType()));
+}
+
+// Check that "Responsible" is Alias identity
+string isAliasAML = "<AML><Item type='Alias' action='get' select='id'><related_id>" + this.getProperty("managed_by_id") + "</related_id></Item></AML>";
+Item res = inn.applyAML(isAliasAML);
+if (res.isError())
+{
+  return inn.newError(string.Format("Responsible should be a single user identity before transition #{0} {1} to Resolved state.", this.getProperty("item_number"), this.getType()));
+}
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Incident Validate</name>
+ </Item>
+</AML>

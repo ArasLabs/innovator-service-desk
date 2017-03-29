@@ -1,0 +1,108 @@
+﻿<AML>
+ <Item type="Method" id="EB09DF3128474CD9B2EB560C94F3F77F" action="add">
+  <method_code><![CDATA[// Show custom ClassStructureDialog for Service Structure relations
+var serviceObject = document.getElementById("service");
+
+var param=new Object();
+param.title='ITIL Service Structure';
+param.isEditMode=false;
+param.aras=top.aras;
+param.class_structure=getClassStructureForServices(null);
+param.dialogType='classification';
+param.selectLeafOnly=false;
+
+var scriptsURL = top.aras.getScriptsURL().replace("/scripts", "/Solutions/ITIL/scripts");
+
+var res=showModalDialog(scriptsURL+'ClassStructureDialog.html',param,'help:0;resizable:1;status:0;');
+
+if (document.isEditMode && res!==undefined && window.handleItemChange) 
+{
+  // Update item property and field values
+  var curItem = document.thisItem;
+  var prevValue = curItem.getProperty("service");
+  
+  if (res.id !== undefined)
+  {
+    window.handleItemChange("service", res.id);
+  }
+  else
+  {
+    window.handleItemChange("service", "");
+  }
+  
+  // If Resposible(managed_by_id) wasn't set manually sets it to
+  // Service Responsible(owned_by_id)
+  var inn = curItem.getInnovator();
+  var flag = curItem.getProperty("responsible_changed_manually");
+  if (prevValue != res.id && flag !== "true" && flag !== "1")
+  {
+    var responsibleID = curItem.getProperty("managed_by_id");
+    var serviceID = res.id;
+    var aml = "<AML><Item type='ITIL Service' id='" + serviceID + "' action='get' select='name,owned_by_id' /></AML>";
+    var q = inn.applyAML(aml);
+    if (!q.isError())
+    {
+      responsibleID = q.getProperty("owned_by_id");
+      handleItemChange("managed_by_id", responsibleID);
+    }
+    else
+    {
+      top.aras.AlertError("ITIL Service Change Handler failed: " + q.getErrorDetail());
+      return;
+    }
+  }
+}
+
+function getClassStructureForServices(service)
+{
+  var aml="";
+  var res, i;
+  var q = new Item("tmp");
+  var classStructure = "";
+  var d;
+  
+  if (service === null)
+  {
+    classStructure += "<class name='ITIL Service' >";
+    // Get root services
+    aml = "<Item type='ITIL Service' action='get' select='id,name' doGetItem='0' serverEvents='0'>" +
+          "<id condition='in'>SELECT id from [ITIL_SERVICE] where id not in (SELECT related_id from [ITIL_SERVICE_STRUCTURE])</id>" +
+          "</Item>";
+    q.loadAML(aml);
+    res = q.apply();
+    if (!res.isError())
+    {
+      for (i=0; i<res.getItemCount(); i++)
+      {
+        var item = res.getItemByIndex(i);
+        classStructure += getClassStructureForServices(item);
+      }
+    }
+    classStructure += "</class>";
+  }
+  else
+  {
+    classStructure += "<class name='" + service.getProperty("name") + "' id='" + service.getID() + "' >";
+    // Get subservices
+    aml = "<AML><Item type='ITIL Service' action='get' select='id,name' doGetItem='0' serverEvents='0'>" +
+          "<id condition='in'>SELECT related_id from [ITIL_SERVICE_STRUCTURE] where source_id = '" + service.getID() + "'</id>" +
+          "</Item></AML>";
+    q.loadAML(aml);
+    res = q.apply();
+    if (!res.isError())
+    {
+      for (i=0; i<res.getItemCount(); i++)
+      {
+        item = res.getItemByIndex(i);
+        classStructure += getClassStructureForServices(item);
+      }
+    }
+    classStructure += "</class>";
+  }
+  
+  return classStructure;
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Show Service Structure</name>
+ </Item>
+</AML>

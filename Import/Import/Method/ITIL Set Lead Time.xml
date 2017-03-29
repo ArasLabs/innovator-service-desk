@@ -1,0 +1,99 @@
+﻿<AML>
+ <Item type="Method" id="AC8E28A40D4946CE9F85BA97E5A40E95" action="add">
+  <comments>Sets due and warning date for the item.</comments>
+  <method_code><![CDATA[// Sets due and warning date for the item according to selected service level.
+
+Innovator inn = this.getInnovator();
+
+// Get service levels sorted by response time
+string aml = "<AML><Item type='ITIL Service Level' action='get' select='default_response,default_warning,coverage_start,coverage_end,escalation_time' order_by='default_response'>" +
+      "<id>" + this.getProperty("servicelevel") + "</id>" +
+      "</Item></AML>";
+Item res = inn.applyAML(aml);
+if (res.isError() || res.isEmpty())
+{
+  return inn.newError("Method 'ITIL Set Lead Time' failed: Cann't find item's Service Level.");
+}
+
+int respTime = int.MaxValue;
+int warnTime = int.MaxValue;
+
+aml = "<AML><Item type='ITIL Service Level Exception' action='get' select='response_time,warning_time'>" +
+      "<is_excluded>0</is_excluded>"+
+      "<source_id>" + res.getID() + "</source_id>" +
+      "<related_id>" + this.getProperty("service") + "</related_id>" +
+      "</Item></AML>";
+Item exceptions = inn.applyAML(aml);
+if ( !exceptions.isError() && !exceptions.isEmpty())
+{
+  for (int j=0; j<exceptions.getItemCount(); j++)
+  {
+    Item exception = exceptions.getItemByIndex(j);
+    int exceptionResponseTime = int.Parse(exception.getProperty("response_time"));
+    if (exceptionResponseTime < respTime)
+    {
+      respTime = exceptionResponseTime;
+      warnTime = int.Parse(exception.getProperty("warning_time"));
+    }
+  }
+}
+else
+{
+  respTime = int.Parse(res.getProperty("default_response"));
+  warnTime = int.Parse(res.getProperty("default_warning"));
+}
+
+string startTime = this.getProperty("created_on");
+if (startTime == null || startTime == "")
+{
+  return this;
+}
+
+Item q = inn.newItem("ITIL Incident");
+q.setProperty("coverage_start", res.getProperty("coverage_start"));
+q.setProperty("coverage_end", res.getProperty("coverage_end"));
+q.setProperty("start_time", startTime);
+q.setAttribute("action", "ITIL Complete DateTime Interval");
+
+q.setProperty("interval", warnTime.ToString());
+q = q.apply();
+if (!q.isError())
+{
+  this.setProperty("warn_date", q.getProperty("end_time"));
+}
+else
+{
+  return q;
+}
+
+q.setProperty("interval", respTime.ToString());
+q = q.apply();
+if (!q.isError())
+{
+  this.setProperty("due_date", q.getProperty("end_time"));
+}
+else
+{
+  return q;
+}
+
+string escalateTime = res.getProperty("escalation_time");
+if (escalateTime != null && escalateTime != "")
+{
+  q.setProperty("interval", escalateTime);
+  q = q.apply();
+  if (!q.isError())
+  {
+    this.setProperty("escalate_date", q.getProperty("end_time"));
+  }
+  else
+  {
+    return q;
+  }
+}
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Set Lead Time</name>
+ </Item>
+</AML>

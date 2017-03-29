@@ -1,0 +1,9 @@
+﻿<AML>
+ <Item type="Method" id="C20D0865F32B44E28916F37A0A9453E5" action="add">
+  <method_code><![CDATA[// Stores the time the form was opened for later use by 'ITIL Calculate Time Spent'
+dateObj = new Date();
+this.startTime = dateObj.getTime();]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Set Start Time</name>
+ </Item>
+</AML>

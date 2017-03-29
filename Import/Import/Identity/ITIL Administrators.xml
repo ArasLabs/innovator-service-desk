@@ -1,0 +1,12 @@
+<AML>
+ <Item type="Identity" id="5DE7F42D771F4226917308CE96D88448" action="add">
+  <description>Able to configure ITIL soliution</description>
+  <is_alias>0</is_alias>
+  <name>ITIL Administrators</name>
+  </Item>
+ <Item type="Member" id="540C9671F77F44DCA85A0A883758CCF6" action="add">
+  <related_id keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</source_id>
+ </Item>
+</AML>

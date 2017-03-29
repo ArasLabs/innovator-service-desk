@@ -1,0 +1,45 @@
+﻿<AML>
+ <Item type="Method" id="665F156536B14B50BB7221246B3E15FA" action="add">
+  <comments>Promotes the item to 'Idle' state</comments>
+  <method_code><![CDATA[// Promotes the item to 'Idle' state (same as using Promote, but called via the Action menu)
+
+function refreshItemOnClient(type, id)
+{
+  aras.removeFromCache(id);
+  var wnd = aras.uiFindWindowEx(id);
+  if (!wnd)
+  {
+    return;
+  }
+  var itmNd = aras.getItemById(type, id);
+  if (itmNd)
+  {
+    aras.uiReShowItem(id, id, "view");
+  }
+}
+
+if (this.isNew() || this.getAttribute("isTemp") || this.getLockStatus() > 0)
+{
+  top.aras.AlertError("Failed to promote temporary or locked item. Please save or unlock.");
+  return this;
+}
+
+if (this.getProperty("state") !== "Idle")
+{
+  var res = this.promote("Idle","");
+  if (res.isError())
+  {
+    top.aras.AlertError("Method 'ITIL Set Idle' failed. " + res.getErrorDetail(), res.getErrorString(), res.getErrorSource());
+  }
+  else
+  {
+    refreshItemOnClient(this.getType(), this.getID());
+  }
+}
+
+return this;
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Set Idle</name>
+ </Item>
+</AML>

@@ -1,0 +1,41 @@
+﻿<AML>
+ <Item type="Method" id="74D90B3ED93A435197C4379176E47A75" action="add">
+  <comments>Sets default and calculated properties for Incident/Problem/change items</comments>
+  <method_code><![CDATA[// Set priority = (urgency + impact) div 2
+// If owned_by_id is null, set it to the creator(currently logged user if item is new)
+
+int urgency = Convert.ToInt32(this.getProperty("urgency"));
+int impact = Convert.ToInt32(this.getProperty("impact"));
+
+int priority = (urgency + impact) / 2;
+
+this.setProperty("priority",priority.ToString());
+
+string creator = this.getProperty("created_by_id");
+if (creator == null)
+{
+  // Get logged user identity id
+  Innovator inn = this.getInnovator();
+  string loggedUserId = inn.getUserID();
+  string AML = "<AML><Item type='Alias' select='related_id' action='get'>" + 
+               "<source_id>" + loggedUserId + "</source_id>" + 
+               "</Item></AML>";
+  Item res = inn.applyAML(AML);
+  if (res.isError())
+  {
+    return inn.newError("Method 'ITIL Set Default Properties' failed. " + res.getErrorDetail());
+  }
+  else
+  {
+    creator = res.getProperty("related_id");
+  }
+}
+
+if (this.getProperty("owned_by_id") == null)
+  this.setProperty("owned_by_id", creator);
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Set Default Properties</name>
+ </Item>
+</AML>

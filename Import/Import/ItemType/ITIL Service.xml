@@ -1,0 +1,199 @@
+﻿<AML>
+ <Item type="ItemType" id="A169199751C1452F8A7C1CB399742DFE" action="add">
+  <allow_private_permission>0</allow_private_permission>
+  <auto_search>1</auto_search>
+  <default_lifecycle keyed_name="Default" type="Life Cycle Map">2F3B75E17C4E4F2D9599579A965BFA64</default_lifecycle>
+  <default_page_size>50</default_page_size>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>ITIL_SERVICE</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label>ITIL Service</label>
+  <label_plural>ITIL Services</label_plural>
+  <large_icon>../images/Icons/32x32/32x32_workflowProcesses.gif</large_icon>
+  <manual_versioning>0</manual_versioning>
+  <maxrecords>1000</maxrecords>
+  <name>ITIL Service</name>
+  <open_icon>../images/Icons/16x16/16x16_workflowProcesses.gif</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <save_history>0</save_history>
+  <show_parameters_tab>0</show_parameters_tab>
+  <structure_view>tab view</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <Relationships>
+   <Item type="Allowed Permission" id="09269FE5F2A6495F8D8FA55DF89B9378" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="ITIL Service" type="Permission">E688412CCE1343EF803C412A51E154CC</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+   </Item>
+   <Item type="Can Add" id="365537A14CCB4F20BEC9C564281B0BA1" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+   </Item>
+   <Item type="Item Action" id="7FE088265B61457CA36662B34F8133BE" action="add">
+    <related_id keyed_name="Sync Service Tree" type="Action">22C7C82CBF3D4321B8B09B3582AFF6A9</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+   </Item>
+   <Item type="Property" id="32E7EE77ABC14DDB8EF89C4C4A32BFBF" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>75</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>Abbreviation</label>
+    <name>abbreviation</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+    <stored_length>8</stored_length>
+   </Item>
+   <Item type="Property" id="588695151B634F33ABE61E1BEFB62BC0" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>250</column_width>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Description</label>
+    <name>description</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+   </Item>
+   <Item type="Property" id="966E20825914475BAB9850FE0B6A9F07" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>150</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>Name</label>
+    <name>name</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+    <stored_length>64</stored_length>
+   </Item>
+   <Item type="Server Event" id="8D143DE25D8047839ADC4777E1C34804" action="add">
+    <related_id keyed_name="ITIL Service Keyed Name" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Service Keyed Name</name>
+     </Item>
+    </related_id>
+    <server_event>GetKeyedName</server_event>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+   </Item>
+   <Item type="Server Event" id="8D9BF5D0241B45A38A641BACB4EBA005" action="add">
+    <related_id keyed_name="ITIL Sync Service Tree" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Sync Service Tree</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+   </Item>
+   <Item type="Server Event" id="94DEA93FDC36438788B8CF43A56B3F4A" action="add">
+    <related_id keyed_name="ITIL Sync Service Tree" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Sync Service Tree</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterDelete</server_event>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+   </Item>
+   <Item type="Server Event" id="BC2BD0BB0C884DC1A50D14153B3D1553" action="add">
+    <related_id keyed_name="ITIL Sync Service Tree" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Sync Service Tree</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterUpdate</server_event>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+   </Item>
+   <Item type="TOC Access" id="46313CCB82B4402CA4C6DFD1F9965801" action="add">
+    <category>Library</category>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+   </Item>
+   <Item type="View" id="BA602B18DEDD44F79392525ABDB34DD2" action="add">
+    <client>js</client>
+    <related_id keyed_name="ITIL Service" type="Form">405B12BEAE2747728624F82052E7F2F0</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+    <type>default</type>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="A169199751C1452F8A7C1CB399742DFE" action="edit">
+  <Relationships>
+   <Item type="Property" action="edit" where="source_id='A169199751C1452F8A7C1CB399742DFE' and name='keyed_name'">
+    <column_alignment>left</column_alignment>
+    <column_width>200</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Full Name</label>
+    <name>keyed_name</name>
+    <order_by>0</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+    <stored_length>128</stored_length>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='A169199751C1452F8A7C1CB399742DFE' and name='owned_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>150</column_width>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Responsible</label>
+    <name>owned_by_id</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

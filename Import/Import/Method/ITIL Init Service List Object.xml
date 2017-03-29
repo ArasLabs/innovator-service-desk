@@ -1,0 +1,38 @@
+﻿<AML>
+ <Item type="Method" id="1FE7B3B58BEA4128BFF3B6AD87C1437E" action="add">
+  <comments>Runtime used function for initialize Services list objects</comments>
+  <method_code><![CDATA[// Do not use this method directly. Its used only for runtime function creating.
+// Create function as described below:
+// f = new function FunctionName('listObject', 'reloadListFunction', {method_code});
+// Input parameters:
+// listObject - DHTML SELECT object, which represents services list;
+// reloadListFunction - function for refreshing services list content from server
+
+listObject.attachEvent('onmouseenter', reloadListFunction);
+reloadListFunction(listObject);
+
+// If there is item with service property on current form, sets
+// list selection to this property value.
+var curItem = document.thisItem;
+var service = '';
+if (curItem && !curItem.isEmpty() && !curItem.isNew())
+{
+  var serviceNode = curItem.node.selectSingleNode("service");
+  if (serviceNode !== null)
+  {
+    service = serviceNode.text.replace(/\s+$/, '' );
+  }
+}
+for (i=0; i<listObject.options.length; i++)
+{
+  if (listObject.options[i].id == service)
+  {
+    listObject.selectedIndex = i;
+    break;
+  }
+}
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Init Service List Object</name>
+ </Item>
+</AML>

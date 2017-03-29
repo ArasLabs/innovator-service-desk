@@ -1,0 +1,114 @@
+﻿<AML>
+ <Item type="Method" id="8CA29DC1313845719406AD7D668C6BE2" action="add">
+  <comments>Reloads services list for specified list object</comments>
+  <method_code><![CDATA[// Do not use this method directly. Its used only for runtime function creating.
+// Create function as described below:
+// f = new function FunctionName('listObject', {method_code});
+
+var i, val, lab, option;
+var list = listObject;
+
+if (list.tagName !== 'SELECT')
+{
+  list = listObject.srcElement;
+}
+
+var prevSelectedOption;
+if (list.selectedIndex >= 0)
+{
+  prevSelectedOption = list.options[list.selectedIndex];
+}
+
+var isEditMode = (list.disabled === false);
+if (isEditMode)
+{
+  list.disabled = true;
+}
+
+// Get services form server.  
+var aml = "<Item type='Value' action='get' select='sort_order,value,label' orderBy='sort_order'><source_id condition='in'>SELECT id FROM [LIST] WHERE name='ITIL Service Tree'</source_id></Item>";
+aml = top.aras.applyItem(aml);
+if (!aml)
+{
+  return;
+}
+
+// Add services to list options content.
+var d = top.aras.createXMLDocument();
+d.loadXML(aml);
+var options = d.selectNodes("//Item[@type='Value']");
+
+var isModified = true;
+if (options.length == list.options.length - 1)
+{
+  isModified = false;
+  for (i=0; i<options.length; i++) 
+  {
+    val = top.aras.getItemProperty(options[i], 'value');
+    label = top.aras.getItemProperty(options[i], 'label');
+    var listOption = list.options[i+1];
+    if (label != listOption.text || val != listOption.value)
+    {
+      isModified = true;
+      break;
+    }
+  }
+}
+
+if (isModified)
+{
+  // Clear list content.
+  var optCount = list.options.length;
+  for (i=0; i<optCount; i++)
+  {
+    list.options.remove(0);
+  }
+
+  // Add empty option
+  listOption = document.createElement("OPTION");
+  listOption.text = '';
+  listOption.id = '';
+  listOption.value = '';
+  list.options.add(listOption);
+
+  for (i=0; i<options.length; i++) 
+  {
+    option = options[i];
+    val = top.aras.getItemProperty(option, 'value');
+    label = top.aras.getItemProperty(option, 'label');
+    listOption = document.createElement("OPTION");
+    listOption.text = label;
+    listOption.id = val;
+    listOption.value = val;
+    list.options.add(listOption);
+  }
+
+  // Restore previous list selection by service id.
+  if (prevSelectedOption !== undefined)
+  {
+    for (i=0; i<optCount; i++)
+    {
+      if (list.options[i].value == prevSelectedOption.value && 
+          list.options[i].id == prevSelectedOption.id)
+      {
+        list.selectedIndex = i;
+        break;
+      }
+    }
+  }
+}
+
+if (isEditMode)
+{
+  list.disabled = false;
+}
+
+// Set list width to prevent auto resize for long service keyed names.
+list.style.width = 90;
+
+return true;
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Reload Services List</name>
+ </Item>
+</AML>

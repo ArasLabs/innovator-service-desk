@@ -1,0 +1,67 @@
+<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<!--
+Represents configurable grid with results of the searching items by specified solution or solution description.
+Request format:
+http://.../SearchResultsGrid.html?solution={solution name}&description={description of the non-standard solution}
+-->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../styles/default.css">
+  <link rel="stylesheet" type="text/css" href="ITIL.css">
+
+<title>Search Results</title>
+<script type="text/javascript" src="../../../javascript/QueryString.js"></script>
+<script type="text/javascript">
+
+var solution = QueryString("solution").toString();
+var description = QueryString("description").toString();
+
+var item;
+
+onload = function f_onload()
+{
+  item = parent.item;
+  
+  // Search Results Configurable Grid id
+  var gridId = '1D7719CDFB3F403F9011F5D39BCEC499';
+  
+  var toolbarSource = "../Solutions/ITIL/scripts/emptyToolbar.html";
+
+  document.frames[0].location.replace("../../../scripts/ConfigurableGrid.html?grid=" + gridId + "&custom_toolbar_src=" + toolbarSource);
+  
+  checkGridLoadedInterval = setInterval(initGrid, 100);
+}
+
+var checkGridLoadedInterval;
+
+function showSelectedItem()
+{
+  var grid = document.frames[0].grid;
+  var selectedItem = grid.selectedItem;
+  if (!selectedItem) return;
+  top.aras.uiShowItemInFrameEx(document.frames[0], selectedItem.node);
+}
+
+function initGrid()
+{
+  var grid = document.frames[0].grid;
+  if (grid == null)
+    return;
+  
+  clearInterval(checkGridLoadedInterval);
+  //++++++ Override standard javascript onCellEdit method for the grid
+  var OnCellEditNewCode = "if (mode==0)\n" +
+                          "{\n" +
+                          "  setTimeout(parent.showSelectedItem, 100);\n" + 
+                          "}\n" +
+                          "return this.base$onCellEdit(mode, rowId, col, skipModifiedCheck);";
+  grid.overrideMethod("onCellEdit", "mode", "rowId", "col", "skipModifiedCheck", OnCellEditNewCode);
+}
+</script>
+</head>
+
+<FRAMESET ID="ii_frameset" BORDER=0 FRAMEBORDER=1 FRAMESPACING=0>
+  <FRAME ID="gridFrame" NORESIZE>
+</FRAMESET>
+
+</html>

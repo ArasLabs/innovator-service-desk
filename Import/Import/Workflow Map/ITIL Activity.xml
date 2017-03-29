@@ -1,0 +1,145 @@
+﻿<AML>
+ <Item type="Workflow Map" id="67341837B8014240810911114B197117" action="add">
+  <description>Template for ITIL Activities workflows</description>
+  <name>ITIL Activity</name>
+  <node_bg_color></node_bg_color>
+  <node_label1_color></node_label1_color>
+  <node_label1_font></node_label1_font>
+  <node_label2_color></node_label2_color>
+  <node_label2_font></node_label2_font>
+  <node_name_color></node_name_color>
+  <node_name_font></node_name_font>
+  <node_size></node_size>
+  <process_owner keyed_name="Creator" type="Identity">
+   <Item type="Identity" action="get" select="id">
+    <name>Creator</name>
+   </Item>
+  </process_owner>
+  <transition_line_color></transition_line_color>
+  <transition_name_color></transition_name_color>
+  <transition_name_font></transition_name_font>
+  <Relationships>
+   <Item type="Workflow Map Activity" id="C127062005874D2399348E76346AFDA7" action="add">
+    <related_id keyed_name="Activity" type="Activity Template">
+     <Item type="Activity Template" id="01C273C7469544C390451EB4CA24AD83" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <expected_duration>0</expected_duration>
+      <icon>../images/Icons/20x20/20x22_gray_ball.gif</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>1</is_start>
+      <message></message>
+      <name>Activity</name>
+      <priority>2</priority>
+      <reminder_count>0</reminder_count>
+      <reminder_interval>0</reminder_interval>
+      <timeout_duration>0</timeout_duration>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>177</x>
+      <y>52</y>
+      <Relationships>
+       <Item type="Activity Template EMail" id="B3995033B0B34537A39E1DAA989944BA" action="add">
+        <event>on_activate</event>
+        <related_id keyed_name="ITIL Activity" type="EMail Message">05B1949F64C645799CF10CCE8C3D1270</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Activity" type="Activity Template">01C273C7469544C390451EB4CA24AD83</source_id>
+        <target>all_assignments</target>
+       </Item>
+       <Item type="Activity Template Method" id="88ED924572964D788139082865906DAF" action="add">
+        <event>on_close</event>
+        <related_id keyed_name="ITIL Promote Activity" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>ITIL Promote Activity</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Activity" type="Activity Template">01C273C7469544C390451EB4CA24AD83</source_id>
+       </Item>
+       <Item type="Workflow Map Path" id="167673BE4B764AC9A55A2E25228590A5" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Complete</name>
+        <related_id>30F9F29276534EA48E0D3099BD77FACD</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Activity" type="Activity Template">01C273C7469544C390451EB4CA24AD83</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Activity" type="Workflow Map">67341837B8014240810911114B197117</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" id="161FD82D4B164335B17AD41DDAD0E79D" action="add">
+    <related_id keyed_name="End" type="Activity Template">
+     <Item type="Activity Template" id="37428D061D5E4F558C54DE6F936956A6" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <expected_duration>0</expected_duration>
+      <icon>../images/Icons/16x16/16x16_redx.gif</icon>
+      <is_auto>1</is_auto>
+      <is_end>1</is_end>
+      <is_start>0</is_start>
+      <message>Workflow End</message>
+      <name>End</name>
+      <priority>1</priority>
+      <reminder_count>0</reminder_count>
+      <reminder_interval>0</reminder_interval>
+      <timeout_duration>0</timeout_duration>
+      <wait_for_all_inputs>1</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>541</x>
+      <y>52</y>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Activity" type="Workflow Map">67341837B8014240810911114B197117</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" id="AB1CCB56152046EEA983624F2794C580" action="add">
+    <related_id keyed_name="Hold" type="Activity Template">
+     <Item type="Activity Template" id="30F9F29276534EA48E0D3099BD77FACD" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <expected_duration>1000</expected_duration>
+      <icon>../images/Icons/20x20/20x22_gray_ball.gif</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message>Activity Workflow Hold</message>
+      <name>Hold</name>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>380</x>
+      <y>52</y>
+      <Relationships>
+       <Item type="Activity Template Assignment" id="F06E5A740E76488B96E7024489F9B796" action="add">
+        <for_all_members>0</for_all_members>
+        <is_required>0</is_required>
+        <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Hold" type="Activity Template">30F9F29276534EA48E0D3099BD77FACD</source_id>
+        <voting_weight>100</voting_weight>
+       </Item>
+       <Item type="Workflow Map Path" id="F4D896B3CE194EFF9F93A0FA6FDA80D7" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Close</name>
+        <related_id>37428D061D5E4F558C54DE6F936956A6</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Hold" type="Activity Template">30F9F29276534EA48E0D3099BD77FACD</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Activity" type="Workflow Map">67341837B8014240810911114B197117</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

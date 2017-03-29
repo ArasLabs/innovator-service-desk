@@ -1,0 +1,44 @@
+﻿<AML>
+ <Item type="Method" id="7A7D47BB248E4C95A8BFF4DE1D4B381E" action="add">
+  <comments>Synchronize Service relationships</comments>
+  <method_code><![CDATA[// Synchronize ITIL Services after Serice Tree relationships changes.
+
+// Get affected related item id from Session hash.
+string relshipSessionKey = "relship_" + this.getID();
+string relatedItemID = (string)CCO.Session[relshipSessionKey];
+
+string aml = "<AML><Item type='ITIL Service' action='get' " +
+               "select='id'><id>" + relatedItemID + "</id></Item></AML>";
+
+
+Innovator inn = this.newInnovator();
+// Check affected item locked state and force item edit(update) 
+// for keyed_name update.
+Item relatedItem = inn.applyAML(aml);
+if (relatedItem.isEmpty())
+  return inn.newError(relatedItem.getErrorDetail());;
+int locked_by_id = relatedItem.fetchLockStatus();
+if (locked_by_id==0)
+{
+  aml = "<AML><Item type=\"ITIL Service\" action=\"edit\" " +
+        "where=\"id='" + relatedItemID + "'\"></Item></AML>";	
+        
+  Item res = inn.applyAML(aml);
+  if (res.isError())
+    return inn.newError("Edit ITIL Service failed: " + res.getErrorDetail());
+}
+else
+{
+  aml = "<AML><Item type=\"ITIL Service\" action=\"update\" " +
+        "where=\"id='" + relatedItemID + "'\"></Item></AML>";	
+  
+  Item res = inn.applyAML(aml);
+  if (res.isError())
+    return inn.newError("Update ITIL Service failed: " + res.getErrorDetail());
+}
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL After Action Sync</name>
+ </Item>
+</AML>

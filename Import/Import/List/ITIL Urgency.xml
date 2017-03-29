@@ -1,0 +1,25 @@
+﻿<AML>
+ <Item type="List" id="DDFFB4F8E867451EA055D6DA87BBB5CD" action="add">
+  <name>ITIL Urgency</name>
+  <Relationships>
+   <Item type="Value" id="B4CACCC0B47045D5B273E033066886FC" action="add">
+    <label>Work Stopage</label>
+    <sort_order>3</sort_order>
+    <source_id keyed_name="ITIL Urgency" type="List">DDFFB4F8E867451EA055D6DA87BBB5CD</source_id>
+    <value>1</value>
+   </Item>
+  
+   <Item type="Value" id="D5C6CF05E0C548B2968F3DEC13C2925E" action="add">
+    <label>Difficult To Work</label>
+    <sort_order>2</sort_order>
+    <source_id keyed_name="ITIL Urgency" type="List">DDFFB4F8E867451EA055D6DA87BBB5CD</source_id>
+    <value>2</value>
+   </Item>
+   <Item type="Value" id="5CEB79DF6190405C969F77B61B60509E" action="add">
+    <label>Not Important</label>
+    <sort_order>1</sort_order>
+    <source_id keyed_name="ITIL Urgency" type="List">DDFFB4F8E867451EA055D6DA87BBB5CD</source_id>
+    <value>3</value>
+   </Item></Relationships>
+ </Item>
+</AML>

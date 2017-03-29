@@ -1,0 +1,95 @@
+﻿<AML>
+ <Item type="ItemType" id="3B5625FF7DFC4DA9B9A8AAF2FF3BB243" action="add">
+  <allow_private_permission>0</allow_private_permission>
+  <auto_search>1</auto_search>
+  <default_lifecycle keyed_name="Default" type="Life Cycle Map">2F3B75E17C4E4F2D9599579A965BFA64</default_lifecycle>
+  <default_page_size>25</default_page_size>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>ITIL_SOLUTION</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label>ITIL Solution</label>
+  <label_plural>ITIL Solutions</label_plural>
+  <large_icon>../images/Icons/32x32/32x32_method.gif</large_icon>
+  <manual_versioning>0</manual_versioning>
+  <maxrecords>1000</maxrecords>
+  <name>ITIL Solution</name>
+  <open_icon>../images/Icons/16x16/16x16_method.gif</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <save_history>0</save_history>
+  <show_parameters_tab>0</show_parameters_tab>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <Relationships>
+   <Item type="Allowed Permission" id="612CA53A489D4F64BEF27AC0F616196D" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="ITIL Solution" type="Permission">3A287E082F1041DDB6705BF06567D98A</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Solution" type="ItemType" name="ITIL Solution">3B5625FF7DFC4DA9B9A8AAF2FF3BB243</source_id>
+   </Item>
+   <Item type="Can Add" id="FC781DD8950A429582D763AC1C81FC8F" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Solution" type="ItemType" name="ITIL Solution">3B5625FF7DFC4DA9B9A8AAF2FF3BB243</source_id>
+   </Item>
+   <Item type="Property" id="168F97421D2241BFBAFDFEB6B00DDBEC" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>300</column_width>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Instructions</label>
+    <name>instructions</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Solution" type="ItemType" name="ITIL Solution">3B5625FF7DFC4DA9B9A8AAF2FF3BB243</source_id>
+   </Item>
+   <Item type="Property" id="4ED40A976DC44EDCBBCE4F6A133CFD17" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>150</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <keyed_name_order>0</keyed_name_order>
+    <label>Name</label>
+    <name>name</name>
+    <order_by>0</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Solution" type="ItemType" name="ITIL Solution">3B5625FF7DFC4DA9B9A8AAF2FF3BB243</source_id>
+    <stored_length>64</stored_length>
+   </Item>
+   <Item type="TOC Access" id="2C5652E90206465A95366D021838A585" action="add">
+    <category>Library</category>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Solution" type="ItemType" name="ITIL Solution">3B5625FF7DFC4DA9B9A8AAF2FF3BB243</source_id>
+   </Item>
+   <Item type="View" id="8C850B84FEFA43C5856C4F04D0EE29F8" action="add">
+    <client>js</client>
+    <related_id keyed_name="ITIL Solution" type="Form">684FAFFAF9BF4E789A5E53EC7B1B01E6</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Solution" type="ItemType" name="ITIL Solution">3B5625FF7DFC4DA9B9A8AAF2FF3BB243</source_id>
+    <type>default</type>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

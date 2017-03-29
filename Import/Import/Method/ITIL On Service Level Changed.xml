@@ -1,0 +1,37 @@
+﻿<AML>
+ <Item type="Method" id="01FFFDBC7093496387553FFCA340E408" action="add">
+  <comments>Service Level field "onChange" method</comments>
+  <method_code><![CDATA[// Updates warning and due dates properties after Service Level changed
+
+var inn = new Innovator();
+var curItem = document.thisItem;
+
+if (!curItem.getProperty("servicelevel") || !curItem.getProperty("created_on"))
+{
+  return;
+}
+
+var q = inn.newItem("tmp", "tmp");
+q.loadAML(curItem.node.xml);
+q.setAttribute("action", "ITIL Set Lead Time");
+
+var res = inn.applyAML("<AML>" + q.node.xml + "</AML>");
+if (res.isError()) 
+{
+  top.aras.AlertError("Change Service Level failed: " + res.getErrorDetail());
+  return;
+}
+
+// Set due and warning dates for item
+curItem.setProperty("warn_date", res.getProperty("warn_date"));
+curItem.setProperty("due_date", res.getProperty("due_date"));
+curItem.setProperty("escalate_date", res.getProperty("escalate_date"));
+
+handleItemChange("due_date", res.getProperty("due_date"));
+
+return;
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL On Service Level Changed</name>
+ </Item>
+</AML>

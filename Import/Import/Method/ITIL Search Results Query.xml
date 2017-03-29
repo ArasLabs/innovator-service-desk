@@ -1,0 +1,115 @@
+﻿<AML>
+ <Item type="Method" id="1CBDCE806B40493893139C4849BC7126" action="add">
+  <comments>Searches Incident and Problem items for solution</comments>
+  <method_code><![CDATA[// Used as a query method for 'Search Results' configurable grid.
+// Searches Incident and Problem items for solution.
+function addItemsToDOM(dom, items)
+{
+  var doc = dom.documentElement;
+  
+  for (i=0; i<items.length; i++)
+  {
+    var item = items[i];
+    var typeName = item.getAttribute("type");
+    var state = top.aras.getItemProperty(item, "state");
+    item.removeAttribute("typeId");
+    item.setAttribute("type", "ITIL Incident");
+    var itemId = item.getAttribute("id");
+    
+    var typenameFakedProperty = dom.createElement("typename_faked_prop");
+    typenameFakedProperty.text = typeName.replace("ITIL ", "");
+    item.appendChild(typenameFakedProperty);
+    
+    var stateFakedProperty = dom.createElement("state_faked_prop");
+    stateFakedProperty.text = state;
+    item.appendChild(stateFakedProperty);
+    
+    var domItem = doc.selectSingleNode("//Item[@id='" + itemId +"']");
+    if (domItem !== null)
+    {
+      doc.replaceChild(domItem, item.cloneNode(true));
+    }
+    else
+    {
+      doc.appendChild(item.cloneNode(true));
+    }
+  }
+}
+
+var res, aml, d, i;
+var name = parent.solution;
+var desc = parent.description;
+
+// Build solution request statement
+var nameStatement = '';
+var solIdsStatement = '';
+
+if (name !== "")
+{
+  nameStatement = "<name condition='like'>" + name + "</name>";
+
+  // Find Solutions by specified 'name' criteria
+  var solIds = '';
+  var findSolutionAML = "<AML><Item type='ITIL Solution' action='get' select='id'>" + nameStatement + "</Item></AML>";
+  res = top.aras.applyAML(findSolutionAML);
+
+  d = top.aras.createXMLDocument();
+  d.loadXML(res);
+  var solutions = d.selectNodes("//Item[@type='ITIL Solution']");
+  i = -1;
+  for (i=0; i < solutions.length - 1; i++)
+  {
+    solIds += solutions[i].getAttribute('id') + ',';
+  }
+  if ( solutions.length > 0)
+  {
+    solIds += solutions[i].getAttribute('id');
+  }
+
+  if (solIds !== '')
+  {
+    solIds = solIds.split(',');
+    solIdsStatement = '<OR>';
+    for (i=0; i<solIds.length; i++)
+    {
+      solIdsStatement += "<solution>" + solIds[i] + "</solution>";
+    }
+    solIdsStatement += "</OR>";
+  }
+  else
+  {
+    solIdsStatement = "<solution></solution>";
+  }
+}
+
+// Build solution_text request statement
+var descriptionStatement = '';
+if ( desc !== "")
+{
+  descriptionStatement = "<description condition='like'>" + desc + "</description>";
+}
+
+var q = new Item("tmp");
+// Find Incidents by solution description
+aml = "<Item type='ITIL Incident' action='get' select='item_number,service,state,description'><AND>" +
+      solIdsStatement +
+      descriptionStatement +
+      "</AND></Item>";
+q.loadAML(aml);
+q = q.apply();
+addItemsToDOM(this.dom, q.dom.selectNodes("//Item[@type='ITIL Incident']"));
+
+// Find Incidents by solution description
+aml = "<Item type='ITIL Problem' action='get' select='item_number,service,state,description'><AND>" +
+      solIdsStatement +
+      descriptionStatement +
+      "</AND></Item>";
+q.loadAML(aml);
+q = q.apply();
+addItemsToDOM(this.dom, q.dom.selectNodes("//Item[@type='ITIL Problem']"));
+
+return this;]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Search Results Query</name>
+ </Item>
+</AML>

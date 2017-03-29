@@ -1,0 +1,620 @@
+﻿<AML>
+ <Item type="ItemType" id="185381EB424344989F82E4F9711AF19F" action="add">
+  <allow_private_permission>0</allow_private_permission>
+  <auto_search>1</auto_search>
+  <class_structure></class_structure>
+  <default_lifecycle keyed_name="ITIL Problem" type="Life Cycle Map">93016109408140FB909C84C7EFF631FF</default_lifecycle>
+  <default_page_size>50</default_page_size>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>ITIL_PROBLEM</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label>Problem</label>
+  <label_plural>Problems</label_plural>
+  <large_icon>../images/Icons/32x32/32x32_logging.gif</large_icon>
+  <manual_versioning>0</manual_versioning>
+  <name>ITIL Problem</name>
+  <open_icon>../images/Icons/16x16/16x16_logging.gif</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <save_history>0</save_history>
+  <show_parameters_tab>0</show_parameters_tab>
+  <structure_view>tab view</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <Relationships>
+   <Item type="Allowed Permission" id="649A78FFA4484602A8B4C68411281968" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="ITIL Open Problem" type="Permission">8E56EED8E2CE42248AACFFA635507599</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Can Add" id="00926CD12E9F435098248A8B5D0F8BA9" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Item Action" id="387D3826AC704BA6930637F49E844BB9" action="add">
+    <related_id keyed_name="Convert To Change" type="Action">83D2CC2B9DBC4AD5A8B5B3D08CD74242</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Item Action" id="39FF4F08B41146B0A22C4D99C5942477" action="add">
+    <related_id keyed_name="Set Idle" type="Action">1EC17D6A77C54D939BEFD5D37757A451</related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Item Action" id="A213158D6A154604AEF506434A32F441" action="add">
+    <related_id keyed_name="Set Resolved" type="Action">582E48C4C7184E10B5B1B855E7F204D7</related_id>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="8902511017A2447799FACB7FAD598ED2" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Closed On</label>
+    <name>closed_on</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>2304</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="281CB8FBF0134202A41389E25A3C93DB" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>400</column_width>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>Description</label>
+    <name>description</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="47E6A7172EBF42A69DF4F16029B63A29" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>400</column_width>
+    <data_type>text</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Description</label>
+    <name>description_html</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="F12431A7BDC44FA98D0A089D53DABC74" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Due Date</label>
+    <name>due_date</name>
+    <order_by>1</order_by>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="DDC5219C8C874064B8B183C29C693178" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <name>escalate_date</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>5504</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="E68AF3095838496C92DE257CD54F3D5E" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>70</column_width>
+    <data_source keyed_name="ITIL Impact">D9B28ED4816F4080B00F33987E858C70</data_source>
+    <data_type>list</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>Impact</label>
+    <name>impact</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1152</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="FFD32197CC5249FE8AF31B30E492F7DC" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_source keyed_name="ITIL Sequence">0EF111DFCB154C94A3EEEC844CA9DC84</data_source>
+    <data_type>sequence</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>0</keyed_name_order>
+    <label>Problem Number</label>
+    <name>item_number</name>
+    <order_by>2</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="8DAE09D807B242189633281C620561C7" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>integer</data_type>
+    <default_value>0</default_value>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <name>notified</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>5376</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="974A48EB33764A66B741A9EB92312713" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>integer</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Offline Time Spent</label>
+    <min_range>0</min_range>
+    <name>offline_time_spent</name>
+    <range_inclusive>1</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>2048</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="33F4EEFE6745447A86228DF58B1D2ADE" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>70</column_width>
+    <data_source keyed_name="ITIL Priority">01614C9FF216467AB2C6E1255049C788</data_source>
+    <data_type>list</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Priority</label>
+    <name>priority</name>
+    <order_by>0</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="CF78B113AC15410CB0053EE3A6F13EAA" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>boolean</data_type>
+    <default_value>0</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <name>responsible_changed_manually</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>11776</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="AFE3F60B076C4C99822282B51DD53EF1" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_source keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Service</label>
+    <name>service</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="7B25EF7A7DBC42B999173334991DE1E1" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_source keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</data_source>
+    <data_type>item</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Service Level</label>
+    <name>servicelevel</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1280</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="83819A2C5EA24DB3B64FBA8D94C1808F" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>100</column_width>
+    <data_source keyed_name="ITIL Solution" type="ItemType" name="ITIL Solution">3B5625FF7DFC4DA9B9A8AAF2FF3BB243</data_source>
+    <data_type>item</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Solution</label>
+    <name>solution</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1664</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="DCD5799065264F30891E466C83828904" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>300</column_width>
+    <data_type>text</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Solution Description</label>
+    <name>solution_text</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1792</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="1EB757C8EB204B5CB5CDAD03E29A7D4E" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>integer</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Time Spent</label>
+    <name>time_spent</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>1920</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="9ABC0675F27941BCAD811EDD58DA2D66" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>70</column_width>
+    <data_source keyed_name="ITIL Urgency">DDFFB4F8E867451EA055D6DA87BBB5CD</data_source>
+    <data_type>list</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>Urgency</label>
+    <name>urgency</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" id="23D1A087993B4003911F679D41E1474A" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Warn Date</label>
+    <name>warn_date</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>2176</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="5E8118DA447D4DA980F78EA268B39C80" action="add">
+    <related_id keyed_name="ITIL Modify Activity Workflow" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Modify Activity Workflow</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="D77A294D4E7E4369A884A94603405CB7" action="add">
+    <related_id keyed_name="ITIL Responsible Changed Handler" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Responsible Changed Handler</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="817C7A86FAE0407F937C394D86495D7F" action="add">
+    <related_id keyed_name="ITIL Set Service Level" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Service Level</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="ED49AF2350414466ACB22CF1C5953ABE" action="add">
+    <related_id keyed_name="ITIL Update Item Properties" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Update Item Properties</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="E2F8DD3124D34A42B7ACC0C19446ACA8" action="add">
+    <related_id keyed_name="ITIL Set Status Color" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Status Color</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterGet</server_event>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="0EA68E01C9674668B56101C95DEE4EDB" action="add">
+    <related_id keyed_name="ITIL Modify Activity Workflow" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Modify Activity Workflow</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterUpdate</server_event>
+    <sort_order>1024</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="729EA6905FA2409B81DB250A42469381" action="add">
+    <related_id keyed_name="ITIL Responsible Changed Handler" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Responsible Changed Handler</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterUpdate</server_event>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="B430768429C8447AB6ACA98EA5C5A461" action="add">
+    <related_id keyed_name="ITIL Responsible Changed Handler" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Responsible Changed Handler</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeAdd</server_event>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="BCDAC9771CC347339BA8688A3F118D6C" action="add">
+    <related_id keyed_name="ITIL Set Default Properties" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Default Properties</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeAdd</server_event>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="A8E6B114FD2545B787FAFCDB36CC7FE1" action="add">
+    <related_id keyed_name="ITIL Sync Activity Workflow" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Sync Activity Workflow</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeAdd</server_event>
+    <sort_order>1152</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="B5C6B35B84FF4F629027C1086038F6EE" action="add">
+    <related_id keyed_name="ITIL Responsible Changed Handler" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Responsible Changed Handler</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUpdate</server_event>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="642C6347DC334957A9668EBB1450FE61" action="add">
+    <related_id keyed_name="ITIL Set Default Properties" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Default Properties</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUpdate</server_event>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="4180F83D11C04C919BD7A5F1EFF36754" action="add">
+    <related_id keyed_name="ITIL Set Service Level" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Service Level</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUpdate</server_event>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Server Event" id="B6ADA8127BDA405BB14195C3DF6CB51E" action="add">
+    <related_id keyed_name="ITIL Sync Activity Workflow" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Sync Activity Workflow</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUpdate</server_event>
+    <sort_order>1280</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="TOC Access" id="A4BD998907C3416B9E260BC92E733BF8" action="add">
+    <category>ITIL</category>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="View" id="4711B5351B4346F2823A0E3CF4153BBB" action="add">
+    <client>js</client>
+    <related_id keyed_name="ITIL Problem" type="Form">A0E0C344C31341D9B595CFF807E80C34</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+    <type>default</type>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="185381EB424344989F82E4F9711AF19F" action="edit">
+  <Relationships>
+   <Item type="Property" action="edit" where="source_id='185381EB424344989F82E4F9711AF19F' and name='created_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>Initiated</label>
+    <name>created_on</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>1536</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='185381EB424344989F82E4F9711AF19F' and name='managed_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Responsible</label>
+    <name>managed_by_id</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='185381EB424344989F82E4F9711AF19F' and name='owned_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Initiated By</label>
+    <name>owned_by_id</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1024</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='185381EB424344989F82E4F9711AF19F' and name='state'">
+    <column_alignment>left</column_alignment>
+    <column_width>60</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Status</label>
+    <name>state</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Problem" type="ItemType" name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+    <stored_length>32</stored_length>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

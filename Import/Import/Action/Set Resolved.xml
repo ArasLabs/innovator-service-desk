@@ -1,0 +1,14 @@
+<AML>
+ <Item type="Action" id="582E48C4C7184E10B5B1B855E7F204D7" action="add">
+  <item_query></item_query>
+  <location>client</location>
+  <method keyed_name="ITIL Set Resolved" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>ITIL Set Resolved</name>
+   </Item>
+  </method>
+  <name>Set Resolved</name>
+  <target>none</target>
+  <type>item</type>
+ </Item>
+</AML>

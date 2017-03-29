@@ -1,0 +1,275 @@
+﻿<!-- (c) Copyright by Aras Corporation, 2004-2007. -->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../styles/default.css">
+
+  <script language="JScript">document.title = dialogArguments.title;</script>
+
+  <!--
+dialog arguments:
+aras  - aras object
+title - string to be used as title of the window
+class_structure - string with class structure
+dialogType - string ('class_path','class_structure','classification')
+isEditMode - true or false (is used only if dialogType=='class_structure')
+-->
+
+  <script language="JScript">
+var aras = dialogArguments.aras;
+returnValue = undefined;
+
+var class_structure = dialogArguments.class_structure;
+var dialogType   = dialogArguments.dialogType;
+//var isEditMode   = (dialogArguments.isEditMode && (dialogType=='class_structure' || dialogType=='classification' || dialogType=='class_path'));
+var isEditMode   = (dialogArguments.isEditMode && (dialogType=='class_structure'));
+var selectLeafOnly = dialogArguments.selectLeafOnly;
+
+var structDom = new ActiveXObject('Msxml2.DOMDocument.4.0');
+structDom.async = false;
+structDom.preserveWhiteSpace = true;
+var structApplet = null;
+
+var rootClassNd = null;
+var selectedNd  = null;
+var new_class_structure = '';
+var classImage = null;
+var oldClassXml;
+var saved = false;
+
+function initStructureApplet()
+{
+  structApplet = document.frames['structure'].document.struct;
+  structDom.loadXML(class_structure);
+  if (structDom.parseError.errorCode != 0)
+  {
+    top.aras.AlertError('An internal error has occured.','Malformed XML:\n\n'+class_structure, "Client Side Error");
+    window.close();
+  }
+  
+  rootClassNd = structDom.documentElement;
+  var ndNm = rootClassNd.getAttribute('name');
+  var ndID = '0';
+  rootClassNd.setAttribute('tmpID', ndID);
+  var root = structApplet.setRootItem(ndNm);
+  root.setId(ndID);
+  var imageNode = "";
+  var currItemType = top.aras.getItemByName("ItemType", ndNm, 0, "", "name, open_icon");
+  if (currItemType)
+    imageNode = currItemType.selectSingleNode("open_icon");
+  if (imageNode)
+  {
+    classImage = imageNode.text;
+    root.setImageSRC(classImage);
+  }
+  
+  addSubClasses2Struct(rootClassNd, ndID, root);
+  structApplet.setLayout(top.aras.getVariable("StructureLayout"));
+  
+  oldClassXml = structDom.documentElement.xml;  
+}
+
+function addSubClasses2Struct(xmlClassNd, path, nd)
+{
+  var subClasses = xmlClassNd.selectNodes('class');
+  for (var i=0; i<subClasses.length; i++)
+  {
+    var subClass = subClasses(i);
+    var newNdNm = subClass.getAttribute('name');
+    var ndID = path.toString()+i.toString();
+    subClass.setAttribute('tmpID', ndID);
+    var newNd = nd.addChildItem(newNdNm);
+    newNd.setId(ndID);
+		if (classImage) newNd.setImageSRC(classImage);
+    addSubClasses2Struct(subClass, ndID, newNd);
+  }
+}
+
+var appendedNd = null;
+function appendSubClass(sourceClass)
+{
+  var sourceClassID  = sourceClass.getAttribute('tmpID');
+  var sourceStructNd = structApplet.getItem(sourceClassID);
+
+  var count = sourceClass.selectNodes('class').length;
+  var newID = sourceClassID.toString() + count.toString();
+  
+  var newNd = structDom.createElement('class');
+  var newNm = 'New SubClass ('+count+')';
+  newNd.setAttribute('tmpID', newID);
+  newNd.setAttribute('name', newNm);
+  sourceClass.appendChild(newNd);
+  
+  var newStructNd = sourceStructNd.addChildItem(newNm);
+  newStructNd.setId(newID);
+	if (classImage) newStructNd.setImageSRC(classImage);
+  
+  appendedNd = newStructNd;
+  return newStructNd;
+}
+
+function removeSubClass(classNd)
+{
+  if (classNd.parentNode.nodeType == 9) return false;
+  
+  var classID_  = classNd.getAttribute('tmpID');
+  var structNd = structApplet.getItem(classID_);
+  
+  structNd.remove();
+  classNd.parentNode.removeChild(classNd);
+}
+
+function checkLeaf(nd)
+{
+  if (selectLeafOnly && nd.getChildItem()!=null)
+  {
+    top.aras.AlertError("You may select leaf nodes only.",'','',window);
+    return false;
+  }
+  if (nd.GetParentItem() == null)
+  {
+    top.aras.AlertError("You could not select root item.",'','',window);
+    return false;
+  }
+  
+  return true;
+}
+
+function onDblClick(nd)
+{
+  if (!nd) return;
+
+  if (dialogType == 'class_path' || dialogType == 'classification')
+  {
+    if (!checkLeaf(nd)) return;
+
+    var res = new Object();
+    var classNd = rootClassNd.selectSingleNode('//class[@tmpID="' + nd.getId() + '"]');
+    res.id = classNd.getAttribute('id');
+    
+    returnValue = res;
+    window.close();
+  }
+  else if (dialogType == 'class_structure' && isEditMode && nd.GetParentItem() != null)
+    nd.editLabel();
+}
+
+function onPopupMenuClick(menuItm, structItm)
+{
+  if (!selectedNd || !isEditMode) return false;
+
+  var cmdID = menuItm.getId();
+  if (cmdID == 'add')
+  {
+    var newNd = appendSubClass(selectedNd);
+    if (newNd)
+    {
+      expandAndEditAdded(selectedNd);
+      tearoff_menu.setControlEnabled('undo', true);
+    }
+  }
+  else if (cmdID == 'remove')
+  {
+    removeSubClass(selectedNd);
+    tearoff_menu.setControlEnabled('undo', true);
+  }
+}
+
+function expandAndEditAdded(sourceClass)
+{
+  var sourceClassID  = sourceClass.getAttribute('tmpID');
+  var sourceStructNd = structApplet.getItem(sourceClassID);
+  sourceStructNd.expand(false);
+  appendedNd.setSelected(true);
+  setTimeout("try { appendedNd.editlabel()} catch(excep) {}", 100);
+}
+
+function onNameEdit(mode, structNd, confirmed)
+{
+  if (mode == 2)
+  {
+    if (!confirmed) return true;
+    if (structNd.getLabel().indexOf("/") != -1)
+    {
+      top.aras.AlertError('Node name is invalid. It contains illegal character "/".', "", "", window);      
+      return false;
+    }
+    var ndID = structNd.getId();
+    var classNd = rootClassNd.selectSingleNode('//class[@tmpID="'+ndID+'"]');
+    var newName = structNd.getLabel();
+    if (newName == '')
+    {
+      newName = classNd.getAttribute('name');
+      structNd.setLabel(newName);
+    }
+    
+    classNd.setAttribute('name', newName);
+  }
+}
+
+function onSaveAndCloseCommand()
+{
+  if (dialogType=='classification' || dialogType=='class_path')
+  {
+    var nd = structApplet.getSelectedItem();
+    if (!nd) return;
+
+    if (!checkLeaf(nd)) return;
+    
+    var res = new Object();
+    var classNd = rootClassNd.selectSingleNode('//class[@tmpID="' + nd.getId() + '"]');
+    res.id = classNd.getAttribute('id');
+    
+    returnValue = res;
+    window.close();
+  }
+  else
+  {
+    var tmpIDs = rootClassNd.selectNodes('//class[@tmpID]');
+    for (var i=0; i<tmpIDs.length; i++) tmpIDs(i).removeAttribute('tmpID');
+    returnValue = rootClassNd.xml;
+    saved = true;    
+    window.close();
+  }
+}
+
+function onUndoCommand()
+{
+  tearoff_menu.setControlEnabled('undo', false);
+  selectedNd = null;
+  initStructureApplet();
+}
+
+function onSetNothingCommand()
+{
+  returnValue = '';
+  window.close();
+}
+
+function onCloseCommand()
+{
+  returnValue = undefined;
+  window.close();
+}
+
+window.onbeforeunload = function onbeforeunload_handler()
+{
+  if (saved == true)  return;
+  if (oldClassXml == rootClassNd.xml)
+    return;
+  else
+  {
+    onSaveAndCloseCommand();
+    return;    
+  }
+}
+
+  </script>
+
+</head>
+<frameset rows="50px, *" framespacing="2" frameborder="1">
+    <frame id="tearoff_menu" src="../../../scripts/tearOffMenu.aspx?view=classStructure" marginheight="0" marginwidth="0"
+      scrolling="no" noresize>
+    <frame id="structure" src="ClassStructureDialogFrame.html" marginheight="0" marginwidth="0"
+      scrolling="no">
+  </frameset>
+</html>

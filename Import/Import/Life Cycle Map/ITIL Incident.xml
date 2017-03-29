@@ -1,0 +1,151 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="2B364F90CD294918B96D308CC9C77356" action="add">
+  <description>ITIL Incident Life Cycle</description>
+  <name>ITIL Incident</name>
+  <start_state keyed_name="Open" type="Life Cycle State">6987E88B977249ABB24E6D9954402A15</start_state>
+  <Relationships>
+   <Item type="Life Cycle State" id="270C39A6105A4722BB6B09F42BD6B2C6" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <name>Idle</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="ITIL Incident" type="Life Cycle Map">2B364F90CD294918B96D308CC9C77356</source_id>
+    <x>166</x>
+    <y>356</y>
+   </Item>
+   <Item type="Life Cycle State" id="6987E88B977249ABB24E6D9954402A15" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <item_behavior>float</item_behavior>
+    <name>Open</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Incident" type="Life Cycle Map">2B364F90CD294918B96D308CC9C77356</source_id>
+    <x>166</x>
+    <y>82</y>
+   </Item>
+   <Item type="Life Cycle State" id="E095FA5DDD944C0297E206E524C6FF5A" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <item_behavior>float</item_behavior>
+    <name>Resolved</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Incident" type="Life Cycle Map">2B364F90CD294918B96D308CC9C77356</source_id>
+    <state_permission_id keyed_name="ITIL Closed Incident" type="Permission">E587EB2BD7084042BA1B82C7B19CA4DC</state_permission_id>
+    <x>386</x>
+    <y>82</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="75BDE01782BD4D5EA708496CEA1032E2" action="add">
+    <from_state keyed_name="Idle" type="Life Cycle State">270C39A6105A4722BB6B09F42BD6B2C6</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Manager" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>Manager</name>
+     </Item>
+    </role>
+    <segments>205,217</segments>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Incident" type="Life Cycle Map">2B364F90CD294918B96D308CC9C77356</source_id>
+    <to_state keyed_name="Open" type="Life Cycle State">6987E88B977249ABB24E6D9954402A15</to_state>
+    <x>39</x>
+    <y>-142</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="A4E4CD19BD5C46A5B40BA5C872DF8CD3" action="add">
+    <from_state keyed_name="Idle" type="Life Cycle State">270C39A6105A4722BB6B09F42BD6B2C6</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</role>
+    <segments>205,305</segments>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Incident" type="Life Cycle Map">2B364F90CD294918B96D308CC9C77356</source_id>
+    <to_state keyed_name="Open" type="Life Cycle State">6987E88B977249ABB24E6D9954402A15</to_state>
+    <x>39</x>
+    <y>-55</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="48677992E8874965A4755CEEC1CB4B7C" action="add">
+    <from_state keyed_name="Open" type="Life Cycle State">6987E88B977249ABB24E6D9954402A15</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Manager" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>Manager</name>
+     </Item>
+    </role>
+    <segments>147,217</segments>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Incident" type="Life Cycle Map">2B364F90CD294918B96D308CC9C77356</source_id>
+    <to_state keyed_name="Idle" type="Life Cycle State">270C39A6105A4722BB6B09F42BD6B2C6</to_state>
+    <x>-100</x>
+    <y>129</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="B830AD42F0D7486AA09CFA915CB8F2CC" action="add">
+    <from_state keyed_name="Open" type="Life Cycle State">6987E88B977249ABB24E6D9954402A15</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</role>
+    <segments>146,306</segments>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Incident" type="Life Cycle Map">2B364F90CD294918B96D308CC9C77356</source_id>
+    <to_state keyed_name="Idle" type="Life Cycle State">270C39A6105A4722BB6B09F42BD6B2C6</to_state>
+    <x>-152</x>
+    <y>219</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="A2889511CAED4F73AFD7A00D4778EB1B" action="add">
+    <from_state keyed_name="Open" type="Life Cycle State">6987E88B977249ABB24E6D9954402A15</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="ITIL Post-Resolved(Implemented)" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Post-Resolved(Implemented)</name>
+     </Item>
+    </post_action>
+    <pre_action keyed_name="ITIL Pre-Resolved(Implemented)" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Pre-Resolved(Implemented)</name>
+     </Item>
+    </pre_action>
+    <role keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</role>
+    <segments>285,94</segments>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Incident" type="Life Cycle Map">2B364F90CD294918B96D308CC9C77356</source_id>
+    <to_state keyed_name="Resolved" type="Life Cycle State">E095FA5DDD944C0297E206E524C6FF5A</to_state>
+    <x>57</x>
+    <y>-4</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="DD4CA3CF5A4049BE8E895025D74F2873" action="add">
+    <from_state keyed_name="Open" type="Life Cycle State">6987E88B977249ABB24E6D9954402A15</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="ITIL Post-Resolved(Implemented)" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Post-Resolved(Implemented)</name>
+     </Item>
+    </post_action>
+    <pre_action keyed_name="ITIL Pre-Resolved(Implemented)" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Pre-Resolved(Implemented)</name>
+     </Item>
+    </pre_action>
+    <role keyed_name="Manager" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>Manager</name>
+     </Item>
+    </role>
+    <segments>285,125</segments>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Incident" type="Life Cycle Map">2B364F90CD294918B96D308CC9C77356</source_id>
+    <to_state keyed_name="Resolved" type="Life Cycle State">E095FA5DDD944C0297E206E524C6FF5A</to_state>
+    <x>85</x>
+    <y>64</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="0C3BF79003984A0C98AA71AF4333E5BE" action="add">
+    <from_state keyed_name="Resolved" type="Life Cycle State">E095FA5DDD944C0297E206E524C6FF5A</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</role>
+    <segments>285,60</segments>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="ITIL Incident" type="Life Cycle Map">2B364F90CD294918B96D308CC9C77356</source_id>
+    <to_state keyed_name="Open" type="Life Cycle State">6987E88B977249ABB24E6D9954402A15</to_state>
+    <x>-162</x>
+    <y>-46</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

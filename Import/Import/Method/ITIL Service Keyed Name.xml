@@ -1,0 +1,33 @@
+﻿<AML>
+ <Item type="Method" id="AA0DF3309B0D45719FADEB7302248124" action="add">
+  <comments>Gets keyed name for ITIL Service item</comments>
+  <method_code><![CDATA[Innovator inn = this.newInnovator();
+string aml;
+string id = this.getID();
+
+// Get parent service
+aml = "<AML><Item type='ITIL Service Structure' action='get' select='source_id'>" + 
+      "<related_id>" + id + "</related_id>" + 
+      "</Item></AML>";
+
+Item res = inn.applyAML(aml);
+
+// If service has no parents set keyed_name=abbreviation,
+// else set keyed_name=parent_keyed_name-abbreviation.
+string newKeyedName = "";
+if (res.isError() || res.isEmpty() || res.getItemCount()<1)
+{
+  newKeyedName = this.getProperty("abbreviation");
+}
+else
+{
+  string parentKeyedName = res.getItemByIndex(0).getPropertyAttribute("source_id", "keyed_name");
+  newKeyedName = parentKeyedName + "-" + this.getProperty("abbreviation");
+}
+this.setProperty("keyed_name", newKeyedName);
+      
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Service Keyed Name</name>
+ </Item>
+</AML>

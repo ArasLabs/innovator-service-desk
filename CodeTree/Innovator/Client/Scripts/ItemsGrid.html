@@ -1,0 +1,84 @@
+<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<!--
+Represents configurable grid for specified ItemType items with specified state.
+Request format:
+http://.../ItemsGrid.html?params=type={item type name};states={Life Cycle Map states splitted by ','}[;owner={owned_by_id}]
+-->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../styles/default.css">
+  <link rel="stylesheet" type="text/css" href="ITIL.css">
+
+<title>Items Grid</title>
+<script type="text/javascript" src="../../../javascript/QueryString.js"></script>
+<script type="text/javascript">
+
+var itemTypeName = '';
+var itemsStates = '';
+var itemsOwner = '';
+var params = QueryString("params").toString().split(";");
+for (var i=0; i<params.length; i++)
+{
+  var param = params[i];
+  if (param.indexOf("type") >= 0)
+  {
+    itemTypeName = param.substring(param.indexOf("=") + 1, param.length);
+    continue;
+  }
+  if (param.indexOf("states") >= 0)
+  {
+    itemsStates = param.substring(param.indexOf("=") + 1, param.length);
+    continue;
+  }
+  if (param.indexOf("owner") >= 0)
+  {
+    itemsOwner = param.substring(param.indexOf("=") + 1, param.length);
+    continue;
+  }
+}
+
+var item;
+var frameID = '';
+
+onload = function f_onload()
+{
+  item = parent.item;
+  var gridId = '';
+  switch (itemTypeName)
+  {
+    case 'Poly':
+      gridId = '4C9FEC8E77B44F309ABDE003485F1F72';
+      break;
+    case 'Incident':
+      gridId = 'A699F3F273F14D90A3182BA1DC6BAAFD';
+      break;
+    case 'Problem':
+      gridId = '6A4686C562634F58938827B991B3FCA5';
+      break;
+    case 'Change':
+      gridId = 'B68864C8A4784B38801C3CBC7FE197EC';
+      break;
+    default:
+      item.getInnovator().newError('There is no grid for: ' + itemTypeName + ' ItemType.');
+  }
+  
+  var toolbarSource = "../Solutions/ITIL/scripts/ItemsGridToolbar.html";
+  
+  LocationSearches = new Object();
+  frameID = "ItemsGridFrame"+"_" + itemTypeName + "_" + itemsStates + "_" + itemsOwner;
+  var o = new Object();
+  o.TypeName = itemTypeName;
+  o.LCStates = itemsStates;
+  o.Owner = itemsOwner;
+  LocationSearches[frameID] = o;
+
+  document.frames[0].location.replace("../../../scripts/ConfigurableGrid.html?grid=" + gridId + "&custom_toolbar_src=" + toolbarSource);
+}
+</script>
+</head>
+
+<FRAMESET ID="ii_frameset" BORDER=0 FRAMEBORDER=1 FRAMESPACING=0>
+  <FRAME ID="gridFrame" NORESIZE>
+</FRAMESET>
+
+</html>

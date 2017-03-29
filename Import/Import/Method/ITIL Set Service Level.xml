@@ -1,0 +1,104 @@
+﻿<AML>
+ <Item type="Method" id="AE0C6AFA70A845AD8C38A32BCE925743" action="add">
+  <comments>Sets service level for the item.</comments>
+  <method_code><![CDATA[// Sets service level for the item.
+// Whenever a new ITIL Incident, ITIL Problem or ITIL Change is initiated, 
+// a Service Level must automatically be assigned, based on the service 
+// and Initiated By (owned_by_id) properties. The logic should first retrieve 
+// all Service Levels for the Initiated By Identity (meaning it belongs to 
+// a Subscriber Identity). The Service Level with the lowest Response Time 
+// (including exceptions) should then be assigned to the item.
+
+Innovator inn = this.getInnovator();
+
+// If Service Level is changed by user or already assigned it shouldn't be modified.
+string serviceLevelID = this.getProperty("servicelevel");
+if (serviceLevelID == null || serviceLevelID == "")
+{
+  // Get User id for Initiated By Identity.
+  string ownerId = this.getProperty("owned_by_id");
+
+  string aml = "<Item type='Alias' action='get' select='source_id' serverEvents='0' doGetItem='0' >" +
+               "<related_id>" + ownerId + "</related_id>" +
+               "</Item>";
+  Item user = inn.newItem("User");
+  user.loadAML(aml);
+  user = user.apply();
+
+  // Get all parent membership identities
+  string identities = string.Format("'{0}'", ownerId);
+  if (!user.isError())
+  {
+    string userId = user.getProperty("source_id");
+    identities += "," + Aras.Server.Security.Permissions.GetIdentitiesList(CCO.Variables.InnDatabase, userId);
+  }
+  
+  // Get service levels sorted by response time
+  aml = "<AML><Item type='ITIL Service Level' action='get' select='default_response,default_warning,coverage_start,coverage_end' order_by='default_response'>" +
+        "<id condition='in'>SELECT source_id FROM [ITIL_SERVICE_LEVEL_IDENTITY] WHERE related_id IN (" + identities + ")</id>" +
+        "</Item></AML>";
+  Item res = inn.applyAML(aml);
+  if (res.isError() || res.isEmpty())
+  {
+    return inn.newError("Method 'ITIL Set Service Level' failed: There is no Service Levels for specified owner.");
+  }
+
+  // Choose service level with lowest response time excluding service level exception services.
+  aml = "<AML><Item type='ITIL Service Level Exception' action='get' select='response_time,warning_time'>" +
+        "<is_excluded>0</is_excluded>"+
+        "<source_id>{0}</source_id>" +
+        "<related_id>" + this.getProperty("service") + "</related_id>" +
+        "</Item></AML>";
+  Item serviceLevel = null;
+  int minResponseTime = int.MaxValue;
+  int correspondingWarningTime = 0;
+  for (int i=0; i<res.getItemCount(); i++)
+  {
+    Item tmpServiceLevel = res.getItemByIndex(i);
+    int respTime = int.Parse(tmpServiceLevel.getProperty("default_response"));
+    int warnTime = int.Parse(tmpServiceLevel.getProperty("default_warning"));
+    Item exceptions = inn.applyAML(String.Format(aml, tmpServiceLevel.getID()));
+    if ( !exceptions.isError() && !exceptions.isEmpty())
+    {
+  	  for (int j=0; j<exceptions.getItemCount(); j++)
+  	  {
+        Item exception = exceptions.getItemByIndex(j);
+  	    int exceptionResponseTime = int.Parse(exception.getProperty("response_time"));
+        if (exceptionResponseTime < respTime)
+  	    {
+   	      respTime = exceptionResponseTime;
+  	      warnTime = int.Parse(exception.getProperty("warning_time"));
+  	    }
+      }
+    }
+    if (respTime < minResponseTime)
+    {
+      minResponseTime = respTime;
+      correspondingWarningTime = warnTime; 
+      serviceLevel = tmpServiceLevel;
+    }
+  }
+  if (serviceLevel == null)
+  {
+    return inn.newError("Method 'ITIL Set Service Level' failed: There is no Service Levels for specified owner and service.");
+  }
+
+  this.setProperty("servicelevel", serviceLevel.getID());
+}
+
+Item q = inn.newItem("tmp", "tmp");
+q.loadAML(this.node.OuterXml);
+q.setAttribute("action", "ITIL Set Lead Time");
+q = q.apply();
+if (q.isError()) return q;
+
+// Set due and warning dates for item
+this.setProperty("warn_date", q.getProperty("warn_date"));
+this.setProperty("due_date", q.getProperty("due_date"));
+this.setProperty("escalate_date", q.getProperty("escalate_date"));
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Set Service Level</name>
+ </Item>
+</AML>

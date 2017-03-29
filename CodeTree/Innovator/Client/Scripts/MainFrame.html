@@ -1,0 +1,33 @@
+﻿<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../styles/default.css">
+
+  <title>ITIL Web Extension Main Frame</title>
+  
+<script type="text/javascript">
+var item;
+
+onload = function f_onload()
+{
+  item = top.aras.newItem("User");
+}
+
+function onSearch()
+{
+  document.frames[1].location.replace("SearchPanel.html");
+}
+
+function onCreateNew()
+{
+  document.frames[1].location.replace("AddItemsPanel.html");
+}
+
+</script>
+</head>
+
+<FRAMESET ID="ii_frameset" ROWS="54px,100%" BORDER=0 FRAMEBORDER=1 FRAMESPACING=0>
+  <FRAME ID="ControlPanel" src="ControlPanel.html" NORESIZE >
+  <FRAME ID="ViewPanel" NORESIZE >
+</FRAMESET>
+</html>

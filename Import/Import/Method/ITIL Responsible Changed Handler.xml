@@ -1,0 +1,70 @@
+﻿<AML>
+ <Item type="Method" id="2258E0A86FDE491288ADBDB5DD0341C8" action="add">
+  <comments>Handles changes of Responsible item property</comments>
+  <method_code><![CDATA[// Handles changes of Responsible item property
+Innovator inn = this.getInnovator();
+string uniqueSessionKey = this.getID() + "_ResponsibleID";
+if (CCO.Session[uniqueSessionKey] == null) // onBeforeUpdate hadler
+{
+  string aml = "<AML><Item type='{0}' id='{1}' action='get' select='managed_by_id' doGetItem='0' serverEvents='0' /></AML>";
+  Item res = inn.applyAML(string.Format(aml, this.getType(), this.getID()));
+  if (res.isError())
+  {
+    CCO.Session[uniqueSessionKey] = "";
+  }
+  else
+  {
+    CCO.Session[uniqueSessionKey] = res.getProperty("managed_by_id");
+  }
+}
+else // onAfterUpdate handler
+{
+  string prevValue = (string)CCO.Session[uniqueSessionKey];
+  if (prevValue != this.getProperty("managed_by_id"))
+  {
+    // Send notification e-mail to all members of Resposible Identity
+    string identityRequest = "<Item type='Identity' id='{0}' action='get' select='name' doGetItem='0' serverEvents='0' />";
+    Item recipient = inn.newItem("Identity");
+    recipient.loadAML(string.Format(identityRequest, this.getProperty("managed_by_id")));
+    recipient = recipient.apply();
+
+    if (!recipient.isError())
+    {
+  	  string subj = string.Format("{0} #{1} has been assigned to {2}",
+  	                              this.getType(),
+  	                              this.getProperty("item_number"),
+  	                              recipient.getPropertyAttribute("id", "keyed_name")
+  	                              );
+
+      // Get direct Innovator item link format
+      string host = HttpContext.Current.Request.ServerVariables["HTTP_HOST"];
+      string port = HttpContext.Current.Request.ServerVariables["SERVER_PORT"];
+      string url = host + ":" + port + HttpContext.Current.Request.ServerVariables["URL"];
+      url = url.ToLower();
+      url = url.Substring(0, url.IndexOf("/server"));
+      string linkFormat = "<br><a href='http://" + url + "/default.aspx?StartItem={0}:{1}' ><b>Open #{2} item in Innovator</b></a>";
+      string itemLink = string.Format(linkFormat, this.getType(), this.getID(), this.getProperty("item_number"));
+
+      Item email = inn.newItem("EMail Message");
+      email.setProperty("from_user", inn.getUserID());
+      email.setProperty("subject", subj);
+      email.setProperty("body_html", this.getProperty("description_html") + itemLink);
+      email.setProperty("body_plain", this.getProperty("description") + itemLink);
+  	
+      if (!this.email(email, recipient))
+      {
+        return inn.newError("Failed to send notificaion e-mail.");
+      }
+    }
+    else
+    {
+      return recipient;
+    }
+  }
+  CCO.Session.Remove(uniqueSessionKey);
+}
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Responsible Changed Handler</name>
+ </Item>
+</AML>

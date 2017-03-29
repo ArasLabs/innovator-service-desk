@@ -1,0 +1,115 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="42C8E713F6E542278F1308EF2893F596" action="add">
+  <description>ITIL Change Life Cycle</description>
+  <name>ITIL Change</name>
+  <start_state keyed_name="In Review" type="Life Cycle State">5A44735B76594A57866A6870334FB08A</start_state>
+  <Relationships>
+   <Item type="Life Cycle State" id="9E18D29E962547CF99FEAD8F53265191" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <name>Approved</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Change" type="Life Cycle Map">42C8E713F6E542278F1308EF2893F596</source_id>
+    <x>194</x>
+    <y>164</y>
+   </Item>
+   <Item type="Life Cycle State" id="9824775EF61E462EB0932F52D892BF85" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <name>Implemented</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Change" type="Life Cycle Map">42C8E713F6E542278F1308EF2893F596</source_id>
+    <x>433</x>
+    <y>164</y>
+   </Item>
+   <Item type="Life Cycle State" id="5A44735B76594A57866A6870334FB08A" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <item_behavior>float</item_behavior>
+    <name>In Review</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Change" type="Life Cycle Map">42C8E713F6E542278F1308EF2893F596</source_id>
+    <x>47</x>
+    <y>164</y>
+   </Item>
+   <Item type="Life Cycle State" id="DEE931927D0D42ACB2DDB37C7CCD60C7" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <name>Rejected</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Change" type="Life Cycle Map">42C8E713F6E542278F1308EF2893F596</source_id>
+    <x>194</x>
+    <y>330</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="FE35EE844DF841B9B8240167225A9088" action="add">
+    <from_state keyed_name="Approved" type="Life Cycle State">9E18D29E962547CF99FEAD8F53265191</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="ITIL Post-Resolved(Implemented)" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Post-Resolved(Implemented)</name>
+     </Item>
+    </post_action>
+    <pre_action keyed_name="ITIL Pre-Resolved(Implemented)" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Pre-Resolved(Implemented)</name>
+     </Item>
+    </pre_action>
+    <role keyed_name="ITIL Change Manager" type="Identity">85AADEA19C0D4210ADEFFAAA7D04FEB6</role>
+    <segments>316,204</segments>
+    <sort_order>1024</sort_order>
+    <source_id keyed_name="ITIL Change" type="Life Cycle Map">42C8E713F6E542278F1308EF2893F596</source_id>
+    <to_state keyed_name="Implemented" type="Life Cycle State">9824775EF61E462EB0932F52D892BF85</to_state>
+    <x>55</x>
+    <y>53</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="8974E6376EB1403DAECEC166FF898F2F" action="add">
+    <from_state keyed_name="Approved" type="Life Cycle State">9E18D29E962547CF99FEAD8F53265191</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="ITIL Change Manager" type="Identity">85AADEA19C0D4210ADEFFAAA7D04FEB6</role>
+    <segments>183,254</segments>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Change" type="Life Cycle Map">42C8E713F6E542278F1308EF2893F596</source_id>
+    <to_state keyed_name="Rejected" type="Life Cycle State">DEE931927D0D42ACB2DDB37C7CCD60C7</to_state>
+    <x>-163</x>
+    <y>89</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="4774F3ED18AA40579DC91BA079F063FB" action="add">
+    <from_state keyed_name="Implemented" type="Life Cycle State">9824775EF61E462EB0932F52D892BF85</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="ITIL Change Manager" type="Identity">85AADEA19C0D4210ADEFFAAA7D04FEB6</role>
+    <segments>316,152</segments>
+    <sort_order>1152</sort_order>
+    <source_id keyed_name="ITIL Change" type="Life Cycle Map">42C8E713F6E542278F1308EF2893F596</source_id>
+    <to_state keyed_name="Approved" type="Life Cycle State">9E18D29E962547CF99FEAD8F53265191</to_state>
+    <x>-184</x>
+    <y>-42</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="1BC0628B30224E42972804C109DA5498" action="add">
+    <from_state keyed_name="In Review" type="Life Cycle State">5A44735B76594A57866A6870334FB08A</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="ITIL Change Manager" type="Identity">85AADEA19C0D4210ADEFFAAA7D04FEB6</role>
+    <segments></segments>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Change" type="Life Cycle Map">42C8E713F6E542278F1308EF2893F596</source_id>
+    <to_state keyed_name="Approved" type="Life Cycle State">9E18D29E962547CF99FEAD8F53265191</to_state>
+    <x>18</x>
+    <y>-32</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="70CF8499C0A543718B81FC0BC673AD39" action="add">
+    <from_state keyed_name="Rejected" type="Life Cycle State">DEE931927D0D42ACB2DDB37C7CCD60C7</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="ITIL Change Manager" type="Identity">85AADEA19C0D4210ADEFFAAA7D04FEB6</role>
+    <segments>232,254</segments>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="ITIL Change" type="Life Cycle Map">42C8E713F6E542278F1308EF2893F596</source_id>
+    <to_state keyed_name="Approved" type="Life Cycle State">9E18D29E962547CF99FEAD8F53265191</to_state>
+    <x>36</x>
+    <y>-74</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,25 @@
+<AML>
+ <Item type="List" id="D9B28ED4816F4080B00F33987E858C70" action="add">
+  <name>ITIL Impact</name>
+  <Relationships>
+   <Item type="Value" id="2BAD443D5CB74855A2765FD4B246B8C5" action="add">
+    <label>Company Wide</label>
+    <sort_order>3</sort_order>
+    <source_id keyed_name="ITIL Impact" type="List">D9B28ED4816F4080B00F33987E858C70</source_id>
+    <value>1</value>
+   </Item>
+  
+   <Item type="Value" id="00F8ACB478A24F4F98986348148AA550" action="add">
+    <label>Location Wide</label>
+    <sort_order>2</sort_order>
+    <source_id keyed_name="ITIL Impact" type="List">D9B28ED4816F4080B00F33987E858C70</source_id>
+    <value>2</value>
+   </Item>
+   <Item type="Value" id="327E808BDC7F4C33B1B3FE247759CFF5" action="add">
+    <label>Individual</label>
+    <sort_order>1</sort_order>
+    <source_id keyed_name="ITIL Impact" type="List">D9B28ED4816F4080B00F33987E858C70</source_id>
+    <value>3</value>
+   </Item></Relationships>
+ </Item>
+</AML>

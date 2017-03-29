@@ -1,0 +1,20 @@
+﻿<AML>
+ <Item type="Method" id="4CAFCD51150A423B8C9DE0A1EDF3975F" action="add">
+  <comments>Updates ITIL Incident/Problem/Change calculated properties after adding new item</comments>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+Item newItem = inn.newItem();
+newItem.loadAML(this.node.OuterXml);
+Item res = null;
+if (this.getProperty("locked_by_id") != null)
+{
+  res = newItem.apply("update");
+}
+else
+{
+  res = newItem.apply("edit");
+}
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Update Item Properties</name>
+ </Item>
+</AML>

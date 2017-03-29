@@ -1,0 +1,74 @@
+﻿<AML>
+ <Item type="Method" id="0554A411E66E450FA916BF911FECE626" action="add">
+  <method_code><![CDATA[// Modify ITIL Activity Workflow
+//
+// Called OnAfterAdd & OnAfterUpdate for items with a relationship to ITIL Activity.  Performs various 
+//  housekeeping tasks related to the ITIL Activity workflow
+
+// Get the workflow
+Innovator inn = this.newInnovator();
+Item wfl = this.newItem("Workflow","get");
+wfl.setProperty("source_id",this.getID());
+Item wflProc = this.newItem("Workflow Process","get");
+wflProc.setProperty("description","ITIL Activity");
+wfl.setRelatedItem(wflProc);
+wfl = wfl.apply();
+if (wfl.getItemCount()<0) return inn.newError("Error retrieving workflow: "+wfl.getErrorDetail());
+if (wfl.getItemCount()==0) return this;
+wflProc = wfl.getRelatedItem();
+string wflProcId = wflProc.getID();
+
+// Start the workflow (doesn't hurt anything if it's already running)
+
+wflProc.startWorkflow();
+
+// Get the Worklow Process after it's been started
+wflProc = this.newItem("Workflow Process","get");
+wflProc.setAttribute("select","id");
+wflProc.setID(wflProcId);
+Item actRel = this.newItem("Workflow Process Activity","get");
+actRel.setAttribute("select","id,related_id(name,state,is_start)");
+actRel.setAttribute("orderBy","created_on");
+wflProc.addRelationship(actRel);
+wflProc = wflProc.apply();
+if (wflProc.getItemCount()!=1) return inn.newError("Error retrieving workflow process: "+wflProc.getErrorDetail());
+
+// Edit the Workflow Process to set its name and some Activity properties
+wflProc.setAction("edit");
+wflProc.setProperty("name",this.getProperty("keyed_name"));
+Item acts = wflProc.getItemsByXPath("Relationships/Item[@type='Workflow Process Activity'][related_id/Item[is_start='1']]");
+for (int i=0; i<acts.getItemCount(); i++) {
+ acts.getItemByIndex(i).setAction("edit");
+ acts.getItemByIndex(i).getRelatedItem().setAction("edit");
+ acts.getItemByIndex(i).getRelatedItem().setProperty("y",Convert.ToString((i+1)*50));
+ acts.getItemByIndex(i).getRelatedItem().setProperty("managed_by_id",this.getProperty("owned_by_id"));
+}	
+wfl = wflProc.apply();
+if (wfl.isError()) return inn.newError("Error editing workflow process: "+wfl.getErrorDetail());
+
+// Go through the Activities to activate the new ones and cancel the deleted ones 
+acts = wflProc.getItemsByXPath("Relationships/Item[@type='Workflow Process Activity']/related_id/Item[is_start='1']");
+for (int i=0; i<acts.getItemCount(); i++) {
+ Item thisAct = this.newItem();
+ thisAct.loadAML(acts.getItemByIndex(i).node.OuterXml);
+ Item resItem = this.newItem();
+ if (thisAct.getProperty("state")=="Pending") 
+ {
+   XmlDocument actDom = thisAct.dom;
+   XmlDocument resDom = resItem.dom;
+   CCO.Workflow.ActivateActivity(ref actDom, ref resDom);
+   if (resItem.isError()) return inn.newError("Error activating activity : " + resItem);
+ }
+ else 
+ {
+  Item tempItem = this.newItem("ITIL Activity","get");
+  tempItem.setProperty("activity",thisAct.getID());
+  tempItem = tempItem.apply();
+  if(tempItem.getItemCount()==0) resItem = thisAct.promote("Cancelled","");
+ }
+}	
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Modify Activity Workflow</name>
+ </Item>
+</AML>

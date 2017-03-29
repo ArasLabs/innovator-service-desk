@@ -1,0 +1,303 @@
+﻿<AML>
+ <Item type="Method" id="DE63FD280ACD421EA11FBE7CDD35FB6E" action="add">
+  <comments>Examines Incident/Problem Items for warning time and escalation time expire.</comments>
+  <method_code><![CDATA[// Examines Incident/Problem Items for warning time and escalation time expire.
+  innovator = this.getInnovator();
+
+  LOG = new StringBuilder();
+  Identities = new Hashtable();
+  identityMembers = new Hashtable();
+  identityManagers = new Hashtable();
+
+  string notifyItemAML = @"<AML><Item type='{0}' id='{1}' action='{2}' select='notified' serverEvents='0'>
+                           <notified>{3}</notified>
+                           </Item></AML>";
+
+  // Set notification e-mail pattern;
+  Item email = innovator.newItem("EMail Message");
+  email.setProperty("from_user", innovator.getUserID());
+  string subjectFormat = "{0} #{1} is overdue.";
+  // Get direct Innovator item link format
+  string host = HttpContext.Current.Request.ServerVariables["HTTP_HOST"];
+  string port = HttpContext.Current.Request.ServerVariables["SERVER_PORT"];
+  string url = host + ":" + port + HttpContext.Current.Request.ServerVariables["URL"];
+  url = url.ToLower();
+  url = url.Substring(0, url.IndexOf("/server"));
+  string linkFormat = @"<br><a href='http://" + url + "/default.aspx?StartItem={0}:{1}' ><b>Open '{2}' item in Innovator</b></a>";
+
+  string[] itemTypes = new string[] {"ITIL Incident", "ITIL Problem", "ITIL Change"};
+  foreach (Item item in GetItems(itemTypes))
+  {
+    string subject = string.Format(subjectFormat, item.getType(), item.getProperty("item_number"));
+    string itemLink = string.Format(linkFormat, item.getType(), item.getID(), item.getProperty("item_number"));
+    email.setProperty("subject", subject);
+    email.setProperty("body_html", item.getProperty("description") + itemLink);
+    email.setProperty("body_plain", item.getProperty("description") + itemLink);
+
+    int notified = int.Parse(item.getProperty("notified"));
+    string responsibleID = item.getProperty("managed_by_id");
+
+    // When the 'Warning Time' is achieved, an email goes to the incident/problem owner
+    if (!Convert.ToBoolean(notified & WARNING_NOTIFIED) && DateTime.Parse(item.getProperty("warn_date")) < DateTime.Now)
+    {
+      if ( !identityMembers.ContainsKey(responsibleID) )
+      {
+        GetMembers(GetIdentity(responsibleID));
+      }
+      notified |= WarningTimeNotification(item, email);
+    }
+
+    string escalateDateStr = item.getProperty("escalate_date");
+    if (escalateDateStr != null && escalateDateStr != "")
+    {
+      if (!Convert.ToBoolean(notified & ESCALATE_NOTIFIED) && DateTime.Parse(escalateDateStr) < DateTime.Now)
+      {
+        if ( !identityMembers.ContainsKey(responsibleID) )
+        {
+          GetMembers(GetIdentity(responsibleID));
+        }
+        GetManagers(responsibleID);
+        notified |= EscalateTimeNotification(item, email);
+      }
+    }
+
+    if (notified != int.Parse(item.getProperty("notified")))
+    {
+      string action = item.fetchLockStatus() > 0 ? "update" : "edit";
+      Item res = innovator.applyAML(string.Format(notifyItemAML, item.getType(), item.getID(), action, notified.ToString()));
+      if (res.isError())
+      {
+        LOG.AppendFormat("[ERROR]: Failed to mark #{0} item as 'notified': {1}\n", item.getProperty("item_number"), res.getErrorDetail());
+      }
+    }
+  }
+
+  return innovator.newResult(LOG.ToString());
+}
+
+private const int WARNING_NOTIFIED = 0x1;
+private const int ESCALATE_NOTIFIED = 0x2;
+private static Innovator innovator;
+public static StringBuilder LOG;
+private static Hashtable identityMembers;
+private static Hashtable identityManagers;
+private static Hashtable Identities;
+
+// Sends notification e-mail for items with Warning time achieved
+private int WarningTimeNotification(Item item, Item email)
+{
+  int notified = int.Parse(item.getProperty("notified"));
+  foreach (string id in (ICollection)identityMembers[item.getProperty("managed_by_id")])
+  {
+    if (!Identities.ContainsKey(id))
+    {
+      Identities.Add(id, GetIdentity(id));
+    }
+    if (item.email(email, (Item)Identities[id]))
+    {
+      notified = notified | WARNING_NOTIFIED;
+    }
+    else
+    {
+      LOG.AppendFormat("ERROR! Failed to send notification e-mail to {0}.", ((Item)Identities[id]).getProperty("name"));
+    }
+  }
+  return notified;
+}
+
+// Sends notification e-mail for items with Escalation time achieved
+private int EscalateTimeNotification(Item item, Item email)
+{
+  int notified = int.Parse(item.getProperty("notified"));
+  foreach (string id in (ICollection)identityManagers[item.getProperty("managed_by_id")])
+  {
+    if (!Identities.ContainsKey(id))
+    {
+      Identities.Add(id, GetIdentity(id));
+    }
+    if (item.email(email, (Item)Identities[id]))
+    {
+      notified = notified | ESCALATE_NOTIFIED;
+    }
+    else
+    {
+      LOG.AppendFormat("ERROR! Failed to send notification e-mail to {0}.", ((Item)Identities[id]).getProperty("name"));
+    }
+  }
+  return notified;
+}
+
+// Get Identity item by ID
+private Item GetIdentity(string id)
+{
+  string identityRequest = "<AML><Item type='Identity' id='{0}' action='get' select='name' doGetItem='0' serverEvents='0' /></AML>";
+  Item identity = innovator.applyAML(string.Format(identityRequest, id));
+  return identity;
+}
+
+// Get all 'Open' and not notified items
+private ICollection GetItems(string[] itemTypes)
+{
+  ArrayList items = new ArrayList();
+  string getItemsAML = @"<AML><Item type='{0}' select='managed_by_id, item_number, description, escalate_date, warn_date, notified' 
+                                               action='get' doGetItem='0' serverEvents='0'>
+                         <state condition='not in'>'Resolved','Implemented'</state>
+                         <notified condition='ne'>{1}</notified>
+                         </Item></AML>";
+  Item q = innovator.newItem();
+  foreach (string itemType in itemTypes)
+  {
+    q.loadAML(string.Format(getItemsAML, itemType, WARNING_NOTIFIED | ESCALATE_NOTIFIED));
+    Item res = q.apply();
+    if (!res.isError())
+    {
+      for (int i=0; i<res.getItemCount(); i++)
+      {
+        items.Add(res.getItemByIndex(i));
+      }
+    }
+  }
+
+  return items;
+}
+
+// Checks that identity is a single user identity
+private bool IsAlias(Item identity)
+{
+  string isAliasAML = @"<AML><Item type='Alias' action='get' select='id' serverEvents='0' doGetItem='0'>
+                        <related_id>{0}</related_id>
+                        </Item></AML>";
+  Item res = innovator.applyAML(string.Format(isAliasAML, identity.getID()));
+  if (res.isError())
+  {
+    return false;
+  }
+  return true;
+}
+
+// Get identity's managers identities
+private void GetManagers(string identityID)
+{
+  string getManagerIdentityIdSQL = "SELECT a.related_id FROM [ALIAS] a " + 
+    "WHERE a.source_id IN ( SELECT u.manager FROM [USER] u " +
+    "WHERE u.id IN ( SELECT source_id FROM [ALIAS] WHERE related_id IN ('{0}') ) )";
+  string getManagerIdentityAML = "<AML><Item type='Identity' action='get' select='name' doGetItem='0' serverEvents='0' >" +
+    "<id condition='in'>" + getManagerIdentityIdSQL + "</id>" +
+    "</Item></AML>";
+
+  ArrayList managers = new ArrayList();
+  if (!identityManagers.ContainsKey(identityID))
+  {
+    foreach (string id in (ICollection)identityMembers[identityID])
+    {
+      if (!identityManagers.ContainsKey(id))
+      {
+        Item manager = innovator.applyAML(string.Format(getManagerIdentityAML, id));
+        if (!manager.isError())
+        {
+          string mID = manager.getID();
+          if (!managers.Contains(mID))
+          {
+            managers.Add(mID);
+          }
+          if (!Identities.Contains(mID))
+          {
+            Identities.Add(mID, manager);
+          }
+        }
+        else
+        {
+          LOG.AppendFormat("\r\nERROR: {0}\r\n", manager.getErrorDetail());
+        }
+      }
+      else
+      {
+        foreach (string mID in (ICollection)identityManagers[id])
+        {
+          if (!managers.Contains(mID))
+          {
+            managers.Add(mID);
+          }
+        }
+      }
+    }
+    identityManagers.Add(identityID, managers);
+  }
+}
+
+// Get all single user identities related to the specified identities
+private ArrayList GetMembers(Item identity)
+{
+  string parentID = identity.getID();
+  if (!Identities.ContainsKey(parentID))
+  {
+    Identities.Add(parentID, identity);
+  }
+
+  if (!identityMembers.ContainsKey(parentID))
+  {
+    identityMembers.Add(parentID, new ArrayList());
+    ArrayList children = new ArrayList(); 
+
+    // Get Members
+    string aml = @"<AML><Item type='Identity' action='get' select='name'>
+             <id condition='in'>SELECT related_id from [MEMBER] WHERE source_id IN ('{0}')</id>
+             </Item></AML>";
+    Item members = innovator.applyAML(string.Format(aml, identity.getID()));
+    if (members.getItemCount() == 0)
+    {
+      if (IsAlias(identity))
+      {
+        children.Add(parentID);
+      }
+    }
+
+    for (int i=0; i<members.getItemCount(); i++)
+    {
+      Item member = members.getItemByIndex(i);
+      string id = member.getID();
+
+      if (!Identities.ContainsKey(id))
+      {
+        Identities.Add(id, member);
+      }
+
+      if (!identityMembers.ContainsKey(id))
+      {
+        if (!IsAlias(member))
+        {
+          foreach (string mID in GetMembers(member))
+          {
+            if ( !children.Contains(mID) )
+            {
+              children.Add(mID);
+            }
+          }
+        }
+        else
+        {
+          if ( !children.Contains(id) )
+          {
+            children.Add(id);
+          }
+        }
+      }
+      else
+      {
+        foreach (string mID in (ICollection)identityMembers[id])
+        {
+          if ( !children.Contains(mID) )
+          {
+            children.Add(mID);
+          }
+        }
+      }
+    }
+    ((ArrayList)identityMembers[parentID]).AddRange(children);
+  }
+  return (ArrayList)identityMembers[parentID];
+]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Time Warning Examinator</name>
+ </Item>
+</AML>

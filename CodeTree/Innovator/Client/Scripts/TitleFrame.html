@@ -1,0 +1,22 @@
+<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<!--
+Represents Frame with label with specified text.
+Request format:
+http://.../TitleFrame.html?title={title}
+-->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../styles/default.css">
+  <link rel="stylesheet" type="text/css" href="ITIL.css">
+
+<title>Title</title>
+<script type="text/javascript" src="../../../javascript/QueryString.js"></script>
+<script type="text/javascript">
+var title = QueryString("title").toString();
+</script>
+</head>
+
+<body>
+<center><h3><script>document.write(title);</script></h3></center>
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿<AML>
+ <Item type="Method" id="45E4E08304A248A488A7C8B8AA29F90C" action="add">
+  <comments>Refreshes configurable grid content.</comments>
+  <method_code><![CDATA[// Block grid editing.
+grid.isEditMode = false;
+
+// Get query parameters from parent frames:
+var parentFrame = window.frames[0];
+// Get selected service id
+var serviceList = parentFrame.document.getElementById('serviceList');
+var service = (serviceList !== null) ? serviceList.value : '';
+// Get requested items states
+var itemsStates = ContentParameters.LCStates;
+// Get requested items item type name
+var typeName = "ITIL " + ContentParameters.TypeName;
+// Get items owner id
+var itemsOwner = ContentParameters.Owner;
+
+var serviceID = null;
+if (service !== '')
+{
+  serviceID = "'" + service + "'";
+}
+
+var states = itemsStates.split(",");
+var i;
+var stateCondition = "<OR>";
+for (i = 0; i<states.length; i++)
+{
+  stateCondition += "<state>" + states[i] + "</state>";
+}
+stateCondition += "</OR>";
+
+var ownerCondition = '';
+if (itemsOwner !== '')
+{
+  ownerCondition = "<owned_by_id>" + itemsOwner + "</owned_by_id>";
+}
+
+// Get items from server by specified criteria
+var getPolyItemsAML = 
+          "<Item type='" + typeName + "' action='get' select='itemtype,item_number,service,state,due_date,managed_by_id,description,css' >" + 
+          stateCondition +
+          "<service condition='in'>(SELECT id FROM innovator.service_tree(" + serviceID + "))</service>" +
+          ownerCondition +
+          "</Item>";
+          
+var q = new Item("tmp", "tmp");
+q.loadAML(getPolyItemsAML);
+q = q.apply();
+var items = q.dom.selectNodes("//Item");
+
+for (i=0; i<items.length; i++)
+{
+  var item = items[i];
+  var itemId = item.getAttribute("id");
+  var doc = this.dom.documentElement;
+  var domItem = doc.selectSingleNode("//Item[@id='" + itemId +"']");
+  if (domItem !== null)
+  {
+    doc.replaceChild(domItem, item.cloneNode(true));
+  }
+  else
+  {
+    doc.appendChild(item.cloneNode(true));
+  }
+}
+
+return this;]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Items Grid Query</name>
+ </Item>
+</AML>

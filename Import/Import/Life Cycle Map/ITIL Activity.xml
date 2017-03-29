@@ -1,0 +1,39 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="D1623B9F250A427785DCABF97BD2DA2F" action="add">
+  <name>ITIL Activity</name>
+  <start_state keyed_name="Open" type="Life Cycle State">6074750A36D849C3A223AE13B809E0DB</start_state>
+  <Relationships>
+   <Item type="Life Cycle State" id="06435FECCF3A4B3FA116C686BFBAD561" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <name>Closed</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Activity" type="Life Cycle Map">D1623B9F250A427785DCABF97BD2DA2F</source_id>
+    <x>421</x>
+    <y>120</y>
+   </Item>
+   <Item type="Life Cycle State" id="6074750A36D849C3A223AE13B809E0DB" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <name>Open</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Activity" type="Life Cycle Map">D1623B9F250A427785DCABF97BD2DA2F</source_id>
+    <x>164</x>
+    <y>120</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="FC3FBAAEBDE9476FB75F8504091D30D6" action="add">
+    <from_state keyed_name="Open" type="Life Cycle State">6074750A36D849C3A223AE13B809E0DB</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="IT" type="Identity">80A7F2B9DDB44F3BBA455DDBEABA6165</role>
+    <segments></segments>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Activity" type="Life Cycle Map">D1623B9F250A427785DCABF97BD2DA2F</source_id>
+    <to_state keyed_name="Closed" type="Life Cycle State">06435FECCF3A4B3FA116C686BFBAD561</to_state>
+    <x>112</x>
+    <y>23</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

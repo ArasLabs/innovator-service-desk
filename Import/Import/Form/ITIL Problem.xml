@@ -1,0 +1,624 @@
+﻿<AML>
+ <Item type="Form" id="A0E0C344C31341D9B595CFF807E80C34" action="add">
+  <description>ITIL Problem</description>
+  <height>500</height>
+  <name>ITIL Problem</name>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>800</width>
+  <Relationships>
+   <Item type="Body" id="CDCE62EB19994AA99DB45617FF68968E" action="add">
+    <bg_attach>scroll</bg_attach>
+    <bg_color>#FFFFFF</bg_color>
+    <bg_image>../images/Backgrounds/wvleft.gif</bg_image>
+    <bg_repeat>no-repeat</bg_repeat>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Problem" type="Form">A0E0C344C31341D9B595CFF807E80C34</source_id>
+    <Relationships>
+     <Item type="Field" id="735AE9AF39414440987863AEA14DC933" action="add">
+      <bg_color>#FFFFFF</bg_color>
+      <border_width>0</border_width>
+      <field_type>button</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Submit</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>add_comment</name>
+      <positioning>absolute</positioning>
+      <sort_order>4224</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>90</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>635</x>
+      <y>220</y>
+      <Relationships>
+       <Item type="Field Event" id="497F6D496A31451ABFF520D57A314F8E" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="ITIL Add Comment" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>ITIL Add Comment</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="add_comment" type="Field">735AE9AF39414440987863AEA14DC933</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="8E79A55922984BD19B9B60BD2B883624" action="add">
+      <bg_color>#e0e0e0</bg_color>
+      <border_width>0</border_width>
+      <display_length>22</display_length>
+      <field_type>date</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Closed On</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>closed_on</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="closed_on" type="Property">8902511017A2447799FACB7FAD598ED2</propertytype_id>
+      <sort_order>3712</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>170</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>25</x>
+      <y>315</y>
+     </Item>
+     <Item type="Field" id="C008219F94944E34ADBCF9F46A780996" action="add">
+      <bg_color>#e0e0e0</bg_color>
+      <border_width>0</border_width>
+      <display_length>20</display_length>
+      <field_type>date</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Initiated On</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>created_on</name>
+      <positioning>absolute</positioning>
+      <sort_order>1920</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>60</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>430</x>
+      <y>50</y>
+     </Item>
+     <Item type="Field" id="E02D04755D53422582690A83D656A4EC" action="add">
+      <bg_color>#e0e0e0</bg_color>
+      <border_width>0</border_width>
+      <field_type>formatted text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Description</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>description</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="description_html" type="Property">47E6A7172EBF42A69DF4F16029B63A29</propertytype_id>
+      <sort_order>256</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>70</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>100</textarea_cols>
+      <textarea_rows>6</textarea_rows>
+      <x>200</x>
+      <y>90</y>
+     </Item>
+     <Item type="Field" id="13308811203F4CCC900EDF6D8DA78EEC" action="add">
+      <bg_color>#FFFFFF</bg_color>
+      <border_width>0</border_width>
+      <display_length>22</display_length>
+      <field_type>date</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Due Date</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>due_date</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="due_date" type="Property">F12431A7BDC44FA98D0A089D53DABC74</propertytype_id>
+      <sort_order>1152</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>80</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>25</x>
+      <y>115</y>
+     </Item>
+     <Item type="Field" id="DFEC81C1170B4248B3486A1052AEFC17" action="add">
+      <bg_color>#ffcccc</bg_color>
+      <border_width>0</border_width>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Impact</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>impact</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="impact" type="Property">E68AF3095838496C92DE257CD54F3D5E</propertytype_id>
+      <sort_order>896</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>50</tab_index>
+      <tab_stop>1</tab_stop>
+      <text_align>left</text_align>
+      <x>320</x>
+      <y>50</y>
+     </Item>
+     <Item type="Field" id="EEC45A0D22F34D20A84BDCB941D419EC" action="add">
+      <bg_color>#FFFFFF</bg_color>
+      <field_type>html</field_type>
+      <html_code><![CDATA[<table border='0' cellspacing='0' cellpadding='0'>
+<tr><td colspan='2'>
+<script>
+  document.write('<img hspace="20" vspace="20" src="' + top.aras.getItemProperty(document.itemType,'large_icon') + '">');
+</Script>
+</td></tr>
+<tr><td colspan='2'><img src='../images/lines/wvline.gif'></td></tr>
+<tr><td colspan='2'><img src='../images/icons/other/1x1.gif' width='1' height='10'></td></tr>
+<tr><td><img src='../images/icons/other/1x1.gif' width='20' height='1'>
+<td width='150'><p class='vbig'><b>
+<script>
+  var labelIT = top.aras.getItemProperty(document.itemType, 'label'); 
+  if (labelIT == '') labelIT = document.itemTypeName; 
+  document.write(labelIT);
+</Script>
+</b></p>
+</td></tr></table>
+]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <list_no_blank>0</list_no_blank>
+      <name>item_info</name>
+      <positioning>absolute</positioning>
+      <sort_order>1280</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_stop>0</tab_stop>
+      <x>0</x>
+      <y>0</y>
+     </Item>
+     <Item type="Field" id="60AB46C6941B4C28BDA89C4E338E8CA6" action="add">
+      <bg_color>#e0e0e0</bg_color>
+      <border_width>0</border_width>
+      <display_length>16</display_length>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Incident #</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>item_number</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="item_number" type="Property">FFD32197CC5249FE8AF31B30E492F7DC</propertytype_id>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>10</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>200</x>
+      <y>10</y>
+     </Item>
+     <Item type="Field" id="86B91B76A7E34882ABE4F3F02766054E" action="add">
+      <bg_color>#ffcccc</bg_color>
+      <border_width>0</border_width>
+      <display_length>22</display_length>
+      <field_type>item</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Responsible</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>managed_by_id</name>
+      <positioning>absolute</positioning>
+      <sort_order>1664</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>150</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>25</x>
+      <y>275</y>
+      <Relationships>
+       <Item type="Field Event" id="F0D5B31C855F41FB9462FA15FF1FC4A4" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="ITIL Responsible Change Handler" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>ITIL Responsible Change Handler</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="managed_by_id" type="Field">86B91B76A7E34882ABE4F3F02766054E</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="B8EA9C7A43B5428D8762BD5B98E24F8B" action="add">
+      <bg_color>#ffcccc</bg_color>
+      <border_width>0</border_width>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>New Comment</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>new_comment</name>
+      <positioning>absolute</positioning>
+      <sort_order>4096</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>80</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>80</textarea_cols>
+      <textarea_rows>2</textarea_rows>
+      <x>200</x>
+      <y>195</y>
+     </Item>
+     <Item type="Field" id="C2BA8B3420FB44928D76FB6BDF8E79F1" action="add">
+      <bg_color>#ffffff</bg_color>
+      <border_width>0</border_width>
+      <display_length>16</display_length>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Offline Time (min)</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>offline_time_spent</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="offline_time_spent" type="Property">974A48EB33764A66B741A9EB92312713</propertytype_id>
+      <sort_order>3584</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>130</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>565</x>
+      <y>250</y>
+     </Item>
+     <Item type="Field" id="8CE1D04B1D9741188BA4C180916756FE" action="add">
+      <bg_color>#ffcccc</bg_color>
+      <border_width>0</border_width>
+      <field_type>item</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Initiated By</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>owned_by_id</name>
+      <positioning>absolute</positioning>
+      <sort_order>1408</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>30</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>430</x>
+      <y>10</y>
+     </Item>
+     <Item type="Field" id="9E4B158A0431452E815F78B4B86EB65D" action="add">
+      <bg_color>#e0e0e0</bg_color>
+      <border_width>0</border_width>
+      <display_length>4</display_length>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Priority</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>priority</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="priority" type="Property">33F4EEFE6745447A86228DF58B1D2ADE</propertytype_id>
+      <sort_order>1024</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>90</tab_index>
+      <tab_stop>1</tab_stop>
+      <text_align>left</text_align>
+      <x>25</x>
+      <y>155</y>
+     </Item>
+     <Item type="Field" id="00635F61851C49B59326C080EF6EBFEA" action="add">
+      <bg_color>#ffcccc</bg_color>
+      <border_width>0</border_width>
+      <field_type>item</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Service</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>service</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="service" type="Property">AFE3F60B076C4C99822282B51DD53EF1</propertytype_id>
+      <sort_order>3072</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>20</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>320</x>
+      <y>10</y>
+      <Relationships>
+       <Item type="Field Event" id="742FBF9B68F14060AAB3C21216843333" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="ITIL Show Service Structure" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>ITIL Show Service Structure</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="service" type="Field">00635F61851C49B59326C080EF6EBFEA</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="660A95BA1F664217AAAF5C17588859B7" action="add">
+      <bg_color>#ffffff</bg_color>
+      <border_width>0</border_width>
+      <display_length>22</display_length>
+      <field_type>item</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Service Level</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>servicelevel</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="servicelevel" type="Property">7B25EF7A7DBC42B999173334991DE1E1</propertytype_id>
+      <sort_order>2560</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>70</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>25</x>
+      <y>195</y>
+      <Relationships>
+       <Item type="Field Event" id="01FB162175334223AF0853E1BC1968E5" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="ITIL On Service Level Changed" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>ITIL On Service Level Changed</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="servicelevel" type="Field">660A95BA1F664217AAAF5C17588859B7</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="507C7E80C5CE48709A229A12FE31FBD6" action="add">
+      <bg_color>#ffffff</bg_color>
+      <border_width>0</border_width>
+      <display_length>40</display_length>
+      <field_type>item</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Standard Solution (if Applicable)</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>solution</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="solution" type="Property">83819A2C5EA24DB3B64FBA8D94C1808F</propertytype_id>
+      <sort_order>3200</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>110</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>200</x>
+      <y>250</y>
+     </Item>
+     <Item type="Field" id="E87989C217B94B29B4BAFC99AF5EDB8A" action="add">
+      <bg_color>#ffffff</bg_color>
+      <border_width>0</border_width>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Solution Description</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>solution_text</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="solution_text" type="Property">DCD5799065264F30891E466C83828904</propertytype_id>
+      <sort_order>3328</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>160</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>100</textarea_cols>
+      <textarea_rows>6</textarea_rows>
+      <x>200</x>
+      <y>290</y>
+     </Item>
+     <Item type="Field" id="4AA93B82A17B49C797F51C2EC81C9200" action="add">
+      <bg_color>#e0e0e0</bg_color>
+      <border_width>0</border_width>
+      <display_length>22</display_length>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Status</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>state</name>
+      <positioning>absolute</positioning>
+      <sort_order>1792</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>100</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>25</x>
+      <y>235</y>
+     </Item>
+     <Item type="Field" id="CDD31F17E92340FF91CD96B89AD6AF5A" action="add">
+      <bg_color>#e0e0e0</bg_color>
+      <border_width>0</border_width>
+      <display_length>16</display_length>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Time Spent (min)</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>time_spent</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="time_spent" type="Property">1EB757C8EB204B5CB5CDAD03E29A7D4E</propertytype_id>
+      <sort_order>3456</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>120</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>455</x>
+      <y>250</y>
+     </Item>
+     <Item type="Field" id="CFB93385D0F140BFB5391E004F3A03D3" action="add">
+      <bg_color>#ffcccc</bg_color>
+      <border_width>0</border_width>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Urgency</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>urgency</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="urgency" type="Property">9ABC0675F27941BCAD811EDD58DA2D66</propertytype_id>
+      <sort_order>768</sort_order>
+      <source_id keyed_name="CDCE62EB19994AA99DB45617FF68968E" type="Body">CDCE62EB19994AA99DB45617FF68968E</source_id>
+      <tab_index>40</tab_index>
+      <tab_stop>1</tab_stop>
+      <text_align>left</text_align>
+      <x>200</x>
+      <y>50</y>
+     </Item>
+    </Relationships>
+   </Item>
+   <Item type="Form Event" id="040240756E624443AD42B4F52592DCFC" action="add">
+    <form_event>onunload</form_event>
+    <related_id keyed_name="ITIL Calculate Time Spent" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Calculate Time Spent</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Problem" type="Form">A0E0C344C31341D9B595CFF807E80C34</source_id>
+   </Item>
+  
+   <Item type="Form Event" id="AABB3F35AC994BE5AF7C93D23E8CE0D4" action="add">
+    <form_event>onformpopulated</form_event>
+    <related_id keyed_name="ITIL Init Form Fields" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Init Form Fields</name>
+     </Item>
+    </related_id>
+    <sort_order>64</sort_order>
+    <source_id keyed_name="ITIL Problem" type="Form">A0E0C344C31341D9B595CFF807E80C34</source_id>
+   </Item>
+   <Item type="Form Event" id="A81FCDD79A184F5DB34F398F6933B406" action="add">
+    <form_event>onload</form_event>
+    <related_id keyed_name="ITIL Set Owner" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Owner</name>
+     </Item>
+    </related_id>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Problem" type="Form">A0E0C344C31341D9B595CFF807E80C34</source_id>
+   </Item>
+   <Item type="Form Event" id="01F35BC71A8D4721A1432B0B269BEDF3" action="add">
+    <form_event>onload</form_event>
+    <related_id keyed_name="ITIL Set Start Time" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Start Time</name>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Problem" type="Form">A0E0C344C31341D9B595CFF807E80C34</source_id>
+   </Item></Relationships>
+ </Item>
+ <Item type="Field" id="C008219F94944E34ADBCF9F46A780996" action="edit">
+  <propertytype_id>
+   <Item type="Property" action="get" select="id">
+    <name>created_on</name>
+    <source_id type="ItemType" keyed_name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+  </propertytype_id>
+ </Item>
+ <Item type="Field" id="86B91B76A7E34882ABE4F3F02766054E" action="edit">
+  <propertytype_id>
+   <Item type="Property" action="get" select="id">
+    <name>managed_by_id</name>
+    <source_id type="ItemType" keyed_name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+  </propertytype_id>
+ </Item>
+ <Item type="Field" id="8CE1D04B1D9741188BA4C180916756FE" action="edit">
+  <propertytype_id>
+   <Item type="Property" action="get" select="id">
+    <name>owned_by_id</name>
+    <source_id type="ItemType" keyed_name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+  </propertytype_id>
+ </Item>
+ <Item type="Field" id="4AA93B82A17B49C797F51C2EC81C9200" action="edit">
+  <propertytype_id>
+   <Item type="Property" action="get" select="id">
+    <name>state</name>
+    <source_id type="ItemType" keyed_name="ITIL Problem">185381EB424344989F82E4F9711AF19F</source_id>
+   </Item>
+  </propertytype_id>
+ </Item>
+</AML>

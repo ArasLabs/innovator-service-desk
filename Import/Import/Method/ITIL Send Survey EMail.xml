@@ -1,0 +1,43 @@
+<AML>
+ <Item type="Method" id="E81BB2723CFE4E53A3AB10525123BF8E" action="add">
+  <comments>Sends survey notification to source e-mail address for closed Incidents</comments>
+  <method_code><![CDATA[// Sends notification to source e-mail address for closed Incidents
+string email = this.getProperty("source_email_address");
+if (email != null && email != "")
+{
+  Innovator inn = this.getInnovator();
+  string identityRequest = "<Item type='Identity' id='{0}' action='get' select='name' doGetItem='0' serverEvents='0' />";
+  Item recipient = inn.newItem("Identity");
+  recipient.loadAML(string.Format(identityRequest, this.getProperty("owned_by_id")));
+  recipient = recipient.apply();
+
+  if (!recipient.isError())
+  {
+  	StringBuilder sb = new StringBuilder();
+  	string subj = string.Format("ITIL Incident '{0}' closed", this.getProperty("item_number"));
+  	sb.AppendFormat("Description: {0}'\r\n", this.getProperty("description_html"));
+  	if (this.getType() != "ITIL Change")
+  	{
+  	  sb.AppendFormat("Standard Solution: {0}\r\n", this.getPropertyAttribute("solution", "keyed_name"));
+  	  sb.AppendFormat("Solution Description: {0}\r\n", this.getProperty("solution_text"));
+  	}  	
+    Item emailItem = inn.newItem("EMail Message");
+    emailItem.setProperty("from_user", inn.getUserID());
+    emailItem.setProperty("subject", subj);
+    emailItem.setProperty("body_html", sb.ToString());
+    emailItem.setProperty("body_plain", sb.ToString());
+    if (!this.email(emailItem, recipient))
+    {
+      return inn.newError("Failed to send notificaion e-mail.");
+    }
+  }
+  else
+  {
+    return recipient;
+  }
+}
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Send Survey EMail</name>
+ </Item>
+</AML>

@@ -1,0 +1,58 @@
+﻿<AML>
+ <Item type="Method" id="6DB9E9A783954AC499F955BC27AD5D81" action="add">
+  <comments>Sets due and warning date for the item.</comments>
+  <method_code><![CDATA[// Sets due and warning date for the item according to selected service level.
+
+Innovator inn = this.getInnovator();
+string isWorkDaySQL = "SELECT innovator.business_workday(CONVERT(datetime, '{0}'))";
+
+int militaryStartTime = int.Parse(this.getProperty("coverage_start"));
+int militaryEndTime = int.Parse(this.getProperty("coverage_end"));
+
+TimeSpan interval = new TimeSpan(int.Parse(this.getProperty("interval")), 0, 0);
+
+TimeSpan coverageStart = new TimeSpan(militaryStartTime / 100, militaryStartTime % 100, 0);
+TimeSpan coverageEnd = new TimeSpan(militaryEndTime / 100, militaryEndTime % 100, 0);
+TimeSpan timePerDay = coverageEnd - coverageStart;
+
+DateTime initTime = Convert.ToDateTime(this.getProperty("start_time"));
+DateTime currentDate = initTime.Date;
+TimeSpan startTime = initTime.TimeOfDay;
+TimeSpan spentTime = new TimeSpan();
+
+if (startTime > coverageStart)
+{
+  if (startTime < coverageEnd)
+    spentTime += coverageEnd - startTime;
+  currentDate += new TimeSpan(24, 0, 0);
+}
+
+DateTime endTime;
+
+if (spentTime >= interval)
+{
+  endTime = initTime + interval;
+}
+else
+{
+  while ( (interval - spentTime) > timePerDay )
+  {
+    bool isWorkDay = Convert.ToBoolean(inn.applySQL(String.Format(isWorkDaySQL, currentDate.Date)).getProperty("column1"));
+    if ( isWorkDay )
+      spentTime += timePerDay;
+    currentDate += new TimeSpan(24, 0, 0);
+  }
+  while ( !Convert.ToBoolean(inn.applySQL(String.Format(isWorkDaySQL, currentDate.Date)).getProperty("column1")) )
+  {
+    currentDate += new TimeSpan(24, 0, 0);
+  }
+  endTime = currentDate + coverageStart + (interval - spentTime);
+}
+
+this.setProperty("end_time", endTime.ToString());
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Complete DateTime Interval</name>
+ </Item>
+</AML>

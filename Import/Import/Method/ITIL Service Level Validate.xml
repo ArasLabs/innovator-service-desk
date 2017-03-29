@@ -1,0 +1,38 @@
+﻿<AML>
+ <Item type="Method" id="AAC91DAA25534ABAA16059DED0948DAB" action="add">
+  <comments>Validates Service Level time settings</comments>
+  <method_code><![CDATA[//Called OnBeforeAdd/OnBeforeUpdate for ITIL Service Level.  Validates that 
+// the coverage_start and coverage_end are four digit numbers between 0000 
+// and 2400 and that converage_end is greater than coverage_start.
+// Validates that response and warning time are set and > 0 
+// and warning time <= response time.
+
+string timeStr = this.getProperty("coverage_start");
+bool isCorrect = true && (timeStr.Length == 4);
+int startTime = int.Parse(timeStr);
+isCorrect = isCorrect && (startTime >= 0) && (startTime < 2400);
+
+timeStr = this.getProperty("coverage_end");
+isCorrect = true && (timeStr.Length == 4);
+int endTime = int.Parse(timeStr);
+isCorrect = isCorrect && (endTime > 0) && (endTime <= 2400);
+
+isCorrect = isCorrect && (startTime < endTime);
+
+if (!isCorrect)
+  return this.getInnovator().newError("The Coverage start time and Coverage end time must be four digit numbers between 0000 and 2400 and end time must be greater than start time.");
+
+timeStr = this.getProperty("default_response");
+int responseTime = int.Parse(timeStr);
+timeStr = this.getProperty("default_warning");
+int warningTime = int.Parse(timeStr);
+isCorrect = (responseTime > 0) && (warningTime > 0) && (warningTime <= responseTime);
+
+if (!isCorrect)
+  return this.getInnovator().newError("Response and warning time should be set and greater than 0 and warning time should be lower or equal response time.");
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Service Level Validate</name>
+ </Item>
+</AML>

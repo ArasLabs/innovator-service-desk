@@ -1,0 +1,148 @@
+﻿<AML>
+ <Item type="Form" id="55BAB151FFD640E2B25CE91C527570F5" action="add">
+  <description>ITIL Activity</description>
+  <name>ITIL Activity</name>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <Relationships>
+   <Item type="Body" id="52802B12DC964C73BBA7E5D142B87C3D" action="add">
+    <bg_attach>scroll</bg_attach>
+    <bg_color>#FFFFFF</bg_color>
+    <bg_image>../images/Backgrounds/wvleft.gif</bg_image>
+    <bg_repeat>no-repeat</bg_repeat>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Activity" type="Form">55BAB151FFD640E2B25CE91C527570F5</source_id>
+    <Relationships>
+     <Item type="Field" id="9C60B1E8D8814F9AACBC65015046AF66" action="add">
+      <bg_color>#FFFFFF</bg_color>
+      <border_width>0</border_width>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Description</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>description</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="description" type="Property">0D6AB5AD72C2407D8F04D75D1787E1EC</propertytype_id>
+      <sort_order>512</sort_order>
+      <source_id keyed_name="52802B12DC964C73BBA7E5D142B87C3D" type="Body">52802B12DC964C73BBA7E5D142B87C3D</source_id>
+      <tab_index>256</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>64</textarea_cols>
+      <textarea_rows>4</textarea_rows>
+      <x>190</x>
+      <y>50</y>
+     </Item>
+     <Item type="Field" id="C5D3275279B848679B07ED96BDE171C7" action="add">
+      <bg_color>#FFFFFF</bg_color>
+      <border_width>0</border_width>
+      <field_type>date</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Due Date</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>due_date</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="due_date" type="Property">073CD877EB4548E29E738D88135B759F</propertytype_id>
+      <sort_order>384</sort_order>
+      <source_id keyed_name="52802B12DC964C73BBA7E5D142B87C3D" type="Body">52802B12DC964C73BBA7E5D142B87C3D</source_id>
+      <tab_index>512</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>10</x>
+      <y>170</y>
+     </Item>
+     <Item type="Field" id="FC3DD2BF5BBA448CB0E87D03B9FA0BEC" action="add">
+      <bg_color>#FFFFFF</bg_color>
+      <field_type>html</field_type>
+      <html_code><![CDATA[<table border='0' cellspacing='0' cellpadding='0'>
+<tr><td colspan='2'>
+<script>
+  document.write('<img hspace="20" vspace="20" src="' + top.aras.getItemProperty(document.itemType,'large_icon') + '">');
+</Script>
+</td></tr>
+<tr><td colspan='2'><img src='../images/lines/wvline.gif'></td></tr>
+<tr><td colspan='2'><img src='../images/icons/other/1x1.gif' width='1' height='10'></td></tr>
+<tr><td><img src='../images/icons/other/1x1.gif' width='20' height='1'>
+<td width='150'><p class='vbig'><b>
+<script>
+  var labelIT = top.aras.getItemProperty(document.itemType, 'label'); 
+  if (labelIT == '') labelIT = document.itemTypeName; 
+  document.write(labelIT);
+</Script>
+</b></p>
+</td></tr></table>
+]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <list_no_blank>0</list_no_blank>
+      <name>item_info</name>
+      <positioning>absolute</positioning>
+      <sort_order>256</sort_order>
+      <source_id keyed_name="52802B12DC964C73BBA7E5D142B87C3D" type="Body">52802B12DC964C73BBA7E5D142B87C3D</source_id>
+      <tab_stop>0</tab_stop>
+      <x>0</x>
+      <y>0</y>
+     </Item>
+     <Item type="Field" id="065A53EEC73E4861B3F5E259D92C2A92" action="add">
+      <bg_color>#FFFFFF</bg_color>
+      <border_width>0</border_width>
+      <display_length>64</display_length>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Name</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>name</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="name" type="Property">5465B795EED5417F9A07CADED9B562C4</propertytype_id>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="52802B12DC964C73BBA7E5D142B87C3D" type="Body">52802B12DC964C73BBA7E5D142B87C3D</source_id>
+      <tab_index>128</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>190</x>
+      <y>10</y>
+     </Item>
+     <Item type="Field" id="1ED6818D645E4D05A83D7DC8986E7065" action="add">
+      <bg_color>#FFFFFF</bg_color>
+      <border_width>0</border_width>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label>Notes</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <name>notes</name>
+      <positioning>absolute</positioning>
+      <propertytype_id keyed_name="notes" type="Property">2F805692FB7D47059EDFA57B4A2765E0</propertytype_id>
+      <sort_order>640</sort_order>
+      <source_id keyed_name="52802B12DC964C73BBA7E5D142B87C3D" type="Body">52802B12DC964C73BBA7E5D142B87C3D</source_id>
+      <tab_index>384</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>64</textarea_cols>
+      <textarea_rows>4</textarea_rows>
+      <x>190</x>
+      <y>130</y>
+     </Item>
+    </Relationships>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

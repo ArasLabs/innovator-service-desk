@@ -1,0 +1,27 @@
+﻿<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../styles/default.css">
+  <link rel="stylesheet" type="text/css" href="ITIL.css">
+
+  <title>Control Panel</title>
+<script type="text/javascript">
+
+function onSearch()
+{
+  parent.onSearch();
+}
+
+function onCreateNew()
+{
+  parent.onCreateNew();
+}
+
+</script>
+</head>
+
+<body>
+  <input type="button" id="btnSearch" value="Search" title="Search for existing items..." onclick="onSearch()" />
+  <input type="button" id="btnNew" value="New" title="Create a new item." onclick="onCreateNew()" />
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="Grid" id="277BC7B804D74C07AF174E6055F94384" action="add">
+  <name>ITIL Notifications</name>
+  <query><![CDATA[<Item type="ITIL Notification" action="get" select="message" >
+<state>Active</state>
+</Item>]]></query>
+  <Relationships>
+   <Item type="Grid Column" id="F6634776E5354C4888F2AB7097E23222" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Message</label>
+    <property>message</property>
+    <sort_order>100</sort_order>
+    <source_id keyed_name="ITIL Notifications" type="Grid">277BC7B804D74C07AF174E6055F94384</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>400</width>
+    <xpath>self::Item[@type="ITIL Notification"]</xpath>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

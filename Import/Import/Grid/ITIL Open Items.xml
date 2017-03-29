@@ -1,0 +1,61 @@
+﻿<AML>
+ <Item type="Grid" id="4C9FEC8E77B44F309ABDE003485F1F72" action="add">
+  <method keyed_name="ITIL Items Grid Query" type="Method">45E4E08304A248A488A7C8B8AA29F90C</method>
+  <name>ITIL Open Items</name>
+  <query><![CDATA[<Item type="ITIL Poly" action="get" select="id" >
+<id>non_existing_id</id>
+</Item>]]></query>
+  <Relationships>
+   <Item type="Grid Column" id="256CA13B42A94F7B98B20597B3CFF43D" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Description</label>
+    <property>description</property>
+    <sort_order>300</sort_order>
+    <source_id keyed_name="ITIL Open Items" type="Grid">4C9FEC8E77B44F309ABDE003485F1F72</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Poly"]</xpath>
+   </Item>
+   <Item type="Grid Column" id="7E941864DE054D9FA1705B2F0F696F25" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Item Number</label>
+    <property>item_number</property>
+    <sort>2</sort>
+    <sort_order>100</sort_order>
+    <source_id keyed_name="ITIL Open Items" type="Grid">4C9FEC8E77B44F309ABDE003485F1F72</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Poly"]</xpath>
+   </Item>
+   <Item type="Grid Column" id="EB7699CDDB184AA5A103DF963E583279" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Status</label>
+    <property>state</property>
+    <sort_order>200</sort_order>
+    <source_id keyed_name="ITIL Open Items" type="Grid">4C9FEC8E77B44F309ABDE003485F1F72</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>80</width>
+    <xpath>self::Item[@type="ITIL Poly"]</xpath>
+   </Item>
+   <Item type="Grid Column" id="F466A8A14F9F498FBE5DBBF35AE32541" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Due Date</label>
+    <property>due_date</property>
+    <sort>1</sort>
+    <sort_order>400</sort_order>
+    <source_id keyed_name="ITIL Open Items" type="Grid">4C9FEC8E77B44F309ABDE003485F1F72</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>80</width>
+    <xpath>self::Item[@type="ITIL Poly"]</xpath>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

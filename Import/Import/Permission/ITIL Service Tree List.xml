@@ -1,0 +1,30 @@
+<AML>
+ <Item type="Permission" id="D18468B30CEC4B8F802EADB52DC32DF8" action="add">
+  <is_private>0</is_private>
+  <name>ITIL Service Tree List</name>
+  <Relationships>
+   <Item type="Access" id="E181838F6A6A4EDC947F2D348BCD001B" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="ITIL Daemon" type="Identity">7891B07EDF1B47F5B78F08C37C573B43</related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Service Tree List" type="Permission">D18468B30CEC4B8F802EADB52DC32DF8</source_id>
+   </Item>
+  
+   <Item type="Access" id="12D9F55863124D1AB897E4D8F413191C" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_get>1</can_get>
+    <can_update>0</can_update>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service Tree List" type="Permission">D18468B30CEC4B8F802EADB52DC32DF8</source_id>
+   </Item></Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,40 @@
+﻿<AML>
+ <Item type="Method" id="397284CD60384F00945B7A2D0DCD1DB8" action="add">
+  <comments>Sends e-mails to 'Display For' identities when notification became 'Active'</comments>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();             
+Item q = inn.newItem();
+
+string identityRequest = "<Item type='Identity' id='{0}' action='get' select='name' doGetItem='0' serverEvents='0' />";
+Item recipient = inn.newItem("Identity");
+recipient.loadAML(string.Format(identityRequest, this.getProperty("display_for")));
+recipient = recipient.apply();
+
+if (!recipient.isError())
+{
+  Item email = inn.newItem("EMail Message");
+  email.setProperty("from_user", inn.getUserID());
+  email.setProperty("subject", string.Format("ITIL Notification: {0}", this.getProperty("item_number")));
+  email.setProperty("body_html", this.getProperty("message"));
+  email.setProperty("body_plain", this.getProperty("message"));
+  if (!q.email(email, recipient))
+  {
+    return inn.newError("Failed to send notificaion e-mail.");
+  }
+  this.setProperty("submit_date", DateTime.Now.ToString());
+  q.loadAML(this.node.OuterXml);
+  q.setAttribute("doGetItem", "0");
+  q.setAttribute("serverEvents", "0");
+  q.setAttribute("action", "edit");
+  return q.apply();
+}
+else 
+{
+  return recipient;
+}
+
+return this;]]></method_code>
+  <method_location>Server</method_location>
+  <method_type>C#</method_type>
+  <name>ITIL Send Notification</name>
+ </Item>
+</AML>

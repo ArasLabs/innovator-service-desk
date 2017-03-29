@@ -1,0 +1,392 @@
+﻿<AML>
+ <Item type="ItemType" id="0270C84B948B478187F58409F9480D11" action="add">
+  <allow_private_permission>0</allow_private_permission>
+  <auto_search>1</auto_search>
+  <default_lifecycle keyed_name="Default" type="Life Cycle Map">2F3B75E17C4E4F2D9599579A965BFA64</default_lifecycle>
+  <default_page_size>50</default_page_size>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>polymorphic</implementation_type>
+  <instance_data>ITIL_POLY</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label>ITIL Item</label>
+  <label_plural>ITIL Items</label_plural>
+  <manual_versioning>0</manual_versioning>
+  <name>ITIL Poly</name>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <save_history>0</save_history>
+  <show_parameters_tab>0</show_parameters_tab>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <Relationships>
+   <Item type="Property" id="54539A042B4D458DBDD894BED22A74BF" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Closed On</label>
+    <name>closed_on</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1792</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" id="DAF0D91968F743ACBE0A0EC65234829C" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>400</column_width>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Description</label>
+    <name>description</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" id="34BBF11490BB4E6DA3E79C6F0048C92A" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Due Date</label>
+    <name>due_date</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" id="C950C7A0FFCB40F88BCA2E515355785B" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_source keyed_name="ITIL Sequence">0EF111DFCB154C94A3EEEC844CA9DC84</data_source>
+    <data_type>sequence</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>0</keyed_name_order>
+    <label>Number</label>
+    <name>item_number</name>
+    <order_by>0</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" id="60086B9FF0D74B488593404DABD841CA" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>integer</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Offline Time Spent</label>
+    <min_range>0</min_range>
+    <name>offline_time_spent</name>
+    <range_inclusive>1</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1536</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" id="C627E50D02524611BA751F3F339FB4D3" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_source keyed_name="ITIL Service" type="ItemType" name="ITIL Service">A169199751C1452F8A7C1CB399742DFE</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Service</label>
+    <name>service</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" id="AACB0ED3214F4097A5865A7CF4349203" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_source keyed_name="ITIL Service Level" type="ItemType" name="ITIL Service Level">ED44B29746784A11A23102ED9B294757</data_source>
+    <data_type>item</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Service Level</label>
+    <name>servicelevel</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1280</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" id="576B2DB6041E4680ACC40108DA6B690E" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>integer</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Time Spent</label>
+    <name>time_spent</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" id="8394191B98DC45D2B2B69D1D700A1568" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Warn Date</label>
+    <name>warn_date</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1664</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Server Event" id="108826ED797B4EA6901CAC1D0BED29EE" action="add">
+    <related_id keyed_name="ITIL Set Status Color" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Set Status Color</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterGet</server_event>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Server Event" id="FF705B1930984520BFE4F60355E267BE" action="add">
+    <related_id keyed_name="polymorphic_item_onBeforeAdd" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>polymorphic_item_onBeforeAdd</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeAdd</server_event>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Server Event" id="3B958064B5B64B858DF20020ED9FA955" action="add">
+    <related_id keyed_name="polymorphic_item_onBeforeCopy" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>polymorphic_item_onBeforeCopy</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeCopy</server_event>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Server Event" id="DBAC80154B63487881AF56F37E0B751A" action="add">
+    <related_id keyed_name="polymorphic_item_onBeforeDelete" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>polymorphic_item_onBeforeDelete</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeDelete</server_event>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Server Event" id="66A99D8031804C2690AC20130A14ECD9" action="add">
+    <related_id keyed_name="polymorphic_item_onBeforeLock" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>polymorphic_item_onBeforeLock</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeLock</server_event>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Server Event" id="028A4BA810D9487E8F60685BA8BB7994" action="add">
+    <related_id keyed_name="polymorphic_item_onBeforeUnlock" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>polymorphic_item_onBeforeUnlock</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUnlock</server_event>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Server Event" id="FD58CCCEC9B940B5AFA4631EC1FA5AF1" action="add">
+    <related_id keyed_name="polymorphic_item_onBeforeUpdate" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>polymorphic_item_onBeforeUpdate</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeUpdate</server_event>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Server Event" id="F3BEB5AB0AC944DBB34638CD133E9453" action="add">
+    <related_id keyed_name="polymorphic_item_onBeforeVersion" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>polymorphic_item_onBeforeVersion</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeVersion</server_event>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="0270C84B948B478187F58409F9480D11" action="edit">
+  <Relationships>
+   <Item type="Property" action="edit" where="source_id='0270C84B948B478187F58409F9480D11' and name='created_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label>Initiated On</label>
+    <name>created_on</name>
+    <pattern>MM/dd/yyyy hh:mm:ss a</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>1152</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='0270C84B948B478187F58409F9480D11' and name='itemtype'">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_source keyed_name="ITIL Poly"><Item type="List" action="get" select="id" page="1" pagesize="1"><name>ITIL Poly</name></Item></data_source>
+    <data_type>list</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Type</label>
+    <name>itemtype</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='0270C84B948B478187F58409F9480D11' and name='managed_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>110</column_width>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Responsible</label>
+    <name>managed_by_id</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='0270C84B948B478187F58409F9480D11' and name='owned_by_id'">
+    <column_alignment>left</column_alignment>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label>Initiated By</label>
+    <name>owned_by_id</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3333</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='0270C84B948B478187F58409F9480D11' and name='state'">
+    <column_alignment>left</column_alignment>
+    <column_width>60</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label>Status</label>
+    <name>state</name>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+    <stored_length>32</stored_length>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="0270C84B948B478187F58409F9480D11" action="edit">
+  <Relationships>
+   <Item type="Morphae" id="E25F7A31DFD643DF8F73E763CABADF13" action="add">
+    <related_id keyed_name="ITIL Change" type="ItemType" name="ItemType">0A95AD58CC394D3B8BCAE0099DC0701B</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="0270C84B948B478187F58409F9480D11" action="edit">
+  <Relationships>
+   <Item type="Morphae" id="C2EC2061BEF544BE9E4B480735C96CBB" action="add">
+    <related_id keyed_name="ITIL Incident" type="ItemType" name="ItemType">C61909A601AE4DDEABADF209E6D735E0</related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="0270C84B948B478187F58409F9480D11" action="edit">
+  <Relationships>
+   <Item type="Morphae" id="985EAB6B879D418D97039817AADF33C7" action="add">
+    <related_id keyed_name="ITIL Problem" type="ItemType" name="ItemType">185381EB424344989F82E4F9711AF19F</related_id>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Poly" type="ItemType" name="ITIL Poly">0270C84B948B478187F58409F9480D11</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+
+ <Item type="View" action="delete" where="source_id='0270C84B948B478187F58409F9480D11'"></Item>
+ <Item type="Form" action="delete" where="name='ITIL Poly'"></Item></AML>

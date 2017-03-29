@@ -1,0 +1,23 @@
+﻿<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<html>
+<head>
+<title>Information Dashboard</title>
+<script type="text/javascript" src="../../../javascript/QueryString.js"></script>
+<script type="text/javascript">
+var mode = QueryString("mode").toString();
+var item;
+
+onload = function f_onload()
+{
+  item = parent.item;
+  document.frames[0].location.replace("ItemsGrid.html?params=" + "type=" + mode + ";states=Open,Approved");
+  document.frames[1].location.replace("ItemsGrid.html?params=" + "type=" + mode + ";states=Resolved,Implemented");
+}
+</script>
+</head>
+
+<FRAMESET ID="ii_frameset" COLS="50%,50%" BORDER=0 FRAMEBORDER=1 FRAMESPACING=0>
+  <FRAME ID="OpenItemsGridFrame" NORESIZE>
+  <FRAME ID="ClosedItemsGridFrame" NORESIZE>
+</FRAMESET>
+</html>

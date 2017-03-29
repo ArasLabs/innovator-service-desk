@@ -1,0 +1,46 @@
+﻿<AML>
+ <Item type="Method" id="AFFD5ECF3E794A6FA27224E43ACFF4F8" action="add">
+  <comments>Set the background color of due_date based on lead time</comments>
+  <method_code><![CDATA[// Set the background color of due_date based on lead time
+
+Innovator inn = this.getInnovator();
+for (int i=0; i<this.getItemCount(); i++) 
+{
+  Item item = this.getItemByIndex(i);
+  Item itemFromServer = null;
+  if (item.getProperty("warn_date") == null)
+  {
+  	string aml = "<AML><Item type='{0}' id='{1}' action='get' serverEvents='0' select='warn_date,due_date' /></AML>";
+  	itemFromServer = inn.applyAML(String.Format(aml, item.getType(), item.getID()));
+  	if (!itemFromServer.isError() && !itemFromServer.isEmpty())
+  	{
+      item.setProperty("warn_date", itemFromServer.getProperty("warn_date"));
+      item.setProperty("due_date", itemFromServer.getProperty("due_date"));
+  	}
+  }
+  DateTime warnDate = Convert.ToDateTime(item.getProperty("warn_date"));
+  DateTime dueDate = Convert.ToDateTime(item.getProperty("due_date"));
+  string color = "#FF0000";
+  if (DateTime.Now < warnDate) 
+  {
+    color = "#00FF00";
+  }
+  else
+  {
+    if (DateTime.Now < dueDate)
+    {
+      color = "#FFFF00";
+    }
+  }
+  string state = item.getProperty("state");
+  if (state == "Resolved" || state == "Implemented")
+  {
+    color = "transparent";
+  }
+  item.setProperty("css",".due_date {background-color:"+color+"}");
+}
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Set Status Color</name>
+ </Item>
+</AML>

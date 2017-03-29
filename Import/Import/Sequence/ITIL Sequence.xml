@@ -1,0 +1,9 @@
+﻿<AML>
+ <Item type="Sequence" id="0EF111DFCB154C94A3EEEC844CA9DC84" action="add">
+  <current_value>0</current_value>
+  <name>ITIL Sequence</name>
+  <pad_to>6</pad_to>
+  <pad_with>0</pad_with>
+  <prefix>ITIL-</prefix>
+ </Item>
+</AML>

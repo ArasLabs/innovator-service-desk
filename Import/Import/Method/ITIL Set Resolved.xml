@@ -1,0 +1,264 @@
+﻿<AML>
+ <Item type="Method" id="3A4322AB6D824EB4AAA275B11E3D8A7A" action="add">
+  <comments>Promotes the item to the 'Resolved' state</comments>
+  <method_code><![CDATA[// Promotes the item to 'Resolved' state (same as using Promote, but called via the Action menu)
+
+function refreshItemOnClient(type, id)
+{
+  aras.removeFromCache(id);
+  var wnd = aras.uiFindWindowEx(id);
+  if (!wnd)
+  {
+    return;
+  }
+  var itmNd = aras.getItemById(type, id);
+  if (itmNd)
+  {
+    aras.uiReShowItem(id, id, "view");
+  }
+}
+
+function PromoteRelItemsRequest()
+{
+  var dialogMsg = "Should the related Incidents to this Problem be closed as well?";
+  var dialogPath = top.aras.getScriptsURL()+"../Solutions/ITIL/scripts/CustomConfirmDialog.html";
+  var res = showModalDialog(dialogPath, dialogMsg,
+              "dialogHeight:" + 150 + "px; dialogWidth:" + 300 + "px; " +
+              "status:0; help:0; resizable:0; scroll:0;");
+  return res;            
+}
+
+function CheckRelItems(relItems)
+{
+  var lockedItemNumbers = "";
+  var idleItemNumbers = "";
+  for(var i=0; i<relItems.getItemCount(); i++)
+  {
+    var relatedItem = relItems.getItemByIndex(i);
+    var itemNumber = relatedItem.getProperty("item_number");
+    
+    if (relatedItem.getProperty("state") === "Idle")
+    {
+      idleItemNumbers += ((idleItemNumbers.length > 0) ? "," : "") + itemNumber;
+    }
+    
+    var lockStatus = relatedItem.fetchLockStatus();
+    if ( lockStatus > 0)
+    {
+      lockedItemNumbers += ((lockedItemNumbers.length > 0) ? "," : "") + itemNumber;
+    }
+  }
+  
+  var res = {idleItems: idleItemNumbers.length > 0 ? idleItemNumbers : undefined,
+             lockedItems: lockedItemNumbers.length > 0 ? lockedItemNumbers : undefined
+            };
+            
+  if (res.idleItems || res.lockedItems)
+  {
+    var errMsg = "Failed to promote some related items:\r\n";
+    if (res.idleItems)
+    {
+      errMsg += res.idleItems + " items are in the 'Idle' state\r\n";
+    }
+    if (res.lockedItems)
+    {
+      errMsg += res.lockedItems + " items are locked\r\n";
+    }
+    errMsg += "Please fix these conditions and re-execute action.";
+    top.aras.AlertError(errMsg);
+    return false;
+  }
+  
+  return true;
+}
+
+// Main function
+var curItem = this;
+var inn = this.getInnovator();
+
+// Check for action called on relationship
+if (curItem.getType() === "ITIL Change Factor")
+{
+  // try to get related Incident item
+  var aml = "<Item type='ITIL Incident' action='get' select='id' doGetItem='0' serverEvents='0' >" +
+            "<id condition='in'>SELECT related_id from [ITIL_Change_Factor] WHERE id='" + curItem.getID() + "'</id></Item>";
+  var relIncident = curItem.newItem("ITIL Incident");
+  relIncident.loadAML(aml);
+  relIncident = relIncident.apply();
+  
+  // try to get related Problem item
+  aml = "<Item type='ITIL Problem' action='get' select='id' doGetItem='0' serverEvents='0' >" +
+            "<id condition='in'>SELECT related_id from [ITIL_Change_Factor] WHERE id='" + curItem.getID() + "'</id></Item>";
+  var relProblem = curItem.newItem("ITIL Problem");
+  relProblem.loadAML(aml);
+  relProblem = relProblem.apply();
+  
+  var relItem = relIncident.isError() ? relProblem : relIncident;
+  if (relItem.isError())
+  {
+    top.aras.AlertError("Method 'ITIL Set Resolved' failed: No related Incident/Problem items found.");
+    return relItem;
+  }
+  else
+  {
+    curItem = relItem;
+  }
+}
+
+var finalState = "Resolved";
+var relshipName = "ITIL Problem Incident";
+
+if (curItem.isNew() || curItem.getAttribute("isTemp"))
+{
+  top.aras.AlertError("Failed to promote temporary item. Please save item before close.");
+  return this;
+}
+else
+{
+  // Get item from server
+  curItem.setAttribute("select", "id,state,managed_by_id,solution,solution_text");
+  curItem.setAction("get");
+  curItem = inn.applyAML("<AML>" + curItem.node.xml + "</AML>");
+  if (curItem.isError())
+  {
+    top.aras.AlertError("Method 'ITIL Set Resolved' failed: " + curItem.getErrorDetail());
+    return this;
+  }
+}
+
+// Check item's lock status
+var lockStatus = curItem.fetchLockStatus();
+if ( lockStatus > 0)
+{
+  if ( lockStatus > 1 )
+  {
+    top.aras.AlertError("Failed to promote: item not locked by you.");
+    return this;
+  }
+  else
+  {
+    var res = curItem.unlockItem();
+    if (res.isError())
+    {
+      top.aras.AlertError("Method 'ITIL Set Resolved' failed. Unlock item failed: " + res.getErrorDetail());
+      return this;
+    }
+    curItem.fetchLockStatus();
+  }
+}
+
+if (curItem.getProperty("state") === finalState)
+{
+  top.aras.AlertError("Item is already resolved.");
+  return curItem;
+}
+
+// Check for related items
+var itemWithRels = curItem.fetchRelationships(relshipName);
+var relItems = itemWithRels.getItemsByXPath("Relationships/Item[@type='" + relshipName + "']/related_id/Item");
+
+var promoteRelated = false;
+if (relItems.getItemCount() > 0)
+{
+  if (PromoteRelItemsRequest())
+  {
+    // Check for related items could be promoted
+    if (!CheckRelItems(relItems))
+    {
+      return curItem;
+    }
+    promoteRelated = true;
+  }
+}
+
+// Promote item
+res = curItem.promote(finalState,"");
+if (res.isError())
+{
+  top.aras.AlertError("Method 'ITIL Set Resolved' failed. Failed to promote #" + 
+                       curItem.getProperty("item_number") + " item: " + 
+                       res.getErrorDetail());
+  return curItem;
+}
+else
+{
+  refreshItemOnClient(curItem.getType(), curItem.getID());
+}  
+
+if (promoteRelated)
+{
+  var solution = curItem.getProperty("solution");
+  var solution_text = curItem.getProperty("solution_text");
+  var responsibleIdentity = curItem.getProperty("managed_by_id");
+  
+  // Promote related items
+  for(var i=0; i<relItems.getItemCount(); i++)
+  {
+    relItem = relItems.getItemByIndex(i);
+    var itemNumber = relItem.getProperty("item_number");
+    
+    if (finalState === relItem.getProperty("state"))
+    {
+      continue;
+    }
+
+    var needUpdate = false;
+    // Check/update "solution" property
+    if (solution)
+    {
+      relItem.setProperty("solution", solution);
+      needUpdate = true;
+    }
+    
+    // Check/update "solution_text" property
+    if (solution_text)
+    {
+      var prevValue = relItem.getProperty("solution_text");
+      relItem.setProperty("solution_text", (prevValue ? (prevValue + "\r\n") : "") + solution_text);
+      needUpdate = true;
+    }
+
+    // Check/update "Responsible" property
+    var respIdentity = relItem.getProperty("managed_by_id");
+    var isAliasAML = "<AML><Item type='Alias' action='get' select='id'><related_id>" + respIdentity + "</related_id></Item></AML>";
+    res = inn.applyAML(isAliasAML);
+    if (res.isError())
+    {
+      relItem.setProperty("managed_by_id", responsibleIdentity);
+      needUpdate = true;
+    }
+
+    if (needUpdate)
+    {    
+      relItem.setAction("edit");
+      relItem = inn.applyAML("<AML>" + relItem.node.xml + "</AML>");
+      if (relItem.isError())
+      {
+        top.aras.AlertError("Method 'ITIL Set Resolved' failed. Edit #" + 
+                             relItem.getProperty("item_number") + " item: " + 
+                             relItem.getErrorDetail());
+        continue;
+      }
+    }
+      
+    res = relItem.promote(finalState,"");
+    if (res.isError())
+    {
+      top.aras.AlertError("Method 'ITIL Set Resolved' failed. Failed to promote #" + 
+                           relItem.getProperty("item_number") + " item: " + 
+                           res.getErrorDetail());
+    }
+    else
+    {
+      refreshItemOnClient(relItem.getType(), relItem.getID());
+    }  
+  }
+}
+
+
+return curItem;
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Set Resolved</name>
+ </Item>
+</AML>

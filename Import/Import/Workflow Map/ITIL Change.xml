@@ -1,0 +1,232 @@
+﻿<AML>
+ <Item type="Workflow Map" id="EA12FC8828FE4384ADB4D71A315E30D9" action="add">
+  <description>Template for ITIL Change Workflows</description>
+  <name>ITIL Change</name>
+  <node_bg_color></node_bg_color>
+  <node_label1_color></node_label1_color>
+  <node_label1_font></node_label1_font>
+  <node_label2_color></node_label2_color>
+  <node_label2_font></node_label2_font>
+  <node_name_color></node_name_color>
+  <node_name_font></node_name_font>
+  <node_size></node_size>
+  <process_owner keyed_name="Creator" type="Identity">
+   <Item type="Identity" action="get" select="id">
+    <name>Creator</name>
+   </Item>
+  </process_owner>
+  <transition_line_color></transition_line_color>
+  <transition_name_color></transition_name_color>
+  <transition_name_font></transition_name_font>
+  <Relationships>
+   <Item type="Workflow Map Activity" id="6EAECA0A6A514570B8645DA36F8549AA" action="add">
+    <related_id keyed_name="Change Cancelled" type="Activity Template">
+     <Item type="Activity Template" id="1771ACD5D29E4A44AAF69184A63D884F" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/Icons/20x20/20x22_gray_ball.gif</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message>Please Review...</message>
+      <name>Change Cancelled</name>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>63</x>
+      <y>226</y>
+     </Item>
+    </related_id>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Change" type="Workflow Map">EA12FC8828FE4384ADB4D71A315E30D9</source_id>
+   </Item>
+  
+   <Item type="Workflow Map Activity" id="54EBAFFCC48340EE90DA32908280060B" action="add">
+    <related_id keyed_name="Change Implemented" type="Activity Template">
+     <Item type="Activity Template" id="138B391390BB47F7A359501E553BA3BD" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <expected_duration>0</expected_duration>
+      <icon>../images/Icons/16x16/16x16_redx.gif</icon>
+      <is_auto>1</is_auto>
+      <is_end>1</is_end>
+      <is_start>0</is_start>
+      <message>Workflow End</message>
+      <name>Change Implemented</name>
+      <priority>1</priority>
+      <reminder_count>0</reminder_count>
+      <reminder_interval>0</reminder_interval>
+      <timeout_duration>0</timeout_duration>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>524</x>
+      <y>33</y>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Change" type="Workflow Map">EA12FC8828FE4384ADB4D71A315E30D9</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" id="9645781E83B840C4B341FB6EA00287DB" action="add">
+    <related_id keyed_name="Implement Change" type="Activity Template">
+     <Item type="Activity Template" id="A394A7EEAC84462B9EC189294C1466D7" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/Icons/20x20/20x22_gray_ball.gif</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message>Please Review...</message>
+      <name>Implement Change</name>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>336</x>
+      <y>33</y>
+      <Relationships>
+       <Item type="Workflow Map Path" id="D59EF9EE817C4323A16F22595F744B3F" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Complete</name>
+        <related_id>138B391390BB47F7A359501E553BA3BD</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Implement Change" type="Activity Template">A394A7EEAC84462B9EC189294C1466D7</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="ITIL Change" type="Workflow Map">EA12FC8828FE4384ADB4D71A315E30D9</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" id="FE8B36B944C649FEA31EE7FFAE2E09D0" action="add">
+    <related_id keyed_name="Review Change" type="Activity Template">
+     <Item type="Activity Template" id="ADFA90245E424A04834BCC5135158599" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/Icons/20x20/20x22_gray_ball.gif</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message>Please Review...</message>
+      <name>Review Change</name>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>137</x>
+      <y>33</y>
+      <Relationships>
+       <Item type="Workflow Map Path" id="D6A1188565954B29A2893D87E0569B84" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Approve</name>
+        <related_id>A394A7EEAC84462B9EC189294C1466D7</related_id>
+        <sort_order>256</sort_order>
+        <source_id keyed_name="Review Change" type="Activity Template">ADFA90245E424A04834BCC5135158599</source_id>
+       </Item>
+      
+       <Item type="Workflow Map Path" id="CCB9BB032DF04184B685A55FF55EA4F8" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Reject</name>
+        <related_id>CA11547AFCE840E2BA2EC0F53EFFA5F7</related_id>
+        <segments></segments>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Review Change" type="Activity Template">ADFA90245E424A04834BCC5135158599</source_id>
+        <x>-85</x>
+        <y>55</y>
+       </Item></Relationships>
+     </Item>
+    </related_id>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Change" type="Workflow Map">EA12FC8828FE4384ADB4D71A315E30D9</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" id="23A2FBDB70A64CA885CD056229803129" action="add">
+    <related_id keyed_name="Review Rejected Change" type="Activity Template">
+     <Item type="Activity Template" id="CA11547AFCE840E2BA2EC0F53EFFA5F7" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/Icons/20x20/20x22_gray_ball.gif</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message>Please Review...</message>
+      <name>Review Rejected Change</name>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>63</x>
+      <y>132</y>
+      <Relationships>
+       <Item type="Workflow Map Path" id="BFECF13A72174BCFAEF4D004B619E13C" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Cancel</name>
+        <related_id>1771ACD5D29E4A44AAF69184A63D884F</related_id>
+        <segments></segments>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Review Rejected Change" type="Activity Template">CA11547AFCE840E2BA2EC0F53EFFA5F7</source_id>
+        <x>5</x>
+        <y>60</y>
+       </Item>
+       <Item type="Workflow Map Path" id="1BCA800F6BA5457E9079BF4806120070" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Resubmit</name>
+        <related_id>ADFA90245E424A04834BCC5135158599</related_id>
+        <segments>149,144</segments>
+        <sort_order>256</sort_order>
+        <source_id keyed_name="Review Rejected Change" type="Activity Template">CA11547AFCE840E2BA2EC0F53EFFA5F7</source_id>
+        <x>85</x>
+        <y>-5</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Change" type="Workflow Map">EA12FC8828FE4384ADB4D71A315E30D9</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" id="D31B0EC0F1134A3A997A2D3E25DB2A8F" action="add">
+    <related_id keyed_name="Start" type="Activity Template">
+     <Item type="Activity Template" id="9E1CB2A664E94C25920E441FEF3E610D" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <expected_duration>0</expected_duration>
+      <icon>../images/Icons/16x16/16x16_arrow_right.gif</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>1</is_start>
+      <message>Workflow Start</message>
+      <name>Start</name>
+      <priority>2</priority>
+      <reminder_count>0</reminder_count>
+      <reminder_interval>0</reminder_interval>
+      <timeout_duration>0</timeout_duration>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>20</x>
+      <y>33</y>
+      <Relationships>
+       <Item type="Workflow Map Path" id="9CFC31DA0EE645A7BE45FC5C0F7BF099" action="add">
+        <authentication>none</authentication>
+        <is_default>1</is_default>
+        <is_override>0</is_override>
+        <name>Go</name>
+        <related_id>ADFA90245E424A04834BCC5135158599</related_id>
+        <segments></segments>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Start" type="Activity Template">9E1CB2A664E94C25920E441FEF3E610D</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Change" type="Workflow Map">EA12FC8828FE4384ADB4D71A315E30D9</source_id>
+   </Item></Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,61 @@
+﻿<AML>
+ <Item type="Grid" id="B68864C8A4784B38801C3CBC7FE197EC" action="add">
+  <method keyed_name="ITIL Items Grid Query" type="Method">45E4E08304A248A488A7C8B8AA29F90C</method>
+  <name>ITIL Open Changes</name>
+  <query><![CDATA[<Item type="ITIL Change" action="get" select="id" >
+<id>non_existing_id</id>
+</Item>]]></query>
+  <Relationships>
+   <Item type="Grid Column" id="6A058E048481490B91E8E59B74659686" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Change Number</label>
+    <property>item_number</property>
+    <sort>2</sort>
+    <sort_order>100</sort_order>
+    <source_id keyed_name="ITIL Open Changes" type="Grid">B68864C8A4784B38801C3CBC7FE197EC</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Change"]</xpath>
+   </Item>
+   <Item type="Grid Column" id="C41A0AEB89E44052BE0AC1C8495FF0DF" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Due Date</label>
+    <property>due_date</property>
+    <sort>1</sort>
+    <sort_order>400</sort_order>
+    <source_id keyed_name="ITIL Open Changes" type="Grid">B68864C8A4784B38801C3CBC7FE197EC</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Change"]</xpath>
+   </Item>
+  
+   <Item type="Grid Column" id="D6D3A00408FC4558BC624C51AD289199" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Description</label>
+    <property>description</property>
+    <sort_order>300</sort_order>
+    <source_id keyed_name="ITIL Open Changes" type="Grid">B68864C8A4784B38801C3CBC7FE197EC</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Change"]</xpath>
+   </Item>
+   <Item type="Grid Column" id="DBA97BDEDEDC43F5AA6E158463B3187A" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Status</label>
+    <property>state</property>
+    <sort_order>200</sort_order>
+    <source_id keyed_name="ITIL Open Changes" type="Grid">B68864C8A4784B38801C3CBC7FE197EC</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>80</width>
+    <xpath>self::Item[@type="ITIL Change"]</xpath>
+   </Item></Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,7 @@
+﻿<AML>
+ <Item type="Identity" id="34498E9E0C4F4BF2890BE425B81DBD51" action="add">
+  <description>Able to manage ITIL Problems</description>
+  <is_alias>0</is_alias>
+  <name>ITIL Problem Manager</name>
+ </Item>
+</AML>

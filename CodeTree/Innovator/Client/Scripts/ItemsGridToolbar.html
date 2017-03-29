@@ -1,0 +1,102 @@
+﻿<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<html>
+<head>
+<script type="text/javascript" src="../../../javascript/aras_object.js"></script>
+<script type="text/javascript">
+
+var parentFrameId = parent.parent.frameID;
+var params = parent.parent.LocationSearches[parentFrameId];
+parent.ContentParameters = params;
+
+var serviceListWidth = "150px";
+
+function onServiceChange()
+{
+  if (event.propertyName!="value") return true;
+  var grid = parent.grid;
+  if (grid != null)
+    grid.runQuery();
+}
+
+var prevServiceSelection = '';
+
+var syncServiceListInterval;
+
+var serviceList = undefined;
+
+function syncServiceListWithParent()
+{
+  if (serviceList == undefined)
+    return;
+
+  if (top.item.nodeName != undefined && top.item.getAttribute('id') != "")
+  {
+    var service = top.aras.getItemProperty(top.item, 'service');
+    
+    if (service == prevServiceSelection)
+      return;
+    else
+      prevServiceSelection = service;
+      
+    if (serviceList.value != service)
+    {
+      for (var i=0; i < serviceList.options.length; i++)
+      {
+        if (serviceList.options[i].value == service)
+        {
+          serviceList.selectedIndex = i;
+          serviceList.style.width = serviceListWidth;
+          serviceList.disabled = true;
+          break;
+        }
+      }
+    }
+  }
+}
+
+</script>
+</head>
+
+<body topmargin="0" leftmargin="0" bgcolor="buttonface" scroll="no">
+  <script>
+    if (params.Owner == undefined || params.Owner == '')
+    {
+      // add toolbar label
+      var label = '';
+      if (params.LCStates.indexOf("Open") >= 0)
+        label += 'Open ';
+      else
+        label += 'Recently Closed ';
+      label += 'Items for: ';
+      document.write(label);
+
+      // add service list dropdown into toolbar and initialize
+      var serviceListObjectContent = "<select id='serviceList' onpropertychange='onServiceChange()' ></select>";
+      document.writeln(serviceListObjectContent);
+      syncServiceListInterval = setInterval(syncServiceListWithParent, 100);
+      serviceList = this.document.getElementById('serviceList');
+      serviceList.style.width = serviceListWidth;
+      var aml = "<AML><Item type='Method' action='get' select='method_code'>" +
+                "<name>ITIL Reload Services List</name>" +
+                "</Item></AML>";
+                
+      var res = top.aras.applyAML(aml);
+      var d = top.aras.createXMLDocument();
+      d.loadXML(res);
+      var methodCode = d.selectSingleNode("//Item[@type='Method']/method_code").text;
+      var reloadListFunction = new Function('listObject', methodCode);
+
+      aml = "<AML><Item type='Method' action='get' select='method_code'>" +
+                "<name>ITIL Init Service List Object</name>" +
+                "</Item></AML>";
+      res = top.aras.applyAML(aml);
+      d.loadXML(res);
+      methodCode = d.selectSingleNode("//Item[@type='Method']/method_code").text;
+      var initListFunction = new Function('listObject', 'reloadListFunction', methodCode);
+
+      serviceList.disabled = false;
+      initListFunction(serviceList, reloadListFunction);
+    }
+  </script>
+</body>
+</html>

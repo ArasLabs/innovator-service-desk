@@ -1,0 +1,28 @@
+﻿<AML>
+ <Item type="Method" id="7B7AE8DF9F364CEBA6540D4EF8C5F97B" action="add">
+  <comments>Pre-Transition to Resolved (ITIL Incident and ITIL Problem) and Implemented (ITIL Change) method</comments>
+  <method_code><![CDATA[// Called Pre-Transition to Resolved (ITIL Incident and ITIL Problem) 
+// and Implemented (ITIL Change). Calls validate and set closed date methods.
+Innovator inn = this.getInnovator();
+Item q = inn.newItem("tmp", "tmp");
+q.loadAML(this.node.OuterXml);
+
+Item res = null;
+string typeName = this.getType();
+if (typeName != "ITIL Change") 
+{
+  q.setAttribute("action", typeName + " Validate");
+  res = q.apply();
+  if (res != null && res.isError()) return res;
+}
+
+q.setAttribute("action", "ITIL Close Activity Workflow");
+res = q.apply();
+if (res != null && res.isError()) return res;
+
+return res;
+]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Pre-Resolved(Implemented)</name>
+ </Item>
+</AML>

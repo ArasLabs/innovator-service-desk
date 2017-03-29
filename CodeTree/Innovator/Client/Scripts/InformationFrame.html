@@ -1,0 +1,23 @@
+﻿<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../styles/default.css">
+
+  <title>Innovator API Example</title>
+<script type="text/javascript">
+var item;
+
+onload = function f_onload()
+{
+  item = top.aras.newItem("User");
+  document.frames[0].location.replace("MyOpenItemsGrid.html");
+  document.frames[1].location.replace("NotificationsGrid.html");
+}
+</script>
+</head>
+
+<FRAMESET ID="ii_frameset" ROWS="60%,40%" BORDER=0 FRAMEBORDER=1 FRAMESPACING=0>
+  <FRAME ID="MyOpenItems" NORESIZE >
+  <FRAME ID="NotificationArea" NORESIZE >
+</FRAMESET>
+</html>

@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link rel="stylesheet" type="text/css" href="ITIL.css" />
+  <script type="text/javascript" src="../../../javascript/QueryString.js"></script>
+  
+<title>Custom Confirm Dialog</title>
+
+<script type="text/javascript">
+var dialogMsg = window.dialogArguments;
+
+  function returnResult(res)
+  {
+    window.returnValue = res;
+    window.close();
+  }
+  
+  onload = function onLoad()
+  {
+    window.returnValue = false;
+  }
+</script>
+</head>
+<body>
+<form>
+<table>
+  <tr style="height:70%">
+    <td><script type="text/javascript">document.write(dialogMsg);</script></td>
+  </tr>
+  <tr>
+    <td>
+      <table border="0" align="center">
+        <tr><td>
+          <input type="button" value="Yes" style="width:80px" onclick="returnResult(true)" />
+          <input type="button" value="No"  style="width:80px" onclick="returnResult(false)" />
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

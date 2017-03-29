@@ -1,0 +1,11 @@
+﻿<AML>
+ <Item type="Method" id="98127D7E72AE4CB1B54E8CF1F058407A" action="add">
+  <comments>Set Identity SearchDialog filter to alias identities only.</comments>
+  <method_code><![CDATA[// Set Identity SearchDialog filter to alias identities only.
+var retObj = new Object();
+retObj["is_alias"] = { filterValue:"1", isFilterFixed:true };
+return retObj;]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Alias Filter</name>
+ </Item>
+</AML>

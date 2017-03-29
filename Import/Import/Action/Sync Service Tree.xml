@@ -1,0 +1,14 @@
+<AML>
+ <Item type="Action" id="22C7C82CBF3D4321B8B09B3582AFF6A9" action="add">
+  <item_query></item_query>
+  <location>server</location>
+  <method keyed_name="ITIL Sync Service Tree" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>ITIL Sync Service Tree</name>
+   </Item>
+  </method>
+  <name>Sync Service Tree</name>
+  <target>none</target>
+  <type>itemtype</type>
+ </Item>
+</AML>

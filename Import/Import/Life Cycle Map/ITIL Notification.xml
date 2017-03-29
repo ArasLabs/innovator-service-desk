@@ -1,0 +1,66 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="A979253DAEAE4C85ABF2F8FEEEC1BBD3" action="add">
+  <description>ITIL Notification</description>
+  <name>ITIL Notification</name>
+  <start_state keyed_name="Pending" type="Life Cycle State">64AD3B373EDF4FBE9876FF1A96A631ED</start_state>
+  <Relationships>
+   <Item type="Life Cycle State" id="2668A81DA80C4F45914DEA8F9379510D" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <name>Active</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Notification" type="Life Cycle Map">A979253DAEAE4C85ABF2F8FEEEC1BBD3</source_id>
+    <x>211</x>
+    <y>73</y>
+   </Item>
+   <Item type="Life Cycle State" id="2F7B586DE8DE4BF291117B52A94923F0" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <name>Closed</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="ITIL Notification" type="Life Cycle Map">A979253DAEAE4C85ABF2F8FEEEC1BBD3</source_id>
+    <x>382</x>
+    <y>73</y>
+   </Item>
+   <Item type="Life Cycle State" id="64AD3B373EDF4FBE9876FF1A96A631ED" action="add">
+    <image>../images/icons/20x20/20x15_lifecycle.gif</image>
+    <name>Pending</name>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Notification" type="Life Cycle Map">A979253DAEAE4C85ABF2F8FEEEC1BBD3</source_id>
+    <x>38</x>
+    <y>73</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="F78BF610ED31459EAF708EE8223FFC1D" action="add">
+    <from_state keyed_name="Active" type="Life Cycle State">2668A81DA80C4F45914DEA8F9379510D</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</role>
+    <segments></segments>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Notification" type="Life Cycle Map">A979253DAEAE4C85ABF2F8FEEEC1BBD3</source_id>
+    <to_state keyed_name="Closed" type="Life Cycle State">2F7B586DE8DE4BF291117B52A94923F0</to_state>
+    <x>23</x>
+    <y>-3</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="50D0255D320D493BB82EA6AE186E2EBA" action="add">
+    <from_state keyed_name="Pending" type="Life Cycle State">64AD3B373EDF4FBE9876FF1A96A631ED</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="ITIL Send Notification" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>ITIL Send Notification</name>
+     </Item>
+    </post_action>
+    <role keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</role>
+    <segments></segments>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Notification" type="Life Cycle Map">A979253DAEAE4C85ABF2F8FEEEC1BBD3</source_id>
+    <to_state keyed_name="Active" type="Life Cycle State">2668A81DA80C4F45914DEA8F9379510D</to_state>
+    <x>28</x>
+    <y>-2</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

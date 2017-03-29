@@ -1,0 +1,30 @@
+<AML>
+ <Item type="Permission" id="E9C99A2374DD453C9A5BCA6A7791962C" action="add">
+  <is_private>0</is_private>
+  <name>ITIL Service Level</name>
+  <Relationships>
+   <Item type="Access" id="2DC34C9D825A46959A434078755A1307" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>1</can_delete>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="Permission">E9C99A2374DD453C9A5BCA6A7791962C</source_id>
+   </Item>
+  
+   <Item type="Access" id="163A7FC269934FD2A118A9755653A487" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_get>1</can_get>
+    <can_update>0</can_update>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Service Level" type="Permission">E9C99A2374DD453C9A5BCA6A7791962C</source_id>
+   </Item></Relationships>
+ </Item>
+</AML>

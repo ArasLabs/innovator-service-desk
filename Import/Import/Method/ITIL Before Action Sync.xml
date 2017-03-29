@@ -1,0 +1,27 @@
+﻿<AML>
+ <Item type="Method" id="35CF0AD290AE408A8D3ECE10B1741AF5" action="add">
+  <comments>Synchronize Service relationships</comments>
+  <method_code><![CDATA[// Gets id of related ITIL Service item.
+string relatedItemID = this.getProperty("related_id");
+if (relatedItemID == null || relatedItemID == "")
+{
+  string aml = "<AML><Item type='ITIL Service Structure' action='get' select='related_id'>" + 
+                     "<id>" + this.getID() + "</id>" + 
+                     "</Item></AML>";
+  Innovator inn = this.newInnovator();                   
+  Item res = inn.applyAML(aml);
+  if (res.isEmpty() || res.isError())
+    return null;
+  
+  relatedItemID = res.getProperty("related_id");
+}
+
+// Puts id of the related item into Session hash for 
+// "ITIL After Action Sync" method.
+string relshipSessionKey = "relship_" + this.getID();
+CCO.Session[relshipSessionKey] = relatedItemID;
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Before Action Sync</name>
+ </Item>
+</AML>

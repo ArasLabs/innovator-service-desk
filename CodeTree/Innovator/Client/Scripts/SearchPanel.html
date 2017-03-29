@@ -1,0 +1,57 @@
+﻿<!-- (c) Copyright by Aras Corporation, 2005-2007. -->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../styles/default.css">
+  <link rel="stylesheet" type="text/css" href="ITIL.css">
+
+  <title>Search Items Panel</title>
+<script type="text/javascript">
+
+function onSearch()
+{
+  var name = searchForm.solution.value;
+  var desc = searchForm.description.value;
+  parent.document.frames.ViewPanel.location.replace("SearchResultsGrid.html?solution=" + name + "&description=" + desc);
+}
+
+</script>
+</head>
+
+<body>
+<form id="searchForm" onsubmit="return false; onSearch();" >
+  <table>
+    <tr>
+      <td width="300px" align="right" >
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+            <td valign="middle" align="right" nowrap="yes" style="width: 30%"><p style="text-transform: capitalize; font-weight: bold; color: #000000; text-align: right;">Description:&nbsp;</p></td>
+            <td valign="bottom" align="left" nowrap="yes" style="width: 60%">
+              <input type="text" id="description" style="width: 200px" />
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    
+    <tr>
+      <td width="300px" align="right" >
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+            <td valign="middle" align="right" nowrap="yes" style="width: 30%"><p style="text-transform: capitalize; font-weight: bold; color: #000000; text-align: right;">Solution:&nbsp;</p></td>
+            <td valign="bottom" align="left" nowrap="yes" style="width: 60%">
+              <input type="text" id="solution" style="width: 200px" />
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    
+    <tr>
+      <td align="center">
+        <input type="submit" id="btnSearch" value="Search" title="Search for solution's items." onclick="onSearch()" />
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<AML>
+ <Item type="Permission" id="462DF9935C6143268CBDD89ADF845AB1" action="add">
+  <is_private>0</is_private>
+  <name>ITIL Open Incident</name>
+  <Relationships>
+   <Item type="Access" id="F958DEE90C6E4187BA36164D6C51807E" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Creator" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>Creator</name>
+     </Item>
+    </related_id>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="ITIL Open Incident" type="Permission">462DF9935C6143268CBDD89ADF845AB1</source_id>
+   </Item>
+  
+   <Item type="Access" id="3BEC7957525440488E24E08D550E3851" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="IT" type="Identity">80A7F2B9DDB44F3BBA455DDBEABA6165</related_id>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="ITIL Open Incident" type="Permission">462DF9935C6143268CBDD89ADF845AB1</source_id>
+   </Item>
+   <Item type="Access" id="2C6D76B8B5B74FD4985112E4056384B8" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="ITIL Administrators" type="Identity">5DE7F42D771F4226917308CE96D88448</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ITIL Open Incident" type="Permission">462DF9935C6143268CBDD89ADF845AB1</source_id>
+   </Item>
+   <Item type="Access" id="CCE312DA48454FE2B212A062E0E42323" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_get>1</can_get>
+    <can_update>0</can_update>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="ITIL Open Incident" type="Permission">462DF9935C6143268CBDD89ADF845AB1</source_id>
+   </Item></Relationships>
+ </Item>
+</AML>

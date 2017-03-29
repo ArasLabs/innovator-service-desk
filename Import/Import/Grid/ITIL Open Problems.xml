@@ -1,0 +1,61 @@
+﻿<AML>
+ <Item type="Grid" id="6A4686C562634F58938827B991B3FCA5" action="add">
+  <method keyed_name="ITIL Items Grid Query" type="Method">45E4E08304A248A488A7C8B8AA29F90C</method>
+  <name>ITIL Open Problems</name>
+  <query><![CDATA[<Item type="ITIL Problem" action="get" select="id" >
+<id>non_existing_id</id>
+</Item>]]></query>
+  <Relationships>
+   <Item type="Grid Column" id="074393935DAB4A1985E9103F210DB6DD" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Status</label>
+    <property>state</property>
+    <sort_order>200</sort_order>
+    <source_id keyed_name="ITIL Open Problems" type="Grid">6A4686C562634F58938827B991B3FCA5</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>60</width>
+    <xpath>self::Item[@type="ITIL Problem"]</xpath>
+   </Item>
+   <Item type="Grid Column" id="6B1603175D5B4C17B282A6A7954B5D78" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Due Date</label>
+    <property>due_date</property>
+    <sort>1</sort>
+    <sort_order>400</sort_order>
+    <source_id keyed_name="ITIL Open Problems" type="Grid">6A4686C562634F58938827B991B3FCA5</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Problem"]</xpath>
+   </Item>
+  
+   <Item type="Grid Column" id="7E9BDCB9C1C44B35AF0BE3142583B8AF" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Problem Number</label>
+    <property>item_number</property>
+    <sort>2</sort>
+    <sort_order>100</sort_order>
+    <source_id keyed_name="ITIL Open Problems" type="Grid">6A4686C562634F58938827B991B3FCA5</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Problem"]</xpath>
+   </Item>
+   <Item type="Grid Column" id="845715C92D554719BE8614F67A637020" action="add">
+    <align>left</align>
+    <datatype>default</datatype>
+    <label>Description</label>
+    <property>description</property>
+    <sort_order>300</sort_order>
+    <source_id keyed_name="ITIL Open Problems" type="Grid">6A4686C562634F58938827B991B3FCA5</source_id>
+    <starts_nested_row>0</starts_nested_row>
+    <visible>1</visible>
+    <width>100</width>
+    <xpath>self::Item[@type="ITIL Problem"]</xpath>
+   </Item></Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,60 @@
+﻿<AML>
+ <Item type="Method" id="9DCEF934CE874811950D78459D6618AD" action="add">
+  <comments>Calculate the time the form remained open and add to the time spent</comments>
+  <method_code><![CDATA[// Calculate the time the form remained open and add to the time spent
+
+var curItem = this.document.thisItem;
+if (curItem.getAttribute("action") === "skip")
+{
+  return this;
+}
+  
+// Check item state
+var state = curItem.getPropertyAttribute('current_state', 'name');
+if (state == 'Open')
+{
+  dateObj = new Date();
+  var closeTime = dateObj.getTime();
+  if (isFinite(parseInt(this.startTime)))
+  {
+    // Calculate time_spent for current session
+    var timeSpent = (closeTime - this.startTime)/1000/60;
+    var timeSpentInMin = Math.round(timeSpent);
+
+    // Get item previous time_spent from server, because item could be modified by other
+    // users during this session.
+    var aml = "<AML><Item type='" + curItem.getType() + "' action='get' select='time_spent,locked_by_id'>" +
+                "<id>" + curItem.getID() + "</id>" +
+              "</Item></AML>";
+    var itemFromServer = curItem.getInnovator().applyAML(aml);
+    var prevTimeSpent = parseInt(itemFromServer.getProperty("time_spent"));
+  
+    if (isFinite(prevTimeSpent))
+    {
+      curItem.setProperty("time_spent", prevTimeSpent + timeSpentInMin);
+    }
+    else
+    {
+      curItem.setProperty("time_spent", timeSpentInMin);
+    }
+
+    var newItem = curItem.getInnovator().newItem();
+    newItem.loadAML(curItem.node.xml);
+    var res;
+    // Get item lock state and edit/update item.
+    if (itemFromServer.getProperty('locked_by_id') !== undefined)
+    {
+      res = newItem.apply("update");
+    }
+    else
+    {
+      res = newItem.apply("edit");
+    }
+  }
+}
+return curItem;
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Calculate Time Spent</name>
+ </Item>
+</AML>

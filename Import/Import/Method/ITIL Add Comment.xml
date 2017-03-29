@@ -1,0 +1,151 @@
+﻿<AML>
+ <Item type="Method" id="EF498C54818841FB8F015CCB2C784E2B" action="add">
+  <comments>Adds new comment into "Description"</comments>
+  <method_code><![CDATA[// Adds new comment into "Description"
+
+var endLineTag = "<br>";
+var boldOpenTag = "<b>";
+var boldCloseTag = "</b>";
+
+// Make "xx" strings for date and time component values
+function get2SymbolsValue(val)
+{
+  val = val.toString();
+  if ( val.length > 2 )
+  {
+    return val.substr(val.length - 2);
+  }
+  else
+  {
+    if ( val.length < 2 )
+    {
+      return "0" + val;
+    }
+  }
+  
+  return val;
+}
+
+// Get current date in "mm/dd/yy HH:MM"
+function getFormattedDate()
+{
+  var date = new Date();
+  dateStr = "";
+  dateStr += get2SymbolsValue(date.getMonth() + 1);
+  dateStr += "/" + get2SymbolsValue(date.getDate());
+  dateStr += "/" + get2SymbolsValue(date.getYear());
+
+  var hours = date.getHours();
+  dateStr += " " + get2SymbolsValue( (hours%12 > 0) ? (hours%12) : 12 );
+  dateStr += ":" + get2SymbolsValue(date.getMinutes());
+  dateStr += (hours/12 > 0) ? "PM" : "AM";
+  
+  return dateStr;
+}
+
+function getDescriptionField()
+{
+  var objects = document.getElementsByTagName("SPAN");
+  for (i=0; i<objects.length; i++)
+  {
+    if (objects[i].className === "description")
+    {
+      return objects[i];
+    }
+  }
+}
+
+var comment = document.getElementById("new_comment").value;
+if (comment === "")
+{
+  return;
+}
+
+var innovator = new Innovator();
+var loggedUserId = innovator.getUserID();
+var aml = "<AML><Item type='User' select='keyed_name' action='get' doGetItem='0' serverEvents='0'>" + 
+          "<id>" + loggedUserId + "</id>" + 
+          "</Item></AML>";
+var userIdentity = innovator.applyAML(aml);
+var author = "";
+if (!userIdentity.isError())
+{
+  author = " by " + userIdentity.getProperty("keyed_name");
+}
+
+// Get item description from server, because item could be modified by other
+// users during this session.
+var curItem = this.document.thisItem;
+aml = "<AML><Item type='" + curItem.getType() + "' action='get' select='description,description_html' doGetItem='0' serverEvents='0'>" +
+        "<id>" + curItem.getID() + "</id>" +
+      "</Item></AML>";
+var itemFromServer = curItem.getInnovator().applyAML(aml);
+var description = "";
+var description_html = "";
+if (!itemFromServer.isError())
+{
+  description = itemFromServer.getProperty("description");
+  description_html = itemFromServer.getProperty("description_html");
+}
+
+
+if (description === "")
+{
+  description = curItem.getProperty("description");
+  description = (description !== undefined) ? description : "";
+}
+if (description !== "")
+{
+  description += "\n";
+}
+
+if (description_html === "")
+{
+  var descField = getDescriptionField();
+  description_html = descField.value;
+  description_html = (description_html !== undefined) ? description_html : "";
+}
+if (description_html !== "")
+{
+  description_html += endLineTag;
+}
+
+var reLT = /</g;
+var reGT = />/g;
+
+var dateStr = getFormattedDate();
+description_html += boldOpenTag + dateStr + ' ' + author + ":" + boldCloseTag;
+description_html += endLineTag + comment.replace( reLT, '&lt;').replace(reGT, '&gt;');
+description += dateStr + ' ' + author + ":\n" + comment;
+
+if (!curItem.getAttribute("isTemp"))
+{
+  var act = document.isEditMode ? "update" : "edit";
+  aml = "<AML><Item type='" + curItem.getType() + "' id='" + curItem.getID() + "' action ='" + act + "' serverEvents='0'>" +
+        "<description_html><![CDATA[" + description_html + "]]]]><![CDATA[></description_html>" +
+        "<description><![CDATA[" + description + "]]]]><![CDATA[></description>" +
+        "</Item></AML>";
+  var res = innovator.applyAML(aml);
+  if (res.isError())
+  {
+    top.aras.AlertError("Failed to add a new comment: " + res.getErrorDetail());
+    return;
+  }
+  else
+  {
+    description = res.getProperty("description");
+    description_html = res.getProperty("description_html");
+  }
+}
+
+curItem.setProperty("description", description);
+handleItemChange("description", description);
+curItem.setProperty("description_html", description_html);
+handleItemChange("description_html", description_html);
+document.getElementById("new_comment").value = "";
+
+return;]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Add Comment</name>
+ </Item>
+</AML>

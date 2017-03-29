@@ -1,0 +1,62 @@
+﻿<AML>
+ <Item type="Method" id="9D5E2E380856460C96E5C96622878054" action="add">
+  <comments>Convert ITIL Problem or ITIL Incident items to a new ITIL Change Item</comments>
+  <method_code><![CDATA[// Creates a new ITIL Change item client-side, copies properties and creates 
+// a relationship back to the Incident. If used for an ITIL Problem item, adds
+// to a new Change item all problem related incidents.
+
+function SaveSourceItemRequest()
+{
+  var dialogMsg = "Source item should be saved before converting.\r\nSave it?";
+  var dialogPath = top.aras.getScriptsURL()+"../Solutions/ITIL/scripts/CustomConfirmDialog.html";
+  var res = showModalDialog(dialogPath, dialogMsg,
+              "dialogHeight:" + 150 + "px; dialogWidth:" + 300 + "px; " +
+              "status:0; help:0; resizable:0; scroll:0;");
+  return res;            
+}
+
+var inn = this.newInnovator();
+var curItem = this;
+if (top.aras.isTempEx(curItem.node))
+{
+  if (!SaveSourceItemRequest())
+  {
+    return curItem;
+  }
+  else
+  {
+    var res = top.aras.saveItemEx(curItem.node);
+    if (res)
+    {
+      curItem.node = res;
+    }
+    top.aras.uiReShowItemEx(curItem.getID(), curItem.node, "tab view");
+    if (!res)
+    {
+      return curItem;
+    }
+  }
+}
+
+var newItem = inn.newItem("ITIL Change","add");
+
+// Set the shared properties
+var propsToBeCopied = "description,description_html,service,servicelevel," +
+                      "owned_by_id,managed_by_id";
+var props = propsToBeCopied.split(',');                      
+for (var i=0; i<props.length; i++)
+{
+  newItem.setProperty(props[i], curItem.getProperty(props[i]));
+}
+
+// Set source Incident item related to new Problem item
+var relshipItem = newItem.createRelationship("ITIL Change Factor", "add");
+relshipItem.setRelatedItem(curItem);
+
+// Show the new Problem item
+top.aras.uiShowItemEx(newItem.node,"tab view",true);
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>ITIL Convert to Change</name>
+ </Item>
+</AML>

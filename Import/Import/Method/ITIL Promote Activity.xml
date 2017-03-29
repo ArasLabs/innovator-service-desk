@@ -1,0 +1,20 @@
+﻿<AML>
+ <Item type="Method" id="E3619ECB7EB9400CB5A9E806A2A58507" action="add">
+  <method_code><![CDATA[// Promote ITIL Activity
+//
+// Promotes the ITIL Activity to the 'Closed' state.  Called 'On Close' of the Activity.
+
+Item activityItem = this.newItem("ITIL Activity","get");
+activityItem.setAttribute("select","id");
+activityItem.setProperty("activity",this.getID());
+activityItem = activityItem.apply();
+if (activityItem.getItemCount()!=1) return this.newInnovator().newError("Error retrieving ITIL Activity");
+activityItem.unlockItem();
+if (activityItem.isError()) return activityItem;
+activityItem.promote("Closed","Closed by the ITIL Activity workflow");
+if (activityItem.isError()) return activityItem;
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>ITIL Promote Activity</name>
+ </Item>
+</AML>
